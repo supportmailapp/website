@@ -1,0 +1,12 @@
+{
+  "css.customData": [ ".vscode/tailwind.json" ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "file": "./.vscode/daisyui.md"
+    }
+  ],
+  "[svelte]": {
+    "editor.defaultFormatter": "svelte.svelte-vscode"
+  }
+}
