@@ -1,8 +1,13 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import { m } from "$lib/paraglide/messages.js";
+  import { locales, localizeHref } from "$lib/paraglide/runtime";
+  import { page } from "$app/state";
+  import { m } from "$lib/paraglide/messages";
 
-  console.log(m.exampleMessage({ username: "Test" }));
+  const languages: Record<string, string> = {
+    en: "English",
+    de: "Deutsch",
+  };
 
   // Stats data for testing purposes
   const data = {
@@ -86,7 +91,29 @@
         </div>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden items-center gap-6 backdrop-blur-md md:flex">
+        <nav class="hidden items-center gap-6 backdrop-blur-md lg:flex">
+          <!-- Language Selector Dropdown -->
+          <div class="dropdown dropdown-end dropdown-bottom">
+            <div tabindex="0" role="button" class="btn btn-dash btn-sm gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] mt-2 w-40 p-2 shadow">
+              {#each locales as locale}
+                <li><a href={localizeHref(page.url.pathname, { locale })}>{languages[locale]}</a></li>
+              {/each}
+            </ul>
+          </div>
           <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">Documentation</a>
           <a href="/premium" class="nav-link nav-link-premium">Premium</a>
           <a href="https://dashboard.supportmail.dev/" class="nav-button">Dashboard</a>
@@ -94,7 +121,7 @@
 
         <!-- Mobile Menu Button -->
         <!-- svelte-ignore a11y_consider_explicit_label -->
-        <button id="menu-button" class="btn btn-ghost btn-square rounded-lg md:hidden" onclick={toggleMenu}>
+        <button id="menu-button" class="btn btn-ghost btn-square rounded-lg lg:hidden" onclick={toggleMenu}>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -108,6 +135,30 @@
         <div class="container mx-auto flex flex-col gap-4 px-4 py-4 text-center">
           <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">Documentation</a>
           <a href="/premium" class="nav-link nav-link-premium">Premium</a>
+
+          <!-- Mobile Language Selector -->
+          <div class="dropdown dropdown-bottom dropdown-center">
+            <div tabindex="0" role="button" class="nav-link w-full">
+              <div class="flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                  />
+                </svg>
+                <span>{m.Language()}</span>
+              </div>
+            </div>
+            <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] mb-2 w-[70%] p-2 shadow">
+              {#each locales as locale}
+                <li><a href={localizeHref(page.url.pathname, { locale })} class="justify-center">{languages[locale]}</a></li>
+              {/each}
+            </ul>
+          </div>
+
           <a href="https://dashboard.supportmail.dev/" class="nav-button">Dashboard</a>
         </div>
       </div>
@@ -401,7 +452,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="from-primary/20 to-secondary/20 bg-gradient-to-r py-16">
+    <section class="to-secondary/20 bg-gradient-to-b from-transparent py-16">
       <div class="container mx-auto px-4 text-center">
         <div class="mx-auto max-w-3xl">
           <h2 class="mb-6 text-3xl font-bold md:text-4xl">Ready to Transform Your Discord Server?</h2>
@@ -411,7 +462,7 @@
           </p>
           <div class="flex flex-col justify-center gap-4 sm:flex-row">
             <a href="/add" class="btn btn-primary btn-lg">Add Bot to Server</a>
-            <a href="https://docs.supportmail.dev/" class="btn btn-outline btn-lg">Read Documentation</a>
+            <a href="https://docs.supportmail.dev/" target="_blank" class="btn btn-outline btn-lg">Read Documentation</a>
           </div>
         </div>
       </div>
@@ -419,8 +470,8 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-base-200 py-8 select-none">
-    <div class="container mx-auto px-4">
+  <footer class="bg-base-200 from-secondary/40 to-secondary/90 bg-gradient-to-b from-10% py-8 select-none">
+    <div class="container mx-auto px-4 text-white">
       <div class="flex flex-col items-center justify-between md:flex-row">
         <div class="mb-4 flex items-center gap-2 md:mb-0">
           <div class="avatar">
@@ -430,8 +481,8 @@
           </div>
           <span class="font-medium">SupportMail</span>
         </div>
-        <p class="text-base-content/70 text-sm">© 2023-2025 SupportMail - All rights reserved.</p>
-        <a href="https://legal.supportmail.dev/" target="_blank" class="link link-primary link-hover ml-2">Legal</a>
+        <p class="text-sm text-white/80">© 2023-2025 SupportMail - All rights reserved.</p>
+        <a href="https://legal.supportmail.dev/" target="_blank" class="link link-primary link-hover">Legal</a>
       </div>
     </div>
   </footer>

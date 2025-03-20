@@ -1,10 +1,5 @@
 import { paraglideMiddleware } from "$lib/paraglide/server";
-import type { Handle, Reroute } from "@sveltejs/kit";
-import { deLocalizeUrl } from "$lib/paraglide/runtime";
-
-export const reroute: Reroute = (request) => {
-  return deLocalizeUrl(request.url).pathname;
-};
+import type { Handle } from "@sveltejs/kit";
 
 // creating a handle to use the paraglide middleware
 const paraglideHandle: Handle = async ({ event, resolve }) =>

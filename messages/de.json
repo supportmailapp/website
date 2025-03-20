@@ -1,4 +1,8 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-  "exampleMessage": "Guten Tag {username}"
+  "app": {
+    "title": "SupportMail | Moderne Modmail + Berichte",
+    "description": "SupportMail ist ein moderner Discord-Bot mit Modmail- und Reportfunktionen, der die Moderation deines Servers auf ein neues Level hebt."
+  },
+  "Language": "Sprache"
 }
