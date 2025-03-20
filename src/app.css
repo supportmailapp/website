@@ -2,5 +2,56 @@
 
 @plugin "daisyui" {
   themes: night --default;
-  prefix: "dy-";
+}
+
+@layer base {
+  :root {
+    --dc-blurple: #5a65db;
+    --light-blurple: rgba(90, 101, 219, 0.8);
+    --max-w: 1100px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    max-width: screen;
+    scrollbar-width: thin;
+  }
+
+  body {
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-base-content);
+    background-color: var(--color-base-100);
+    background: var(--color-base-100);
+    width: 100%;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply link text-lg hover:text-white/70 transition-colors duration-150 p-2;
+    height: 100%;
+    color: #ffffff;
+    text-decoration-line: none;
+  }
+
+  .nav-link-premium {
+    @apply font-bold text-amber-400 hover:text-amber-400/70;
+  }
+
+  .nav-button {
+    @apply btn btn-primary btn-md rounded-3xl px-4 py-1 text-xl;
+    color: #ffffff;
+  }
+
+  .mobile-menu {
+    @apply border-base-200 top-20 gap-2 border-b shadow-2xl md:hidden bg-base-200;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 500;
+    text-align: center;
+  }
 }
