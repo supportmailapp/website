@@ -15,9 +15,9 @@ export default defineConfig({
         {
           pattern: "http://localhost:6060/:path(.*)?",
           localized: [
-            ["en", "http://localhost:6060/:path(.*)?"],
-            ["en", "http://localhost:6060/en/:path(.*)?"],
             ["de", "http://localhost:6060/de/:path(.*)?"],
+            ["en", "http://localhost:6060/en/:path(.*)?"],
+            ["en", "http://localhost:6060/:path(.*)?"],
           ],
         },
       ],
