@@ -1,5 +1,8 @@
 <script lang="ts">
-  import { blur, fade, slide } from "svelte/transition";
+  import { fade } from "svelte/transition";
+  import { m } from "$lib/paraglide/messages.js";
+
+  console.log(m.exampleMessage({ username: "Test" }));
 
   // Stats data for testing purposes
   const data = {
