@@ -1,6 +1,6 @@
 <script lang="ts">
   import { blur, fade } from "svelte/transition";
-  import { locales, localizeHref } from "$lib/paraglide/runtime";
+  import { locales, localizeHref, setLocale } from "$lib/paraglide/runtime";
   import { page } from "$app/state";
   import { m } from "$lib/paraglide/messages";
   import { onMount } from "svelte";
@@ -125,7 +125,7 @@
             <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
             <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] mt-2 w-40 p-2 shadow">
               {#each locales as locale}
-                <li><a href={localizeHref(page.url.pathname, { locale })}>{languages[locale]}</a></li>
+                <li><button class="justify-center" onclick={() => setLocale(locale)}>{languages[locale]}</button></li>
               {/each}
             </ul>
           </div>
@@ -169,7 +169,7 @@
             <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
             <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] mb-2 w-[70%] p-2 shadow">
               {#each locales as locale}
-                <li><a href={localizeHref(page.url.pathname, { locale })} class="justify-center">{languages[locale]}</a></li>
+                <li><button class="justify-center" onclick={() => setLocale(locale)}>{languages[locale]}</button></li>
               {/each}
             </ul>
           </div>
@@ -188,7 +188,7 @@
       <div class="hero-content flex-col text-center select-none">
         <div class="max-w-lg">
           <h1 class="text-5xl font-bold">SupportMail</h1>
-          <p class="py-6 text-lg"></p>
+          <p class="py-6 text-lg">{m["hero.description"]()}</p>
           <div class="flex flex-row justify-center gap-3">
             <a href="/add" class="btn btn-primary btn-lg min-w-40 rounded-3xl px-3 text-xl">{m["nav.addBot"]()}</a>
             <div class="dropdown dropdown-bottom dropdown-end">
@@ -196,8 +196,8 @@
               <div tabindex="0" class="btn btn-outline btn-lg rounded-3xl">{m["nav.getHelp"]()}</div>
               <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
               <ul class="dropdown-content menu bg-base-100 rounded-box z-1 mt-2 w-52 p-2 shadow-sm">
-                <li><a href="https://docs.supportmail.dev/">{m["nav.docs"]()}</a></li>
-                <li><a href="https://invite.supportmail.dev/">{m["nav.support"]()}</a></li>
+                <li><a href="https://docs.supportmail.dev/" target="_blank">{m["nav.docs"]()}</a></li>
+                <li><a href="https://help.supportmail.dev/">{m["nav.support"]()}</a></li>
               </ul>
             </div>
           </div>
@@ -399,19 +399,19 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-base-200 from-secondary/40 to-secondary/90 bg-gradient-to-b from-10% py-8 select-none">
+  <footer class="bg-base-200 from-secondary/40 to-secondary/90 bg-gradient-to-b from-10% py-5 select-none">
     <div class="container mx-auto px-4 text-white">
-      <div class="flex flex-col items-center justify-between md:flex-row">
-        <div class="mb-4 flex items-center gap-2 md:mb-0">
+      <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+        <div class="flex items-center gap-2">
           <div class="avatar">
             <div class="size-10 rounded">
               <img src="/logo.png" alt="SupportMail Logo" />
             </div>
           </div>
-          <span class="font-medium">SupportMail</span>
+          <span class="text-lg font-medium">SupportMail</span>
         </div>
         <p class="text-sm text-white/80">&copy; 2023-2025 {m["footer.rights"]()}</p>
-        <a href="https://legal.supportmail.dev/" target="_blank" class="link link-primary link-hover">{m["footer.legal"]()}</a>
+        <a href="https://legal.supportmail.dev/" target="_blank" class="link link-hover text-white">{m["footer.legal"]()}</a>
       </div>
     </div>
   </footer>
