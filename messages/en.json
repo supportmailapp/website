@@ -56,6 +56,8 @@
     "description": "Don't just take our word for it - hear from the community managers who use our bot every day"
   },
   "cta": {
+    "title": "Ready to get started?",
+    "description": "Join the {count} servers who are already using SupportMail to improve their support and make their team's job easier.",
     "addBot": "Add SupportMail to your Server",
     "readDocumentation": "Read the Documentation"
   }

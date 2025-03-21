@@ -58,7 +58,9 @@
     "description": "Glaube uns nicht einfach, sondern höre auf die Community-Manager, die unseren Bot täglich nutzen"
   },
   "cta": {
-    "addBot": "Füge SupportMail zu deinem Server hinzu",
+    "title": "Bereit loszulegen?",
+    "description": "Schließe dich den {count} Servern an, die SupportMail bereits nutzen, um ihren Support zu verbessern und ihrem Team die Arbeit zu erleichtern.",
+    "addBot": "Lade den Bot ein",
     "readDocumentation": "Lies die Dokumentation"
   }
 }
