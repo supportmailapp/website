@@ -1,9 +1,7 @@
 <script lang="ts">
   import { blur, fade } from "svelte/transition";
   import { locales, localizeHref, setLocale } from "$lib/paraglide/runtime";
-  import { page } from "$app/state";
   import { m } from "$lib/paraglide/messages";
-  import { onMount } from "svelte";
   import ModMailIcon from "$lib/assets/ModMailIcon.svelte";
   import ReportsIcon from "$lib/assets/ReportsIcon.svelte";
 
@@ -68,6 +66,15 @@
     isMenuOpen = !isMenuOpen;
   };
 
+  const toggleLanguageModal = () => {
+    const modal = document.getElementById("language-modal") as HTMLDialogElement;
+    if (modal.open) {
+      modal.close();
+    } else {
+      modal.showModal();
+    }
+  };
+
   // Close mobile menu when clicking outside
   const handleClickOutside = (event: any) => {
     const toggleButton = document.getElementById("menu-button");
@@ -123,9 +130,13 @@
               </svg>
             </div>
             <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] mt-2 w-40 p-2 shadow">
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 mt-2 w-40 gap-1 p-2 shadow-sm">
               {#each locales as locale}
-                <li><button class="justify-center" onclick={() => setLocale(locale)}>{languages[locale]}</button></li>
+                <li>
+                  <button class="btn btn-ghost btn-sm justify-center hover:bg-slate-700/70" onclick={() => setLocale(locale)}
+                    >{languages[locale]}</button
+                  >
+                </li>
               {/each}
             </ul>
           </div>
@@ -152,26 +163,18 @@
           <a href="/premium" class="nav-link nav-link-premium">{m["nav.premium"]()}</a>
 
           <!-- Mobile Language Selector -->
-          <div class="dropdown dropdown-bottom dropdown-center">
-            <div tabindex="0" role="button" class="nav-link w-full">
-              <div class="flex items-center justify-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-                  />
-                </svg>
-                <span>{m["nav.language"]()}</span>
-              </div>
-            </div>
-            <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] mb-2 w-[70%] p-2 shadow">
-              {#each locales as locale}
-                <li><button class="justify-center" onclick={() => setLocale(locale)}>{languages[locale]}</button></li>
-              {/each}
-            </ul>
+          <div class="flex justify-center">
+            <button class="btn btn-dash btn-md w-fit gap-1 px-4" onclick={toggleLanguageModal}>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                />
+              </svg>
+              {m["nav.language"]()}
+            </button>
           </div>
 
           <a href="https://dashboard.supportmail.dev/" class="nav-button">{m["nav.dashboard"]()}</a>
@@ -179,6 +182,21 @@
       </div>
     {/if}
   </header>
+
+  <dialog id="language-modal" class="modal">
+    <div class="modal-box max-h-[70%] items-center justify-center overflow-auto text-center">
+      <h2 class="text-lg">{m["nav.selectLanguage"]()}</h2>
+      <div class="menu bg-base-100 rounded-box z-[1] mt-2 w-full justify-center p-2 shadow">
+        <ul class="flex w-full flex-col justify-center gap-2">
+          {#each locales as locale}
+            <li class="flex w-full flex-row justify-center">
+              <button class="btn btn-soft w-48 justify-center" onclick={() => setLocale(locale)}>{languages[locale]}</button>
+            </li>
+          {/each}
+        </ul>
+      </div>
+    </div>
+  </dialog>
 
   <main class="flex-grow">
     <!-- Hero Section -->
@@ -190,14 +208,15 @@
           <h1 class="text-5xl font-bold">SupportMail</h1>
           <p class="py-6 text-lg">{m["hero.description"]()}</p>
           <div class="flex flex-row justify-center gap-3">
-            <a href="/add" class="btn btn-primary btn-lg min-w-40 rounded-3xl px-3 text-xl">{m["nav.addBot"]()}</a>
+            <a href="/add" class="btn btn-primary btn-lg min-w-40 rounded-3xl px-3 text-xl drop-shadow-md">{m["nav.addBot"]()}</a
+            >
             <div class="dropdown dropdown-bottom dropdown-end">
               <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
               <div tabindex="0" class="btn btn-outline btn-lg rounded-3xl">{m["nav.getHelp"]()}</div>
               <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
               <ul class="dropdown-content menu bg-base-100 rounded-box z-1 mt-2 w-52 p-2 shadow-sm">
                 <li><a href="https://docs.supportmail.dev/" target="_blank">{m["nav.docs"]()}</a></li>
-                <li><a href="https://help.supportmail.dev/">{m["nav.support"]()}</a></li>
+                <li><a href="https://help.supportmail.dev/" target="_blank">{m["nav.support"]()}</a></li>
               </ul>
             </div>
           </div>
@@ -230,7 +249,7 @@
     </section>
 
     <!-- Statistics Section -->
-    <section id="statistics" class="bg-base-100 bg-linear-to-b from-indigo-600/7 from-20% to-transparent py-12 md:py-16">
+    <section id="statistics" class="bg-base-100 to-base-200 bg-linear-to-b from-indigo-600/7 from-20% py-12 md:py-16">
       <div class="container mx-auto max-w-(--max-w) px-4">
         <div class="mb-10 text-center">
           <h2 class="mb-4 text-3xl font-bold md:text-4xl">{m["stats.title"]()}</h2>
@@ -283,14 +302,14 @@
           </div>
         </div>
 
-        <div class="mt-10 flex justify-center">
+        <div class="mt-10 flex justify-center select-none">
           <div class="badge badge-lg p-4">{m["stats.realTimeData"]()}</div>
         </div>
       </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="bg-base-200 py-16">
+    <section id="features" class="bg-base-200 from-base-200 to-base-100 bg-gradient-to-b from-10% py-16">
       <div class="max-w-(900px) container mx-auto px-4">
         <div class="mb-16 text-center">
           <h2 class="mb-4 text-3xl font-bold md:text-4xl">{m.featuresTitle()}</h2>
@@ -342,9 +361,9 @@
     <!-- Testimonials Section -->
     <section class="container mx-auto max-w-(--max-w) px-4 py-16 md:py-24">
       <div class="mb-16 text-center">
-        <h2 class="mb-4 text-3xl font-bold md:text-4xl">What Our Users Say</h2>
+        <h2 class="mb-4 text-3xl font-bold md:text-4xl">{m["testimonials.title"]()}</h2>
         <p class="text-base-content/70 mx-auto max-w-2xl text-lg">
-          Don't just take our word for it - hear from the community managers who use our bot every day
+          {m["testimonials.description"]()}
         </p>
       </div>
 
