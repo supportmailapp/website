@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { blur, fade } from "svelte/transition";
+  import { blur, fade, slide } from "svelte/transition";
   import { locales, localizeHref, setLocale } from "$lib/paraglide/runtime";
   import { m } from "$lib/paraglide/messages";
   import ModMailIcon from "$lib/assets/ModMailIcon.svelte";
@@ -78,8 +78,15 @@
   // Close mobile menu when clicking outside
   const handleClickOutside = (event: any) => {
     const toggleButton = document.getElementById("menu-button");
+    const closeLanguageDialog = document.getElementById("close-language-dialog");
     const mobileMenu = document.getElementById("mobile-menu");
-    if (isMenuOpen && !toggleButton?.contains(event.target) && !mobileMenu?.contains(event.target)) toggleMenu();
+    if (
+      isMenuOpen &&
+      !closeLanguageDialog?.contains(event.target) &&
+      !toggleButton?.contains(event.target) &&
+      !mobileMenu?.contains(event.target)
+    )
+      toggleMenu();
   };
 
   const scrollToStatistics = () => {
@@ -133,8 +140,10 @@
             <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 mt-2 w-40 gap-1 p-2 shadow-sm">
               {#each locales as locale}
                 <li>
-                  <button class="btn btn-ghost btn-sm justify-center hover:bg-slate-700/70" onclick={() => setLocale(locale)}
-                    >{languages[locale]}</button
+                  <button
+                    type="submit"
+                    class="btn btn-ghost btn-sm justify-center hover:bg-slate-700/70"
+                    onclick={() => setLocale(locale)}>{languages[locale]}</button
                   >
                 </li>
               {/each}
@@ -196,6 +205,9 @@
         </ul>
       </div>
     </div>
+    <form method="dialog" class="modal-backdrop">
+      <button id="close-language-dialog">X</button>
+    </form>
   </dialog>
 
   <main class="flex-grow">
@@ -222,7 +234,7 @@
           </div>
         </div>
         <div class="mt-25 flex items-end justify-center">
-          {#await new Promise((r) => setTimeout(() => r(true), 800))}
+          {#await new Promise((r) => setTimeout(() => r(true), 500))}
             <!-- Transparent placeholder -->
             <div class="size-10"></div>
           {:then}
@@ -239,6 +251,7 @@
                 stroke-width="1.5"
                 stroke="currentColor"
                 class="size-6"
+                transition:slide={{ duration: 300, axis: "y" }}
               >
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
               </svg>
@@ -359,7 +372,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="container mx-auto max-w-(--max-w) px-4 py-16 md:py-24">
+    <!-- <section class="container mx-auto max-w-(--max-w) px-4 py-16 md:py-24">
       <div class="mb-16 text-center">
         <h2 class="mb-4 text-3xl font-bold md:text-4xl">{m["testimonials.title"]()}</h2>
         <p class="text-base-content/70 mx-auto max-w-2xl text-lg">
@@ -397,7 +410,7 @@
           </div>
         {/each}
       </div>
-    </section>
+    </section> -->
 
     <!-- CTA Section -->
     <section class="to-secondary/20 bg-gradient-to-b from-transparent py-16">
@@ -418,7 +431,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-base-200 from-secondary/40 to-secondary/90 bg-gradient-to-b from-10% py-5 select-none">
+  <footer class="bg-base-200 from-secondary/35 to-secondary/90 bg-gradient-to-b from-10% py-5 select-none">
     <div class="container mx-auto px-4 text-white">
       <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
         <div class="flex items-center gap-2">
