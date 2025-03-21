@@ -1,9 +1,13 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
+  import { blur, fade } from "svelte/transition";
   import { locales, localizeHref } from "$lib/paraglide/runtime";
   import { page } from "$app/state";
   import { m } from "$lib/paraglide/messages";
+  import { onMount } from "svelte";
+  import ModMailIcon from "$lib/assets/ModMailIcon.svelte";
+  import ReportsIcon from "$lib/assets/ReportsIcon.svelte";
 
+  let isMenuOpen = $state(false);
   const languages: Record<string, string> = {
     en: "English",
     de: "Deutsch",
@@ -25,8 +29,6 @@
     return roundedNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "+";
   };
 
-  let isMenuOpen = $state(false);
-
   // Testimonials data
   const testimonials = [
     {
@@ -47,6 +49,19 @@
       role: "Discord Moderator",
     },
   ];
+
+  type KeyOfM = keyof typeof m;
+
+  const features = $state(
+    Array.from({ length: 2 }).map((_, i) => {
+      const key = `feature-${i}`;
+      const id = m[(key + ".id") as KeyOfM]();
+      const title = m[(key + ".title") as KeyOfM]();
+      const description = m[(key + ".description") as KeyOfM]();
+      const benefits = Array.from({ length: 4 }).map((_, j) => m[(key + `.benefit-${j}`) as KeyOfM]());
+      return { id, title, description, benefits };
+    }),
+  );
 
   // Toggle mobile menu
   const toggleMenu = () => {
@@ -114,9 +129,9 @@
               {/each}
             </ul>
           </div>
-          <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">Documentation</a>
-          <a href="/premium" class="nav-link nav-link-premium">Premium</a>
-          <a href="https://dashboard.supportmail.dev/" class="nav-button">Dashboard</a>
+          <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">{m["nav.docs"]()}</a>
+          <a href="/premium" class="nav-link nav-link-premium">{m["nav.premium"]()}</a>
+          <a href="https://dashboard.supportmail.dev/" class="nav-button">{m["nav.dashboard"]()}</a>
         </nav>
 
         <!-- Mobile Menu Button -->
@@ -133,8 +148,8 @@
     {#if isMenuOpen}
       <div id="mobile-menu" class="mobile-menu" transition:fade={{ duration: 100, easing: (t) => t }}>
         <div class="container mx-auto flex flex-col gap-4 px-4 py-4 text-center">
-          <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">Documentation</a>
-          <a href="/premium" class="nav-link nav-link-premium">Premium</a>
+          <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">{m["nav.docs"]()}</a>
+          <a href="/premium" class="nav-link nav-link-premium">{m["nav.premium"]()}</a>
 
           <!-- Mobile Language Selector -->
           <div class="dropdown dropdown-bottom dropdown-center">
@@ -148,7 +163,7 @@
                     d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
                   />
                 </svg>
-                <span>{m.Language()}</span>
+                <span>{m["nav.language"]()}</span>
               </div>
             </div>
             <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
@@ -159,7 +174,7 @@
             </ul>
           </div>
 
-          <a href="https://dashboard.supportmail.dev/" class="nav-button">Dashboard</a>
+          <a href="https://dashboard.supportmail.dev/" class="nav-button">{m["nav.dashboard"]()}</a>
         </div>
       </div>
     {/if}
@@ -173,30 +188,30 @@
       <div class="hero-content flex-col text-center select-none">
         <div class="max-w-lg">
           <h1 class="text-5xl font-bold">SupportMail</h1>
-          <p class="py-6 text-lg">Effortlessly manage user tickets and reports with SupportMail</p>
+          <p class="py-6 text-lg"></p>
           <div class="flex flex-row justify-center gap-3">
-            <a href="/add" class="btn btn-primary btn-lg w-32 rounded-3xl"> Add Bot </a>
+            <a href="/add" class="btn btn-primary btn-lg min-w-40 rounded-3xl px-3 text-xl">{m["nav.addBot"]()}</a>
             <div class="dropdown dropdown-bottom dropdown-end">
               <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-              <div tabindex="0" class="btn btn-outline btn-lg rounded-3xl">Get Help</div>
+              <div tabindex="0" class="btn btn-outline btn-lg rounded-3xl">{m["nav.getHelp"]()}</div>
               <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
               <ul class="dropdown-content menu bg-base-100 rounded-box z-1 mt-2 w-52 p-2 shadow-sm">
-                <li><a href="https://docs.supportmail.dev/">Documentation</a></li>
-                <li><a href="https://invite.supportmail.dev/">Support Server</a></li>
+                <li><a href="https://docs.supportmail.dev/">{m["nav.docs"]()}</a></li>
+                <li><a href="https://invite.supportmail.dev/">{m["nav.support"]()}</a></li>
               </ul>
             </div>
           </div>
         </div>
         <div class="mt-25 flex items-end justify-center">
-          {#await new Promise((r) => setTimeout(() => r(true), 10000))}
+          {#await new Promise((r) => setTimeout(() => r(true), 800))}
             <!-- Transparent placeholder -->
-            <div class="size-6"></div>
+            <div class="size-10"></div>
           {:then}
             <button
               class="btn btn-square btn-outline"
               aria-label="Go down"
               onclick={scrollToStatistics}
-              transition:fade={{ duration: 300 }}
+              transition:blur={{ duration: 300 }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -218,7 +233,7 @@
     <section id="statistics" class="bg-base-100 bg-linear-to-b from-indigo-600/7 from-20% to-transparent py-12 md:py-16">
       <div class="container mx-auto max-w-(--max-w) px-4">
         <div class="mb-10 text-center">
-          <h2 class="mb-4 text-3xl font-bold md:text-4xl">Trusted by Communities</h2>
+          <h2 class="mb-4 text-3xl font-bold md:text-4xl">{m["stats.title"]()}</h2>
         </div>
 
         <div class="stats stats-vertical md:stats-horizontal bg-base-200 w-full shadow">
@@ -233,7 +248,7 @@
                 />
               </svg>
             </div>
-            <div class="stat-title">Active Servers</div>
+            <div class="stat-title">{m["stats.activeServers"]()}</div>
             <div class="stat-value text-primary">{formatNumber(data.servers, 50)}</div>
           </div>
 
@@ -248,7 +263,7 @@
                 />
               </svg>
             </div>
-            <div class="stat-title">Users Served</div>
+            <div class="stat-title">{m["stats.usersServed"]()}</div>
             <div class="stat-value text-secondary">{formatNumber(data.users)}</div>
           </div>
 
@@ -263,13 +278,13 @@
                 />
               </svg>
             </div>
-            <div class="stat-title">Tickets Processed</div>
+            <div class="stat-title">{m["stats.ticketsProcessed"]()}</div>
             <div class="stat-value">{formatNumber(data.tickets)}</div>
           </div>
         </div>
 
         <div class="mt-10 flex justify-center">
-          <div class="badge badge-lg p-4">Real-time data updated daily</div>
+          <div class="badge badge-lg p-4">{m["stats.realTimeData"]()}</div>
         </div>
       </div>
     </section>
@@ -278,134 +293,48 @@
     <section id="features" class="bg-base-200 py-16">
       <div class="max-w-(900px) container mx-auto px-4">
         <div class="mb-16 text-center">
-          <h2 class="mb-4 text-3xl font-bold md:text-4xl">Powerful Features</h2>
+          <h2 class="mb-4 text-3xl font-bold md:text-4xl">{m.featuresTitle()}</h2>
           <p class="text-base-content/70 mx-auto max-w-2xl text-lg">
-            Our bot comes packed with tools designed to make the work of your server team effortless
+            {m.featuresDescription()}
           </p>
         </div>
 
         <div class="grid gap-8 md:grid-cols-2 md:gap-12">
           <!-- Feature 1: Modmail -->
-          <div class="card bg-base-100 shadow-xl transition-shadow hover:shadow-2xl">
-            <div class="card-body">
-              <div class="mb-4 flex items-center gap-4">
-                <div class="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-full">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="text-primary h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
+          {#each features as feature}
+            <div class="card bg-base-100 shadow-xl transition-shadow hover:shadow-2xl">
+              <div class="card-body">
+                <div class="mb-4 flex items-center gap-4">
+                  {#if feature.id == "tickets"}
+                    <ModMailIcon />
+                  {:else if feature.id == "reports"}
+                    <ReportsIcon />
+                  {/if}
+                  <h3 class="card-title text-2xl">{feature.title}</h3>
                 </div>
-                <h3 class="card-title text-2xl">Modmail System</h3>
+                <p class="text-base-content/80">{feature.description}</p>
+                <ul class="mt-4 space-y-2">
+                  {#each feature.benefits as benefit}
+                    <li class="flex items-center gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="text-success h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                      <span>{benefit}</span>
+                    </li>
+                  {/each}
+                </ul>
               </div>
-              <p class="text-base-content/80">
-                Create a direct line of communication between users and moderators. Handle user inquiries, reports, and support
-                requests through a streamlined ticket system that keeps everything organized.
-              </p>
-              <ul class="mt-4 space-y-2">
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="text-success h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span>Private conversations with users</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="text-success h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span>Ticket management system</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="text-success h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span>Conversation logs for accountability</span>
-                </li>
-              </ul>
             </div>
-          </div>
-
-          <!-- Feature 2: Reports -->
-          <div class="card bg-base-100 shadow-xl transition-shadow hover:shadow-2xl">
-            <div class="card-body">
-              <div class="mb-4 flex items-center gap-4">
-                <div class="bg-secondary/10 flex h-12 w-12 items-center justify-center rounded-full">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="text-secondary h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                    />
-                  </svg>
-                </div>
-                <h3 class="card-title text-2xl">Report System</h3>
-              </div>
-              <p class="text-base-content/80">
-                Allow users to report problematic behavior directly to your moderation team. Keep your community safe with an
-                efficient reporting system that helps you address issues quickly.
-              </p>
-              <ul class="mt-4 space-y-2">
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="text-success h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span>User-friendly report commands</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="text-success h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span>Evidence collection and storage</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="text-success h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span>Moderation action tracking</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          {/each}
         </div>
       </div>
     </section>
@@ -481,8 +410,8 @@
           </div>
           <span class="font-medium">SupportMail</span>
         </div>
-        <p class="text-sm text-white/80">© 2023-2025 SupportMail - All rights reserved.</p>
-        <a href="https://legal.supportmail.dev/" target="_blank" class="link link-primary link-hover">Legal</a>
+        <p class="text-sm text-white/80">&copy; 2023-2025 {m["footer.rights"]()}</p>
+        <a href="https://legal.supportmail.dev/" target="_blank" class="link link-primary link-hover">{m["footer.legal"]()}</a>
       </div>
     </div>
   </footer>
