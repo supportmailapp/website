@@ -41,7 +41,7 @@
 <svelte:document onclick={handleClickOutside} />
 
 <!-- Header -->
-<header class="bg-base-200 sticky top-0 z-50 shadow-xl backdrop-blur-md">
+<header class="bg-base-200 sticky top-0 z-50 shadow-xl drop-shadow-md">
   <div class="container mx-auto max-w-(--max-w) px-4 py-3">
     <div class="flex items-center justify-between">
       <!-- Logo -->
