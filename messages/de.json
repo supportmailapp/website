@@ -4,5 +4,56 @@
     "title": "SupportMail | Moderne Modmail + Berichte",
     "description": "SupportMail ist ein moderner Discord-Bot mit Modmail- und Reportfunktionen, der die Moderation deines Servers auf ein neues Level hebt."
   },
-  "Language": "Sprache"
+  "nav": {
+    "language": "Sprache",
+    "docs": "Dokumentation",
+    "premium": "Premium",
+    "invite": "Einladen",
+    "support": "Support-Server",
+    "dashboard": "Dashboard",
+    "addBot": "Bot hinzufügen",
+    "getHelp": "Erhalte Hilfe"
+  },
+  "footer": {
+    "rights": "SupportMail - Alle Rechte vorbehalten.",
+    "legal": "Rechtliches"
+  },
+  "hero": {
+    "description": "Verwalte Tickets und Meldungen mühelos mit SupportMail"
+  },
+  "stats": {
+    "title": "Statistiken",
+    "activeServers": "Aktive Server",
+    "usersServed": "Nutzer bedient",
+    "ticketsProcessed": "Bearbeitete Tickets",
+    "realTimeData": "Echtzeitdaten"
+  },
+  "featuresTitle": "Funktionen",
+  "featuresDescription": "SupportMail bietet Tools, die die Arbeit deines Serverteams um einiges erleichtern",
+  "feature-0": {
+    "id": "tickets",
+    "title": "Tickets, aber im Modmail-Style",
+    "description": "SupportMail ermöglicht es Nutzern, Tickets auf eine organisierte und einfache Weise zu erstellen.",
+    "image": "/",
+    "benefit-0": "Organisiere in einem Forum",
+    "benefit-1": "Verwende Anwendungsbefehle",
+    "benefit-2": "Nutzerdefinierte Nachrichten",
+    "benefit-3": "Tags (\"Nachrichtenschnipsel\")",
+    "benefit-4": "Black-/Whitelists"
+  },
+  "feature-1": {
+    "id": "reports",
+    "title": "Meldungen",
+    "description": "Nutzer können andere Nutzer oder Nachrichten sicher und einfach an dein Serverteam melden.",
+    "image": "/",
+    "benefit-0": "Nutzer und Nachrichten melden",
+    "benefit-1": "Direkt Maßnahmen ergreifen",
+    "benefit-2": "Nutzer benachrichtigen (oder auch nicht)",
+    "benefit-3": "Meldelimits",
+    "benefit-4": "Black-/Whitelists"
+  },
+  "cta": {
+    "addBot": "Füge SupportMail zu deinem Server hinzu",
+    "readDocumentation": "Lies die Dokumentation"
+  }
 }

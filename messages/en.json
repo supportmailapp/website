@@ -4,5 +4,54 @@
     "title": "SupportMail | Modern Modmail + Reports",
     "description": "SupportMail is a modern Discord bot that features modmail and reports to step up your server's moderation game."
   },
-  "Language": "Language"
+  "nav": {
+    "language": "Language",
+    "docs": "Documentation",
+    "premium": "Premium",
+    "invite": "Invite",
+    "support": "Support Server",
+    "dashboard": "Dashboard",
+    "addBot": "Add Bot",
+    "getHelp": "Get Help"
+  },
+  "footer": {
+    "rights": "SupportMail - All rights reserved.",
+    "legal": "Legal"
+  },
+  "hero": {
+    "description": "Effortlessly manage user tickets and reports with SupportMail"
+  },
+  "stats": {
+    "title": "Statistiken",
+    "activeServers": "Active Servers",
+    "usersServed": "Users Served",
+    "ticketsProcessed": "Tickets Processed",
+    "realTimeData": "Real-time data"
+  },
+  "featuresTitle": "Features",
+  "featuresDescription": "SupportMail comes packed with tools designed to make the work of your server team effortless",
+  "feature-0": {
+    "id": "tickets",
+    "title": "Tickets, but Modmail",
+    "description": "SupportMail allows users to open tickets with your server staff in a seamless and organized way.",
+    "benefit-0": "Organize in a Forum",
+    "benefit-1": "Use Application Commands",
+    "benefit-2": "Custom Messages",
+    "benefit-3": "Tags (Message Snippets)",
+    "benefit-4": "Black-/Whitelists"
+  },
+  "feature-1": {
+    "id": "reports",
+    "title": "Reports",
+    "description": "Users can report other users or messages to your server team in a safe and easy way.",
+    "benefit-0": "Report Users and Messages",
+    "benefit-1": "Directly take action",
+    "benefit-2": "Notify the user (or not)",
+    "benefit-3": "Report limits",
+    "benefit-4": "Black-/Whitelists"
+  },
+  "cta": {
+    "addBot": "Add SupportMail to your server",
+    "readDocumentation": "Read the documentation"
+  }
 }
