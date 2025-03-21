@@ -1,6 +1,7 @@
 import { browser } from "$app/environment";
-// import { invalidate } from "$app/navigation";
-import { type Locale, getLocale } from "./paraglide/runtime";
+import { replaceState } from "$app/navigation";
+import { page } from "$app/state";
+import { type Locale, getLocale, localizeHref } from "./paraglide/runtime";
 
 export class ClientLocalization {
   #locale: Locale = $state(getLocale());
@@ -16,6 +17,7 @@ export class ClientLocalization {
     this.#locale = value;
     const [html] = document.getElementsByTagName("html");
     if (html) html.lang = value;
-    // Any other things like route invalidation here.
+    console.log("ClientLocalization set to", value);
+    replaceState(localizeHref(page.url.href.replace(/\/$/, "")), "");
   }
 }
