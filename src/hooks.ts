@@ -2,7 +2,7 @@ import type { Reroute } from "@sveltejs/kit";
 import { ClientLocalization } from "$lib";
 import { deLocalizeUrl, overwriteGetLocale, overwriteSetLocale } from "$lib/paraglide/runtime";
 
-export function init() {
+export async function init() {
   const locale = new ClientLocalization();
   overwriteGetLocale(() => locale.current);
   overwriteSetLocale((v) => (locale.current = v));
