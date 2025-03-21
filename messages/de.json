@@ -6,6 +6,7 @@
   },
   "nav": {
     "language": "Sprache",
+    "selectLanguage": "Wähle deine Sprache",
     "docs": "Dokumentation",
     "premium": "Premium",
     "invite": "Einladen",
@@ -51,6 +52,10 @@
     "benefit-2": "Nutzer benachrichtigen (oder auch nicht)",
     "benefit-3": "Meldelimits",
     "benefit-4": "Black-/Whitelists"
+  },
+  "testimonials": {
+    "title": "Was unsere Nutzer sagen",
+    "description": "Glaube uns nicht einfach, sondern höre auf die Community-Manager, die unseren Bot täglich nutzen"
   },
   "cta": {
     "addBot": "Füge SupportMail zu deinem Server hinzu",
