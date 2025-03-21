@@ -1,1 +1,1 @@
-export * from "./ClientLocalization";
+export * from "./ClientLocalization.svelte";
