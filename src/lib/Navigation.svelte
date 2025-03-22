@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from "$app/state";
+  import { env } from "$env/dynamic/public";
   import { m } from "$lib/paraglide/messages";
   import { locales, localizeHref, setLocale } from "$lib/paraglide/runtime";
   import { fade } from "svelte/transition";
@@ -42,7 +42,7 @@
 <svelte:document onclick={handleClickOutside} />
 
 <!-- Header -->
-<header class="bg-base-200 sticky top-0 z-50 shadow-xl drop-shadow-md">
+<header class="bg-base-200 sticky top-0 z-50 shadow-xl drop-shadow-md select-none">
   <div class="container mx-auto max-w-(--max-w) px-4 py-3">
     <div class="flex items-center justify-between">
       <!-- Logo -->
@@ -87,7 +87,7 @@
         </div>
         <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">{m["nav.docs"]()}</a>
         <a href={localizeHref("/premium")} class="nav-link nav-link-premium">{m["nav.premium"]()}</a>
-        <a href="https://dashboard.supportmail.dev/" class="nav-button">{m["nav.dashboard"]()}</a>
+        <a href="{localizeHref(env.PUBLIC_DashboardUrl)}/" class="nav-button">{m["nav.dashboard"]()}</a>
       </nav>
 
       <!-- Mobile Menu Button -->
@@ -122,7 +122,7 @@
           </button>
         </div>
 
-        <a href="https://dashboard.supportmail.dev/" class="nav-button">{m["nav.dashboard"]()}</a>
+        <a href="{localizeHref(env.PUBLIC_DashboardUrl)}/" class="nav-button">{m["nav.dashboard"]()}</a>
       </div>
     </div>
   {/if}
