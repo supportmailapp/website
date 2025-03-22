@@ -61,13 +61,14 @@
     "addBot": "Add SupportMail to your Server",
     "readDocumentation": "Read the Documentation"
   },
+  "faq": "Frequently Asked Questions",
   "premium-faq-0": {
     "question": "What is SupportMail Premium?",
     "answer": "SupportMail Premium is a subscription service that offers additional features, higher limits and other benefits to your server."
   },
   "premium-faq-1": {
     "question": "How much does SupportMail Premium cost?",
-    "answer": "The price depends on the plan you choose. Currently, there are two default plans: Gold (Basic) and Diamond (Whitelabel). Gold costs $5 per month, while Diamond costs $10 per month."
+    "answer": "The price depends on the plan you choose. Currently, there are two default plans: Gold (Basic) and Diamond (Whitelabel). Everything is priced appropriately for the features you get."
   },
   "premium-faq-2": {
     "question": "How do I purchase SupportMail Premium?",
@@ -99,7 +100,7 @@
   },
   "premium-faq-9": {
     "question": "How do I get support for Premium?",
-    "answer": "If you have any questions or issues about your Premium subscription, please join our [support server](https://help.supportmail.dev/) and ask for help in the [#premium-support](https://discord.com/channels/1064594649668395128/1248923857272836106 channel.\nIf your request is urgent, please contact us at [premium@supportmail.dev](mailto:premium@supportmail.dev)."
+    "answer": "If you have any questions or issues about your Premium subscription, please join our [support server](https://help.supportmail.dev/) and ask for help in the [#premium-support](https://discord.com/channels/1064594649668395128/1248923857272836106) channel.\nIf your request is urgent, please contact us at [premium@supportmail.dev](mailto:premium@supportmail.dev)."
   },
   "premium-faq-10": {
     "question": "Can I use a custom bot with SupportMail Premium?",
@@ -108,10 +109,26 @@
   "premium": {
     "choosePlan": "Choose Your Plan",
     "description": "Select the perfect plan for your Discord server. All plans are billed per server, not per user.",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "month": "month",
+    "year": "year",
+    "chooseServer": "Choose Your Server",
+    "saveMonths": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Save 1 month",
+          "countPlural=other": "Save {count} months"
+        }
+      }
+    ],
     "plan-gold": {
       "name": "Gold",
       "monthly": "$3.99",
-      "yearly": "$44",
+      "yearly": "€42",
+      "yearlyPerMonth": "€3.50",
       "note": "The prices are in USD because of Discord's policy.",
       "benefit-0": "Higher limits",
       "benefit-1": "Custom Anonym Alias",
@@ -120,8 +137,9 @@
     },
     "plan-diamond": {
       "name": "Diamond",
-      "monthly": "$9",
-      "yearly": "$99",
+      "monthly": "€9",
+      "yearly": "€96",
+      "yearlyPerMonth": "€8",
       "benefit-0": "Higher limits",
       "benefit-1": "Custom Anonym Alias",
       "benefit-2": "Feedback Questions",

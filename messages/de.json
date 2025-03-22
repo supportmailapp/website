@@ -62,5 +62,91 @@
     "description": "Schließe dich den {count} Servern an, die SupportMail bereits nutzen, um ihren Support zu verbessern und ihrem Team die Arbeit zu erleichtern.",
     "addBot": "Lade den Bot ein",
     "readDocumentation": "Lies die Dokumentation"
+  },
+  "faq": "Häufig gestellte Fragen",
+  "premium-faq-0": {
+    "question": "Was ist SupportMail Premium?",
+    "answer": "SupportMail Premium ist ein Abonnement, das zusätzliche Funktionen, höhere Limits und weitere Vorteile für deinen Server bietet."
+  },
+  "premium-faq-1": {
+    "question": "Wie viel kostet SupportMail Premium?",
+    "answer": "Der Preis hängt vom gewählten Plan ab. Aktuell gibt es zwei Standardpläne: Gold (\"Basic\") und Diamant (\"Whitelabel\"). Der Preis für alle Produkte ist entsprechend der gebotenen Leistung angemessen."
+  },
+  "premium-faq-2": {
+    "question": "Wie kann ich SupportMail Premium kaufen?",
+    "answer": "Du kannst SupportMail Premium über das Dashboard erwerben. Klicke einfach auf den 'Premium'-Tab und folge den Anweisungen."
+  },
+  "premium-faq-3": {
+    "question": "Wie werden die Zahlungen abgewickelt?",
+    "answer": "Wir nutzen Paddle als Zahlungsdienstleister. Paddle ist sicher und zuverlässig und akzeptiert viele Zahlungsmethoden wie Kreditkarte, PayPal, Apple Pay und Google Pay."
+  },
+  "premium-faq-4": {
+    "question": "Kann ich mein Abonnement kündigen?",
+    "answer": "Ja, du kannst dein Abonnement jederzeit kündigen. Die Premium-Funktionen bleiben bis zum Ende des Abrechnungszeitraums aktiv."
+  },
+  "premium-faq-5": {
+    "question": "Bietet ihr Rückerstattungen an?",
+    "answer": "Wir bieten Rückerstattungen innerhalb von 14 Tagen nach dem Kauf an. Wenn du nicht zufrieden bist, kontaktiere uns bitte und wir erstatten dir dein Geld zurück."
+  },
+  "premium-faq-6": {
+    "question": "Kann ich meinen Plan nachträglich ändern?",
+    "answer": "Nein, ein Upgrade oder Downgrade ist nicht möglich. Um den Plan zu ändern, musst du dein aktuelles Abonnement kündigen und einen neuen Plan abschließen."
+  },
+  "premium-faq-7": {
+    "question": "Kann ich SupportMail Premium auf mehreren Servern nutzen?",
+    "answer": "Nein, Premium ist an einen einzelnen Server gebunden. Für mehrere Server musst du für jeden Server ein separates Abonnement abschließen."
+  },
+  "premium-faq-8": {
+    "question": "Kann ich mein Premium-Abonnement auf einen anderen Server übertragen?",
+    "answer": "Nein, Premium-Abonnements sind an den Server gebunden, für den sie gekauft wurden. Für einen anderen Server musst du ein neues Abonnement abschließen."
+  },
+  "premium-faq-9": {
+    "question": "Wie erhalte ich Support für Premium?",
+    "answer": "Wenn du Fragen oder Probleme mit deinem Premium-Abonnement hast, tritt unserem [Support-Server](https://help.supportmail.dev/) bei und stelle deine Frage im [#premium-support](https://discord.com/channels/1064594649668395128/1248923857272836106)-Kanal. Bei dringenden Anliegen kontaktiere uns unter [premium@supportmail.dev](mailto:premium@supportmail.dev)."
+  },
+  "premium-faq-10": {
+    "question": "Kann ich mit SupportMail Premium einen eigenen Bot verwenden?",
+    "answer": "Das hängt vom Plan ab. Der Gold-Plan unterstützt keine eigenen Bots, der Diamond-Plan hingegen schon. Für die Nutzung eines eigenen Bots benötigst du den Diamond-Plan."
+  },
+  "premium": {
+    "choosePlan": "Wähle deinen Plan",
+    "description": "Finde den perfekten Plan für deinen Discord-Server. Alle Pläne werden pro Server und nicht pro Nutzer abgerechnet.",
+    "monthly": "Monatlich",
+    "yearly": "Jährlich",
+    "month": "Monat",
+    "year": "Jahr",
+    "chooseServer": "Wähle deinen Server",
+    "saveMonths": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Spare 1 Monat",
+          "countPlural=other": "Spare {count} Monate"
+        }
+      }
+    ],
+    "plan-gold": {
+      "name": "Gold",
+      "monthly": "3,99 $",
+      "yearly": "42 €",
+      "yearlyPerMonth": "3,50 €",
+      "note": "Die Preise sind in USD aufgrund der Richtlinien von Discord.",
+      "benefit-0": "Höhere Limits",
+      "benefit-1": "Benutzerdefinierter Alias",
+      "benefit-2": "Feedback-Fragen",
+      "benefit-3": "Benutzerdefinierte Nachrichten"
+    },
+    "plan-diamond": {
+      "name": "Diamant",
+      "monthly": "9 €",
+      "yearly": "96 €",
+      "yearlyPerMonth": "8 €",
+      "benefit-0": "Höhere Limits",
+      "benefit-1": "Benutzerdefinierter Alias",
+      "benefit-2": "Feedback-Fragen",
+      "benefit-3": "Benutzerdefinierte Nachrichten",
+      "benefit-4": "Benutzerdefinierter Name, Info, Avatar, Status"
+    }
   }
 }
