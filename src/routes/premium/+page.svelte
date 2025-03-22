@@ -1,6 +1,8 @@
 <script lang="ts">
+  import { markdownToHtml } from "$lib";
   import GreenCheckPlain from "$lib/assets/GreenCheckPlain.svelte";
   import { m } from "$lib/paraglide/messages";
+  import { fade } from "svelte/transition";
 
   const getMessage = (key: string) => {
     return ((m as unknown as Record<string, Function>)[key] || (() => key)) as () => string;
@@ -21,9 +23,15 @@
     diamond: Array.from({ length: 5 }).map((_, i) => getMessage(`premium.plan-diamond.benefit-${i}`)()),
   });
 
+  const BillingOptions = ["Monthly", "Yearly"] as const;
+  let BillingState = $state<(typeof BillingOptions)[number]>(BillingOptions[1]);
+
+  // Determine if an option is active
+  let isMonthly = $derived(BillingState === BillingOptions[0]);
+
   // Function to handle the redirect to dashboard
   function redirectToDashboard() {
-    window.location.href = "https://dashboard.supportmail.dev/?redirect=premium";
+    window.location.href = "https://dashboard.supportmail.dev/?redirect=premium?plan=" + BillingState.toLowerCase();
   }
 </script>
 
@@ -48,52 +56,116 @@
         </ul>
       {/snippet}
 
-      <div class="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
+      <div class="mb-8 flex justify-center">
+        <!-- Options -->
+        <div class="grid w-full max-w-xs grid-cols-2 place-items-center justify-center gap-2 sm:grid-cols-3">
+          <div class="flex w-full justify-end">
+            <button class="btn animate-none {isMonthly ? 'btn-primary' : ''}" onclick={() => (BillingState = BillingOptions[0])}>
+              {m["premium.monthly"]()}
+            </button>
+          </div>
+          <input
+            type="checkbox"
+            checked={!isMonthly}
+            class="toggle bg-primary checked:bg-primary checked:text-primary-content text-primary-content hidden border-0 sm:inline-grid"
+            onchange={() => (BillingState = BillingState === BillingOptions[0] ? BillingOptions[1] : BillingOptions[0])}
+          />
+          <div class="flex w-full justify-start">
+            <button
+              class="btn animate-none {!isMonthly ? 'btn-primary' : ''}"
+              onclick={() => (BillingState = BillingOptions[1])}
+            >
+              {m["premium.yearly"]()}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mx-auto grid max-w-5xl grid-cols-1 justify-center gap-8 md:grid-cols-2">
         <!-- Basic Plan -->
-        <div class="card bg-base-100 shadow-xl transition-all duration-300 hover:shadow-2xl">
+        <div
+          class="card bg-base-100 text-primary-content mx-auto w-full max-w-lg shadow-xl transition-all duration-300 hover:shadow-2xl"
+        >
+          {#if !isMonthly}
+            <div class="absolute -top-4 right-4 select-none" transition:fade={{ duration: 150 }}>
+              <div class="badge badge-error px-4 py-3 text-sm font-bold">{m["premium.saveMonths"]({ count: 1 })}</div>
+            </div>
+          {/if}
           <div class="card-body">
             <h2
-              class="card-title w-full bg-gradient-to-r from-amber-400 to-yellow-800 bg-clip-text text-center text-3xl font-bold text-transparent"
+              class="card-title bg-gradient-to-r from-amber-400 to-yellow-800 to-60% bg-clip-text text-center text-3xl font-bold text-transparent"
             >
-              Gold
+              {m["premium.plan-gold.name"]()}
             </h2>
-            <div class="my-4 flex justify-center">
-              <span class="text-4xl font-bold">4€</span>
-              <span class="mb-1 ml-1 self-end text-xl opacity-70">/month</span>
+            <div class="mt-4 flex justify-center">
+              <span class="text-4xl font-bold">
+                {isMonthly ? m["premium.plan-gold.monthly"]() : m["premium.plan-gold.yearly"]()}
+              </span>
+              <span class="ml-1 self-end text-xl opacity-70">
+                /{isMonthly ? m["premium.month"]() : m["premium.year"]()}
+              </span>
             </div>
+            {#if !isMonthly}
+              <div class="mt-2 flex items-end justify-center opacity-65">
+                <span class="text-xl font-bold">
+                  {m["premium.plan-gold.yearlyPerMonth"]()}
+                </span>
+                <span class="ml-1 text-sm opacity-70">/{m["premium.month"]()}</span>
+              </div>
+            {/if}
 
             <div class="divider"></div>
 
             {@render featureBenefitList(benefits.gold)}
 
             <div class="card-actions mt-auto justify-center">
-              <button class="btn btn-primary btn-lg w-full" onclick={redirectToDashboard}> Choose Server </button>
+              <button class="btn btn-success btn-soft btn-lg w-full" onclick={redirectToDashboard}
+                >{m["premium.chooseServer"]()}</button
+              >
             </div>
           </div>
         </div>
 
         <!-- WhiteLabel Plan -->
-        <div class="card bg-base-100 text-primary-content shadow-xl transition-all duration-300 hover:shadow-2xl">
-          <div class="absolute -top-4 right-4">
-            <div class="badge badge-secondary px-4 py-3 text-sm font-bold">POPULAR</div>
-          </div>
+        <div
+          class="card bg-base-100 text-primary-content mx-auto w-full max-w-lg shadow-xl transition-all duration-300 hover:shadow-2xl"
+        >
+          {#if !isMonthly}
+            <div class="absolute -top-4 right-4 select-none" transition:fade={{ duration: 150 }}>
+              <div class="badge badge-error px-4 py-3 text-sm font-bold">{m["premium.saveMonths"]({ count: 1 })}</div>
+            </div>
+          {/if}
           <div class="card-body">
             <h2
-              class="card-title w-full bg-gradient-to-l from-cyan-400 from-0% to-cyan-800 to-99% bg-clip-text text-center text-3xl font-bold text-transparent"
+              class="card-title w-full bg-gradient-to-l from-cyan-300 from-60% to-cyan-600 bg-clip-text text-center text-3xl font-bold text-transparent"
             >
-              WhiteLabel Plan
+              {m["premium.plan-diamond.name"]()}
             </h2>
-            <div class="my-4 flex justify-center">
-              <span class="text-4xl font-bold">10€</span>
-              <span class="mb-1 ml-1 self-end text-xl opacity-70">/month</span>
+            <div class="mt-4 flex items-end justify-center">
+              <span class="text-4xl font-bold">
+                {isMonthly ? m["premium.plan-diamond.monthly"]() : m["premium.plan-diamond.yearly"]()}
+              </span>
+              <span class="ml-1 self-end text-xl opacity-70">
+                /{isMonthly ? m["premium.month"]() : m["premium.year"]()}
+              </span>
             </div>
+            {#if !isMonthly}
+              <div class="mt-2 flex justify-center opacity-65">
+                <span class="text-xl font-bold">
+                  {m["premium.plan-diamond.yearlyPerMonth"]()}
+                </span>
+                <span class="ml-1 self-end text-sm opacity-70">/{m["premium.month"]()}</span>
+              </div>
+            {/if}
 
             <div class="divider"></div>
 
             {@render featureBenefitList(benefits.diamond)}
 
             <div class="card-actions mt-auto justify-center">
-              <button class="btn btn-secondary btn-lg w-full" onclick={redirectToDashboard}> Choose Server </button>
+              <button class="btn btn-success btn-soft btn-lg w-full" onclick={redirectToDashboard}
+                >{m["premium.chooseServer"]()}</button
+              >
             </div>
           </div>
         </div>
@@ -104,14 +176,14 @@
         <div tabindex="0" class="collapse-arrow bg-base-100 collapse mb-4">
           <input type="checkbox" class="peer" />
           <div class="collapse-title text-xl font-medium">{summary}</div>
-          <div class="collapse-content">
-            <p>{details}</p>
+          <div class="collapse-content text-white/70 select-text">
+            <p>{@html markdownToHtml(details)}</p>
           </div>
         </div>
       {/snippet}
 
       <div class="mt-16 text-center select-none">
-        <h3 id="faq" class="mb-4 text-2xl font-semibold">Frequently Asked Questions</h3>
+        <h3 id="faq" class="mb-4 text-2xl font-semibold">{m.faq()}</h3>
         <div class="mx-auto max-w-3xl">
           {#each faqs as faq}
             {@render faqCollapsable(faq.question, faq.answer)}
