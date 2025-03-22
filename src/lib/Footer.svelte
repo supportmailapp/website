@@ -1,20 +1,87 @@
 <script lang="ts">
+  import { env } from "$env/dynamic/public";
+  import { legalLinks } from "./constants";
   import { m } from "./paraglide/messages";
+  import { localizeHref } from "./paraglide/runtime";
+
+  const footerContent = $state<{ title: string; links: string[][] }[]>([
+    {
+      title: m["footer.navigation"](),
+      links: [
+        [m["nav.home"](), localizeHref("/")],
+        [m["nav.status"](), localizeHref("/status")],
+        [m["nav.premium"](), localizeHref("/premium")],
+        [m["nav.docs"](), "https://docs.supportmail.dev"],
+        [m["nav.dashboard"](), localizeHref(env.PUBLIC_DashboardUrl)],
+      ],
+    },
+    {
+      title: "SupportMail",
+      links: [
+        [m["nav.inviteBot"](), "/add"],
+        [m["nav.support"](), "https://help.supportmail.dev"],
+        [m["nav.topgg"](), "https://top.gg/bot/" + env.PUBLIC_ClientId],
+      ],
+    },
+    {
+      title: m["footer.legal"](),
+      links: [
+        [m["nav.legaNotice"](), legalLinks.base],
+        [m["nav.terms"](), legalLinks.terms],
+        [m["nav.privacy"](), legalLinks.privacy],
+        [m["nav.rightOfWithdrawal"](), legalLinks.withdrawal],
+      ],
+    },
+  ]);
 </script>
 
-<footer class="bg-base-200 to-secondary/40 bg-gradient-to-b from-blue-950 from-10% py-5 select-none">
-  <div class="container mx-auto px-4 text-white">
-    <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
-      <div class="flex items-center gap-2">
-        <div class="avatar">
-          <div class="size-10 rounded">
-            <img src="/logo.png" alt="SupportMail Logo" />
-          </div>
+<div class="bg-base-300 text-base-content flex justify-center bg-gradient-to-b to-transparent p-10 shadow-2xl shadow-slate-400">
+  <footer class="footer sm:footer-horizontal w-full max-w-[1200px]">
+    <aside style="user-select: none;">
+      <div class="avatar">
+        <div class="size-12 rounded">
+          <img src="/logo.png" alt="SupportMail Logo" />
         </div>
-        <span class="text-lg font-medium">SupportMail</span>
       </div>
-      <p class="text-sm text-white/80">&copy; 2023-2025 {m["footer.rights"]()}</p>
-      <a href="https://legal.supportmail.dev/" target="_blank" class="link link-hover text-white">{m["footer.legal"]()}</a>
-    </div>
-  </div>
-</footer>
+      <p>
+        &copy; 2023 - 2025
+        <br />
+        {m["footer.rightsReserved"]()}
+      </p>
+    </aside>
+
+    {#snippet footerLink(text: string, href: string)}
+      <a {href} target="_blank" rel="noopener noreferrer" class="link">
+        {text}
+      </a>
+    {/snippet}
+
+    {#if footerContent.length > 0}
+      {#each footerContent as { title, links }}
+        <nav>
+          <h6 class="footer-title">{title}</h6>
+          {#each links as [text, href]}
+            {@render footerLink(text, href)}
+          {/each}
+        </nav>
+      {/each}
+    {/if}
+  </footer>
+</div>
+
+<style>
+  .footer-title {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .footer nav a {
+    &.link {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+</style>
