@@ -50,9 +50,7 @@
 </script>
 
 <!-- Hero Section -->
-<section
-  class="hero bg-base-200 from-base-100 min-h-screen bg-linear-to-b from-10% via-indigo-500/60 via-38% to-indigo-600/10 to-95%"
->
+<section class="hero from-base-100/90 min-h-screen bg-linear-to-b from-10% via-indigo-500/60 via-38% to-indigo-600/10 to-95%">
   <div class="hero-content flex-col text-center select-none">
     <div class="max-w-lg">
       <h1 class="text-5xl font-bold">SupportMail</h1>
@@ -103,7 +101,8 @@
 </section>
 
 <!-- Statistics Section -->
-<section id="statistics" class="bg-base-100 to-base-200 bg-linear-to-b from-indigo-600/7 from-20% py-12 md:py-16">
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+<section tabindex="0" id="statistics" class="to-base-200/70 bg-linear-to-b from-indigo-600/10 from-20% py-12 md:py-16">
   <div class="container mx-auto max-w-(--max-w) px-4">
     <div class="mb-10 text-center">
       <h2 class="mb-4 text-3xl font-bold md:text-4xl">{m["stats.title"]()}</h2>
@@ -163,7 +162,8 @@
 </section>
 
 <!-- Features Section -->
-<section id="features" class="bg-base-200 from-base-200 to-base-100 bg-gradient-to-b from-10% py-16">
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+<section tabindex="0" id="features" class="from-base-200/70 bg-gradient-to-b from-10% to-blue-400/40 to-70% py-16">
   <div class="max-w-(900px) container mx-auto px-4">
     <div class="mb-16 text-center">
       <h2 class="mb-4 text-3xl font-bold md:text-4xl">{m.featuresTitle()}</h2>
@@ -175,7 +175,7 @@
     <div class="grid gap-8 md:grid-cols-2 md:gap-12">
       <!-- Feature 1: Modmail -->
       {#each features as feature}
-        <div class="card bg-base-100 shadow-xl transition-shadow hover:shadow-2xl">
+        <div class="card bg-base-100 drop-shadow-md transition-shadow hover:shadow-lg">
           <div class="card-body">
             <div class="mb-4 flex items-center gap-4">
               {#if feature.id == "tickets"}
@@ -208,7 +208,7 @@
 </section>
 
 <!-- CTA Section -->
-<section class="to-secondary/20 bg-gradient-to-b from-transparent py-16">
+<section class="to-base-100/20 bg-gradient-to-b from-blue-400/40 to-60% py-16">
   <div class="container mx-auto px-4 text-center">
     <div class="mx-auto max-w-3xl">
       <h2 class="mb-6 text-3xl font-bold md:text-4xl">{m["cta.title"]()}</h2>
