@@ -4,7 +4,6 @@
   themes: night --default;
 }
 
-
 @plugin "daisyui/theme" {
   name: "night";
   default: true;
@@ -82,7 +81,7 @@
 
 @layer components {
   .nav-link {
-    @apply link text-lg hover:text-white/70 transition-colors duration-150 p-2;
+    @apply link p-2 text-lg transition-colors duration-150 hover:text-white/70;
     height: 100%;
     color: #ffffff;
     text-decoration-line: none;
@@ -97,7 +96,7 @@
   }
 
   .mobile-menu {
-    @apply border-base-200 top-20 gap-2 border-b shadow-2xl md:hidden bg-base-200;
+    @apply border-base-200 bg-base-200 top-20 gap-2 border-b shadow-2xl md:hidden;
     position: absolute;
     left: 0;
     right: 0;

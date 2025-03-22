@@ -1,4 +1,4 @@
-<div class="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-full aspect-square">
+<div class="bg-primary/10 flex aspect-square h-12 w-12 items-center justify-center rounded-full">
   <svg xmlns="http://www.w3.org/2000/svg" class="text-primary h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path
       stroke-linecap="round"
