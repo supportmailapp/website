@@ -2,6 +2,7 @@
   import ModMailIcon from "$lib/assets/ModMailIcon.svelte";
   import ReportsIcon from "$lib/assets/ReportsIcon.svelte";
   import { m } from "$lib/paraglide/messages";
+  import { localizeHref } from "$lib/paraglide/runtime";
   import { blur, slide } from "svelte/transition";
 
   // Stats data for testing purposes
@@ -19,27 +20,6 @@
     // Format with commas + '+'
     return roundedNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "+";
   };
-
-  // Testimonials data
-  const testimonials = [
-    {
-      quote:
-        "This bot has completely transformed how we handle user support in our server. The modmail system is incredibly intuitive!",
-      author: "Sarah K.",
-      role: "Community Manager",
-    },
-    {
-      quote:
-        "The reporting feature has made it so much easier to maintain a healthy community. We can address issues faster than ever.",
-      author: "Michael T.",
-      role: "Server Admin",
-    },
-    {
-      quote: "Setting up was a breeze, and the support team is always quick to help when needed. Highly recommend!",
-      author: "Jamie L.",
-      role: "Discord Moderator",
-    },
-  ];
 
   const features = $state(
     Array.from({ length: 2 }).map((_, i) => {
@@ -78,7 +58,7 @@
       <h1 class="text-5xl font-bold">SupportMail</h1>
       <p class="py-6 text-lg">{m["hero.description"]()}</p>
       <div class="flex flex-row justify-center gap-3">
-        <a href="/add" class="btn btn-primary btn-lg min-w-40 rounded-4xl px-3 text-xl">
+        <a href={localizeHref("/add")} class="btn btn-primary btn-lg min-w-40 rounded-4xl px-3 text-xl">
           {m["nav.addBot"]()}
         </a>
         <div class="dropdown dropdown-bottom dropdown-end">
@@ -236,7 +216,7 @@
         {m["cta.description"]({ count: formatNumber(data.servers) })}
       </p>
       <div class="flex flex-col justify-center gap-4 sm:flex-row">
-        <a href="/add" class="btn btn-primary btn-lg">{m["cta.addBot"]()}</a>
+        <a href={localizeHref("/add")} class="btn btn-primary btn-lg">{m["cta.addBot"]()}</a>
         <a href="https://docs.supportmail.dev/" target="_blank" class="btn btn-success btn-soft btn-lg"
           >{m["cta.readDocumentation"]()}</a
         >

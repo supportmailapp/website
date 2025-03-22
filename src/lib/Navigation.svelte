@@ -1,6 +1,7 @@
 <script lang="ts">
+  import { page } from "$app/state";
   import { m } from "$lib/paraglide/messages";
-  import { locales, setLocale } from "$lib/paraglide/runtime";
+  import { locales, localizeHref, setLocale } from "$lib/paraglide/runtime";
   import { fade } from "svelte/transition";
 
   let isMenuOpen = $state(false);
@@ -46,7 +47,7 @@
     <div class="flex items-center justify-between">
       <!-- Logo -->
       <div class="flex items-center">
-        <a href="/" class="flex items-center gap-2 transition-colors duration-150 hover:text-white">
+        <a href={localizeHref("/")} class="flex items-center gap-2 transition-colors duration-150 hover:text-white">
           <div class="avatar size-14">
             <img src="/logo.png" alt="SupportMail Logo" class="mask mask-circle" />
           </div>
@@ -85,7 +86,7 @@
           </ul>
         </div>
         <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">{m["nav.docs"]()}</a>
-        <a href="/premium" class="nav-link nav-link-premium">{m["nav.premium"]()}</a>
+        <a href={localizeHref("/premium")} class="nav-link nav-link-premium">{m["nav.premium"]()}</a>
         <a href="https://dashboard.supportmail.dev/" class="nav-button">{m["nav.dashboard"]()}</a>
       </nav>
 
@@ -104,7 +105,7 @@
     <div id="mobile-menu" class="mobile-menu" transition:fade={{ duration: 100, easing: (t) => t / 2 }}>
       <div class="container mx-auto flex flex-col gap-4 px-4 py-4 text-center">
         <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">{m["nav.docs"]()}</a>
-        <a href="/premium" class="nav-link nav-link-premium">{m["nav.premium"]()}</a>
+        <a href={localizeHref("/premium")} class="nav-link nav-link-premium">{m["nav.premium"]()}</a>
 
         <!-- Mobile Language Selector -->
         <div class="flex justify-center">

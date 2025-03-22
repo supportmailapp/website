@@ -1,4 +1,8 @@
 <script lang="ts">
+  import { fade } from "svelte/transition";
+  import { cubicIn, cubicOut } from "svelte/easing";
+  import { page } from "$app/state";
+  import Footer from "$lib/Footer.svelte";
   import Navigation from "$lib/Navigation.svelte";
   import { m } from "$lib/paraglide/messages";
   import "../app.css";
@@ -14,25 +18,16 @@
 <div class="bg-base-100 flex min-h-screen flex-col">
   <Navigation />
 
-  <main class="flex-grow">
-    {@render children()}
-  </main>
+  {#key page.url.pathname}
+    <main
+      class="flex-grow"
+      in:fade={{ duration: 200, delay: 100, easing: cubicIn }}
+      out:fade={{ duration: 200, easing: cubicOut }}
+    >
+      {@render children()}
+    </main>
+  {/key}
 
   <!-- Footer -->
-  <footer class="bg-base-200 from-secondary/35 to-secondary/90 bg-gradient-to-b from-10% py-5 select-none">
-    <div class="container mx-auto px-4 text-white">
-      <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
-        <div class="flex items-center gap-2">
-          <div class="avatar">
-            <div class="size-10 rounded">
-              <img src="/logo.png" alt="SupportMail Logo" />
-            </div>
-          </div>
-          <span class="text-lg font-medium">SupportMail</span>
-        </div>
-        <p class="text-sm text-white/80">&copy; 2023-2025 {m["footer.rights"]()}</p>
-        <a href="https://legal.supportmail.dev/" target="_blank" class="link link-hover text-white">{m["footer.legal"]()}</a>
-      </div>
-    </div>
-  </footer>
+  <Footer />
 </div>
