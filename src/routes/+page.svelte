@@ -50,9 +50,7 @@
       <h1 class="text-5xl font-bold">SupportMail</h1>
       <p class="py-6 text-lg">{m["hero.description"]()}</p>
       <div class="flex flex-row justify-center gap-3">
-        <a href={localizeHref("/add")} class="btn btn-primary btn-lg min-w-40 rounded-4xl px-3 text-xl">
-          {m["nav.addBot"]()}
-        </a>
+        <a href={localizeHref("/add")} class="add-bot-btn">{m["nav.addBot"]()}</a>
         <div class="dropdown dropdown-bottom dropdown-end">
           <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
           <div tabindex="0" class="btn btn-soft btn-success btn-lg rounded-3xl">
@@ -202,7 +200,7 @@
 </section>
 
 <!-- CTA Section -->
-<section class="to-base-100/20 bg-gradient-to-b from-blue-400/40 to-60% py-16">
+<section class="bg-gradient-to-b from-blue-400/40 to-indigo-500/40 to-60% py-16">
   <div class="container mx-auto px-4 text-center">
     <div class="mx-auto max-w-3xl">
       <h2 class="mb-6 text-3xl font-bold md:text-4xl">{m["cta.title"]()}</h2>
@@ -210,7 +208,7 @@
         {m["cta.description"]({ count: formatNumber(page.data.stats.guilds) })}
       </p>
       <div class="flex flex-col justify-center gap-4 sm:flex-row">
-        <a href={localizeHref("/add")} class="btn btn-primary btn-lg">{m["cta.addBot"]()}</a>
+        <a href={localizeHref("/add")} class="add-bot-btn">{m["cta.addBot"]()}</a>
         <a href="https://docs.supportmail.dev/" target="_blank" class="btn btn-success btn-soft btn-lg"
           >{m["cta.readDocumentation"]()}</a
         >
