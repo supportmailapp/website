@@ -4,10 +4,44 @@
   themes: night --default;
 }
 
+@plugin "daisyui/theme" {
+  name: "night";
+  default: true;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: oklch(20.768% 0.039 265.754);
+  --color-base-200: oklch(19.314% 0.037 265.754);
+  --color-base-300: oklch(17.86% 0.034 265.754);
+  --color-base-content: oklch(98% 0.003 247.858);
+  --color-primary: oklch(62% 0.214 259.815);
+  --color-primary-content: oklch(100% 0.032 255.585);
+  --color-secondary: oklch(68.011% 0.158 276.934);
+  --color-secondary-content: oklch(13.602% 0.031 276.934);
+  --color-accent: oklch(72.36% 0.176 350.048);
+  --color-accent-content: oklch(14.472% 0.035 350.048);
+  --color-neutral: oklch(27.949% 0.036 260.03);
+  --color-neutral-content: oklch(85.589% 0.007 260.03);
+  --color-info: oklch(68% 0.169 237.323);
+  --color-info-content: oklch(95% 0.026 236.824);
+  --color-success: oklch(78.452% 0.132 181.911);
+  --color-success-content: oklch(15.69% 0.026 181.911);
+  --color-warning: oklch(83.242% 0.139 82.95);
+  --color-warning-content: oklch(16.648% 0.027 82.95);
+  --color-error: oklch(71.785% 0.17 13.118);
+  --color-error-content: oklch(14.357% 0.034 13.118);
+  --radius-selector: 0.25rem;
+  --radius-field: 2rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
 @layer base {
   :root {
     --dc-blurple: #5a65db;
-    --light-blurple: rgba(90, 101, 219, 0.8);
     --max-w: 1100px;
   }
 
@@ -15,6 +49,7 @@
     scroll-behavior: smooth;
     max-width: screen;
     scrollbar-width: thin;
+    scrollbar-color: rgba(var(--dc-blurple), 0.6) transparent;
   }
 
   body {
@@ -27,11 +62,26 @@
     width: 100%;
     min-height: 100vh;
   }
+
+  /* Custom Scrollbar for WebKit Browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(var(--dc-blurple), 0.6);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--dc-blurple);
+  }
 }
 
 @layer components {
   .nav-link {
-    @apply link text-lg hover:text-white/70 transition-colors duration-150 p-2;
+    @apply link p-2 text-lg transition-colors duration-150 hover:text-white/70;
     height: 100%;
     color: #ffffff;
     text-decoration-line: none;
@@ -43,11 +93,10 @@
 
   .nav-button {
     @apply btn btn-primary btn-md rounded-3xl px-4 py-1 text-xl;
-    color: #ffffff;
   }
 
   .mobile-menu {
-    @apply border-base-200 top-20 gap-2 border-b shadow-2xl md:hidden bg-base-200;
+    @apply border-base-200 bg-base-200 top-20 gap-2 border-b shadow-2xl md:hidden;
     position: absolute;
     left: 0;
     right: 0;

@@ -1,38 +1,17 @@
-# sv
+# Website Project
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This project contains the source code and resources for the SupportMail website. Below is an overview of the project structure.
 
-## Creating a project
+## Project Structure
 
-If you're seeing this, you've probably already done this step. Congrats!
+This project has the basic structure of a SvelteKit project. More about this here: [SvelteKit](https://svelte.dev/docs/kit/introduction).
 
-```bash
-# create a new project in the current directory
-npx sv create
+This repository also has the integration `paraglide-js` set up to handle localization and internationalization. More about this here: [Inlang](https://inlang.com/).
 
-# create a new project in my-app
-npx sv create my-app
-```
+## Contributing
 
-## Developing
+Feel free to submit issues or pull requests to improve the project.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## License
 
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+This project is licensed under [MIT License](LICENSE).

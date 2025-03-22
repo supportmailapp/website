@@ -1,4 +1,14 @@
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+
 # Package Managers
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+LICENSE
+
+# Paraglide
+src/lib/paraglide/**
+project.inlang/**

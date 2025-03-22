@@ -1,0 +1,150 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "app": {
+    "title": "SupportMail | Modern Modmail + Reports",
+    "description": "SupportMail is a modern Discord bot that features modmail and reports to step up your server's moderation game."
+  },
+  "nav": {
+    "language": "Language",
+    "selectLanguage": "Select your Language",
+    "docs": "Documentation",
+    "premium": "Premium",
+    "invite": "Invite",
+    "support": "Support Server",
+    "dashboard": "Dashboard",
+    "addBot": "Add Bot",
+    "getHelp": "Get Help"
+  },
+  "footer": {
+    "rights": "SupportMail - All rights reserved.",
+    "legal": "Legal"
+  },
+  "hero": {
+    "description": "Effortlessly manage user tickets and reports with SupportMail"
+  },
+  "stats": {
+    "title": "Statistiken",
+    "activeServers": "Active Servers",
+    "usersServed": "Users Served",
+    "ticketsProcessed": "Tickets Processed",
+    "realTimeData": "Real-time data"
+  },
+  "featuresTitle": "Features",
+  "featuresDescription": "SupportMail comes packed with tools designed to make the work of your server team effortless",
+  "feature-0": {
+    "id": "tickets",
+    "title": "Tickets, but Modmail",
+    "description": "SupportMail allows users to open tickets with your server staff in a seamless and organized way.",
+    "benefit-0": "Organize in a Forum",
+    "benefit-1": "Use Application Commands",
+    "benefit-2": "Custom Messages",
+    "benefit-3": "Tags (Message Snippets)",
+    "benefit-4": "Black-/Whitelists"
+  },
+  "feature-1": {
+    "id": "reports",
+    "title": "Reports",
+    "description": "Users can report other users or messages to your server team in a safe and easy way.",
+    "benefit-0": "Report Users and Messages",
+    "benefit-1": "Directly take action",
+    "benefit-2": "Notify the user (or not)",
+    "benefit-3": "Report limits",
+    "benefit-4": "Black-/Whitelists"
+  },
+  "testimonials": {
+    "title": "What Our Users Say",
+    "description": "Don't just take our word for it - hear from the community managers who use our bot every day"
+  },
+  "cta": {
+    "title": "Ready to get started?",
+    "description": "Join the {count} servers who are already using SupportMail to improve their support and make their team's job easier.",
+    "addBot": "Add SupportMail to your Server",
+    "readDocumentation": "Read the Documentation"
+  },
+  "faq": "Frequently Asked Questions",
+  "premium-faq-0": {
+    "question": "What is SupportMail Premium?",
+    "answer": "SupportMail Premium is a subscription service that offers additional features, higher limits and other benefits to your server."
+  },
+  "premium-faq-1": {
+    "question": "How much does SupportMail Premium cost?",
+    "answer": "The price depends on the plan you choose. Currently, there are two default plans: Gold (Basic) and Diamond (Whitelabel). Everything is priced appropriately for the features you get."
+  },
+  "premium-faq-2": {
+    "question": "How do I purchase SupportMail Premium?",
+    "answer": "You can purchase SupportMail Premium through the dashboard. Simply click on the 'Premium' tab and follow the instructions."
+  },
+  "premium-faq-3": {
+    "question": "How are the payments processed?",
+    "answer": "We use Paddle to process payments. Paddle is a secure and reliable payment processor that accepts a wide range of payment methods. You can pay with credit card, PayPal, Apple Pay, Google Pay and more."
+  },
+  "premium-faq-4": {
+    "question": "Can I cancel my subscription?",
+    "answer": "Yes, you can cancel your subscription at any time. You will keep your premium features until the end of the billing period."
+  },
+  "premium-faq-5": {
+    "question": "Do you offer refunds?",
+    "answer": "We offer refunds within 14 days of the purchase date. If you are not satisfied with the service, please contact us and we will refund your payment."
+  },
+  "premium-faq-6": {
+    "question": "Can I upgrade or downgrade my plan once I've subscribed?",
+    "answer": "No, you cannot upgrade or downgrade your plan once you've subscribed. If you want to change your plan, you will need to cancel your current subscription and purchase a new one."
+  },
+  "premium-faq-7": {
+    "question": "Can I use SupportMail Premium on multiple servers?",
+    "answer": "No, Premium is tied to a single server. If you want to use Premium on multiple servers, you will need to purchase a subscription for each server."
+  },
+  "premium-faq-8": {
+    "question": "Can I transfer my Premium subscription to another server?",
+    "answer": "No, Premium subscriptions are tied to the server they were purchased for. If you want to transfer your subscription to another server, you will need to cancel your current subscription and purchase a new one for the new server."
+  },
+  "premium-faq-9": {
+    "question": "How do I get support for Premium?",
+    "answer": "If you have any questions or issues about your Premium subscription, please join our [support server](https://help.supportmail.dev/) and ask for help in the [#premium-support](https://discord.com/channels/1064594649668395128/1248923857272836106) channel.\nIf your request is urgent, please contact us at [premium@supportmail.dev](mailto:premium@supportmail.dev)."
+  },
+  "premium-faq-10": {
+    "question": "Can I use a custom bot with SupportMail Premium?",
+    "answer": "It depends on your plan. The Gold plan does not support custom bots, while the Diamond plan does. If you want to use a custom bot with SupportMail Premium, you will need to purchase the Diamond plan."
+  },
+  "premium": {
+    "choosePlan": "Choose Your Plan",
+    "description": "Select the perfect plan for your Discord server. All plans are billed per server, not per user.",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "month": "month",
+    "year": "year",
+    "chooseServer": "Choose Your Server",
+    "saveMonths": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Save 1 month",
+          "countPlural=other": "Save {count} months"
+        }
+      }
+    ],
+    "plan-gold": {
+      "name": "Gold",
+      "monthly": "$3.99",
+      "yearly": "€42",
+      "yearlyPerMonth": "€3.50",
+      "note": "The prices are in USD because of Discord's policy.",
+      "benefit-0": "Higher limits",
+      "benefit-1": "Custom Anonym Alias",
+      "benefit-2": "Feedback Questions",
+      "benefit-3": "Custom Messages"
+    },
+    "plan-diamond": {
+      "name": "Diamond",
+      "monthly": "€9",
+      "yearly": "€96",
+      "yearlyPerMonth": "€8",
+      "benefit-0": "Higher limits",
+      "benefit-1": "Custom Anonym Alias",
+      "benefit-2": "Feedback Questions",
+      "benefit-3": "Custom Messages",
+      "benefit-4": "Custom Name, About Me, Avatar, Status"
+    }
+  }
+}
