@@ -1,13 +1,13 @@
 // Constants (Public)
 
-import { env } from "$env/dynamic/public";
+import { PUBLIC_ClientId, PUBLIC_botPermissions, PUBLIC_legalHost } from "$env/static/public";
 
 export const urls = {
   // We will enable th redirect uri when the dashboard is ready
   botAuth: function (guildId: string | null = null): string {
     const params = new URLSearchParams({
-      client_id: env.PUBLIC_ClientId,
-      permissions: env.PUBLIC_botPermissions,
+      client_id: PUBLIC_ClientId,
+      permissions: PUBLIC_botPermissions,
       scope: "bot applications.commands",
       // response_type: "code",
       // redirect_uri: env.PUBLIC_discordRedirectUri,
@@ -18,8 +18,8 @@ export const urls = {
 };
 
 export const legalLinks = {
-  base: env.PUBLIC_legalHost,
-  terms: env.PUBLIC_legalHost + "/terms",
-  privacy: env.PUBLIC_legalHost + "/privacy",
-  withdrawal: env.PUBLIC_legalHost + "/right-of-withdrawal",
+  base: PUBLIC_legalHost,
+  terms: PUBLIC_legalHost + "/terms",
+  privacy: PUBLIC_legalHost + "/privacy",
+  withdrawal: PUBLIC_legalHost + "/right-of-withdrawal",
 };
