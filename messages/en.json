@@ -9,14 +9,22 @@
     "selectLanguage": "Select your Language",
     "docs": "Documentation",
     "premium": "Premium",
-    "invite": "Invite",
     "support": "Support Server",
+    "inviteBot": "Invite Bot",
     "dashboard": "Dashboard",
     "addBot": "Add Bot",
-    "getHelp": "Get Help"
+    "getHelp": "Get Help",
+    "legaNotice": "Legal Notice",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "rightOfWithdrawal": "Right of withdrawal",
+    "home": "Home",
+    "topgg": "Top.gg",
+    "status": "Status"
   },
   "footer": {
-    "rights": "SupportMail - All rights reserved.",
+    "rightsReserved": "SupportMail - All rights reserved.",
+    "navigation": "Navigation",
     "legal": "Legal"
   },
   "hero": {
@@ -107,6 +115,7 @@
     "answer": "It depends on your plan. The Gold plan does not support custom bots, while the Diamond plan does. If you want to use a custom bot with SupportMail Premium, you will need to purchase the Diamond plan."
   },
   "premium": {
+    "warning": "Please note that Premium is still being worked on and is not yet available. This page currently only serves the purpose of showcasing the plans. Rest assured, the information on this page is 100% accurate.",
     "choosePlan": "Choose Your Plan",
     "description": "Select the perfect plan for your Discord server. All plans are billed per server, not per user.",
     "monthly": "Monthly",

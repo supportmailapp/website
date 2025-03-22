@@ -9,14 +9,22 @@
     "selectLanguage": "Wähle deine Sprache",
     "docs": "Dokumentation",
     "premium": "Premium",
-    "invite": "Einladen",
     "support": "Support-Server",
     "dashboard": "Dashboard",
     "addBot": "Bot hinzufügen",
-    "getHelp": "Erhalte Hilfe"
+    "getHelp": "Erhalte Hilfe",
+    "legaNotice": "Impressum",
+    "terms": "Nutzungsbedingungen",
+    "privacy": "Datenschutzrichtlinien",
+    "rightOfWithdrawal": "Widerrufsrecht",
+    "inviteBot": "Bot einladen",
+    "home": "Start",
+    "topgg": "Top.gg",
+    "status": "Status"
   },
   "footer": {
-    "rights": "SupportMail - Alle Rechte vorbehalten.",
+    "rightsReserved": "SupportMail - Alle Rechte vorbehalten.",
+    "navigation": "Navigation",
     "legal": "Rechtliches"
   },
   "hero": {
@@ -109,6 +117,7 @@
     "answer": "Das hängt vom Plan ab. Der Gold-Plan unterstützt keine eigenen Bots, der Diamond-Plan hingegen schon. Für die Nutzung eines eigenen Bots benötigst du den Diamond-Plan."
   },
   "premium": {
+    "warning": "Bitte beachte, dass Premium noch in Arbeit und noch nicht verfügbar ist. Die Informationen auf dieser Seite sind jedoch zu 100 % korrekt.",
     "choosePlan": "Wähle deinen Plan",
     "description": "Finde den perfekten Plan für deinen Discord-Server. Alle Pläne werden pro Server und nicht pro Nutzer abgerechnet.",
     "monthly": "Monatlich",
