@@ -1,16 +1,10 @@
 <script lang="ts">
+  import { page } from "$app/state";
   import ModMailIcon from "$lib/assets/ModMailIcon.svelte";
   import ReportsIcon from "$lib/assets/ReportsIcon.svelte";
   import { m } from "$lib/paraglide/messages";
   import { localizeHref } from "$lib/paraglide/runtime";
   import { blur, slide } from "svelte/transition";
-
-  // Stats data for testing purposes
-  const data = {
-    servers: 553,
-    users: 190123,
-    tickets: 2341,
-  };
 
   // Format large numbers with commas
   const formatNumber = (num: number, step = 100) => {
@@ -121,7 +115,7 @@
           </svg>
         </div>
         <div class="stat-title">{m["stats.activeServers"]()}</div>
-        <div class="stat-value text-primary">{formatNumber(data.servers, 50)}</div>
+        <div class="stat-value text-primary">{formatNumber(page.data.stats.guilds, 50)}</div>
       </div>
 
       <div class="stat">
@@ -136,7 +130,7 @@
           </svg>
         </div>
         <div class="stat-title">{m["stats.usersServed"]()}</div>
-        <div class="stat-value text-secondary">{formatNumber(data.users)}</div>
+        <div class="stat-value text-secondary">{formatNumber(page.data.stats.users)}</div>
       </div>
 
       <div class="stat">
@@ -151,7 +145,7 @@
           </svg>
         </div>
         <div class="stat-title">{m["stats.ticketsProcessed"]()}</div>
-        <div class="stat-value">{formatNumber(data.tickets)}</div>
+        <div class="stat-value">{formatNumber(page.data.stats.tickets)}</div>
       </div>
     </div>
 
@@ -213,7 +207,7 @@
     <div class="mx-auto max-w-3xl">
       <h2 class="mb-6 text-3xl font-bold md:text-4xl">{m["cta.title"]()}</h2>
       <p class="text-base-content/80 mb-8 text-lg">
-        {m["cta.description"]({ count: formatNumber(data.servers) })}
+        {m["cta.description"]({ count: formatNumber(page.data.stats.guilds) })}
       </p>
       <div class="flex flex-col justify-center gap-4 sm:flex-row">
         <a href={localizeHref("/add")} class="btn btn-primary btn-lg">{m["cta.addBot"]()}</a>
