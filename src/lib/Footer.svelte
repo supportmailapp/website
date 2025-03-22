@@ -43,7 +43,7 @@
           <img src="/logo.png" alt="SupportMail Logo" />
         </div>
       </div>
-      <p>
+      <p style="user-select: text;">
         &copy; 2023 - 2025
         <br />
         {m["footer.rightsReserved"]()}
@@ -56,16 +56,14 @@
       </a>
     {/snippet}
 
-    {#if footerContent.length > 0}
-      {#each footerContent as { title, links }}
-        <nav>
-          <h6 class="footer-title">{title}</h6>
-          {#each links as [text, href]}
-            {@render footerLink(text, href)}
-          {/each}
-        </nav>
-      {/each}
-    {/if}
+    {#each footerContent as { title, links }}
+      <nav>
+        <h6 class="footer-title">{title}</h6>
+        {#each links as [text, href]}
+          {@render footerLink(text, href)}
+        {/each}
+      </nav>
+    {/each}
   </footer>
 </div>
 
