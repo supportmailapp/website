@@ -1,4 +1,4 @@
-import { SUPPORTMAIL_API_KEY } from "$env/static/private";
+import { env } from "$env/dynamic/private";
 
 type StatsResponse = { guilds: number; users: number; tickets: number };
 
@@ -6,7 +6,7 @@ export async function load() {
   const result = await fetch("https://api.supportmail.dev/stats", {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${SUPPORTMAIL_API_KEY}`,
+      Authorization: `Bearer ${env.SUPPORTMAIL_API_KEY}`,
     },
   })
     .then((res) => res.json() as Promise<StatsResponse>)

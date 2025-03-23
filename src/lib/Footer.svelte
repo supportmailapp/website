@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PUBLIC_DashboardUrl, PUBLIC_ClientId } from "$env/static/public";
+  import { env } from "$env/dynamic/public";
   import { legalLinks } from "./constants";
   import { m } from "./paraglide/messages";
   import { localizeHref } from "./paraglide/runtime";
@@ -12,7 +12,7 @@
         [m["nav.status"](), localizeHref("/status")],
         [m["nav.premium"](), localizeHref("/premium")],
         [m["nav.docs"](), "https://docs.supportmail.dev"],
-        [m["nav.dashboard"](), localizeHref(PUBLIC_DashboardUrl)],
+        [m["nav.dashboard"](), localizeHref(env.PUBLIC_DashboardUrl)],
       ],
     },
     {
@@ -20,7 +20,7 @@
       links: [
         [m["nav.inviteBot"](), "/add"],
         [m["nav.support"](), "https://help.supportmail.dev"],
-        [m["nav.topgg"](), "https://top.gg/bot/" + PUBLIC_ClientId],
+        [m["nav.topgg"](), "https://top.gg/bot/" + env.PUBLIC_ClientId],
       ],
     },
     {

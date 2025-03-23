@@ -1,6 +1,5 @@
 // Constants (Public)
 
-// import { PUBLIC_ClientId, PUBLIC_botPermissions, PUBLIC_legalHost } from "$env/static/public";
 import { env } from "$env/dynamic/public";
 
 export const urls = {
