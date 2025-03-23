@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "start": "node build/index.js",
+    "start": "HOST=localhost PORT=6060 ORIGIN=https://supportmail.dev node build/index.js",
     "build": "vite build",
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
