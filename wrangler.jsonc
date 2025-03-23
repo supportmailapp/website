@@ -1,6 +1,5 @@
 {
   "name": "supportmail-website",
-  "main": "src/index.js",
   "compatibility_date": "2025-03-23",
   "pages_build_output_dir": ".svelte-kit/cloudflare",
   "compatibility_flags": [
