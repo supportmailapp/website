@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { env } from "$env/dynamic/public";
+  import * as env from "$env/static/public";
   import { legalLinks } from "./constants";
   import { m } from "./paraglide/messages";
   import { localizeHref } from "./paraglide/runtime";

@@ -1,6 +1,6 @@
 // Constants (Public)
 
-import { env } from "$env/dynamic/public";
+import * as env from "$env/static/public";
 
 export const urls = {
   // We will enable th redirect uri when the dashboard is ready
