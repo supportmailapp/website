@@ -12,7 +12,7 @@ declare global {
     // interface PageState {}
     interface Platform {
       env: {
-        
+        SUPPORTMAIL_API_KEY: string;
       }
     }
   }
