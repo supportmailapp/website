@@ -1,5 +1,5 @@
 {
-  "css.customData": [".vscode/tailwind.json"],
+  "css.customData": [ ".vscode/tailwind.json" ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "github.copilot.chat.codeGeneration.instructions": [
     {
@@ -11,5 +11,8 @@
   },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
   }
 }
