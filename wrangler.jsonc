@@ -2,11 +2,5 @@
   "name": "supportmail-website",
   "compatibility_date": "2025-03-23",
   "pages_build_output_dir": ".svelte-kit/cloudflare",
-  "compatibility_flags": [ "nodejs_compat" ],
-  "routes": [
-    {
-      "pattern": "supportmail.dev/*",
-      "zone_name": "supportmail.dev"
-    }
-  ]
+  "compatibility_flags": [ "nodejs_compat" ]
 }
