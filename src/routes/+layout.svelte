@@ -1,11 +1,12 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import { cubicIn, cubicOut } from "svelte/easing";
+  import { expoIn, expoOut } from "svelte/easing";
   import { page } from "$app/state";
   import Footer from "$lib/Footer.svelte";
   import Navigation from "$lib/Navigation.svelte";
   import { m } from "$lib/paraglide/messages";
   import "../app.css";
+  import { locales, localizeHref } from "$lib/paraglide/runtime";
 
   let { children } = $props();
 </script>
@@ -29,8 +30,8 @@
 
       <main
         class="relative z-10 flex-grow"
-        in:fade={{ duration: 200, delay: 100, easing: cubicIn }}
-        out:fade={{ duration: 200, easing: cubicOut }}
+        in:fade={{ duration: 150, delay: 100, easing: expoIn }}
+        out:fade={{ duration: 150, easing: expoOut }}
       >
         {@render children()}
       </main>
@@ -39,4 +40,10 @@
 
   <!-- Footer -->
   <Footer />
+</div>
+
+<div style="display:none">
+  {#each locales as locale}
+    <a href={localizeHref(page.url.pathname, { locale })}>{locale}</a>
+  {/each}
 </div>
