@@ -22,4 +22,5 @@ export const legalLinks = {
   terms: env.PUBLIC_legalHost + "/terms",
   privacy: env.PUBLIC_legalHost + "/privacy",
   withdrawal: env.PUBLIC_legalHost + "/right-of-withdrawal",
+  licenses: env.PUBLIC_legalHost + "/licenses",
 };
