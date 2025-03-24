@@ -1,7 +1,7 @@
 <script lang="ts">
   import * as env from "$env/static/public";
   import { m } from "$lib/paraglide/messages";
-  import { locales, localizeHref, setLocale } from "$lib/paraglide/runtime";
+  import { getLocale, locales, localizeHref, setLocale } from "$lib/paraglide/runtime";
   import { fade } from "svelte/transition";
 
   let isMenuOpen = $state(false);
@@ -78,9 +78,11 @@
               <li>
                 <button
                   type="submit"
-                  class="btn btn-ghost btn-sm justify-center hover:bg-slate-700/70"
-                  onclick={() => setLocale(locale)}>{languages[locale]}</button
+                  class="btn btn-sm btn-soft justify-center {getLocale() == locale ? 'btn-secondary btn-disabled' : ''}"
+                  onclick={() => setLocale(locale)}
                 >
+                  {languages[locale]}
+                </button>
               </li>
             {/each}
           </ul>
@@ -134,8 +136,11 @@
     <div class="menu bg-base-100 rounded-box z-[1] mt-2 w-full justify-center p-2 shadow">
       <ul class="flex w-full flex-col justify-center gap-2">
         {#each locales as locale}
-          <li class="flex w-full flex-row justify-center">
-            <button class="btn btn-soft w-48 justify-center" onclick={() => setLocale(locale)}>{languages[locale]}</button>
+          <li class="flex w-full flex-row justify-center gap-1">
+            <button
+              class="btn btn-soft w-48 justify-center {getLocale() == locale ? 'btn-success' : ''}"
+              onclick={() => setLocale(locale)}>{languages[locale]}</button
+            >
           </li>
         {/each}
       </ul>
