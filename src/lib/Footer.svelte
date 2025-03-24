@@ -18,7 +18,7 @@
     {
       title: "SupportMail",
       links: [
-        [m["nav.inviteBot"](), "/add"],
+        [m["nav.inviteBot"](), localizeHref("/add")],
         [m["nav.support"](), "https://help.supportmail.dev/"],
         [m["nav.topgg"](), "https://top.gg/bot/" + env.PUBLIC_ClientId],
       ],
