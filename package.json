@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "start": "HOST=localhost PORT=6060 ORIGIN=https://supportmail.dev node build/index.js",
+    "start": "node build/index.js",
     "build": "vite build",
+    "preview": "vite preview",
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -15,8 +16,10 @@
     "lint": "prettier --check . && eslint ."
   },
   "devDependencies": {
-    "@inlang/paraglide-js": "2.0.1",
+    "@inlang/paraglide-js": "^2.0.4",
+    "@sveltejs/adapter-auto": "^5.0.0",
     "@sveltejs/adapter-node": "^5.2.12",
+    "@sveltejs/adapter-static": "^3.0.8",
     "@sveltejs/kit": "^2.20.2",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "daisyui": "^5.0.9",
