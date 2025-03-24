@@ -9,9 +9,9 @@
       title: m["footer.navigation"](),
       links: [
         [m["nav.home"](), localizeHref("/")],
-        [m["nav.status"](), localizeHref("/status")],
+        [m["nav.status"](), "https://status.supportmail.dev/"],
         [m["nav.premium"](), localizeHref("/premium")],
-        [m["nav.docs"](), "https://docs.supportmail.dev"],
+        [m["nav.docs"](), "https://docs.supportmail.dev/"],
         [m["nav.dashboard"](), localizeHref(env.PUBLIC_DashboardUrl)],
       ],
     },
@@ -19,7 +19,7 @@
       title: "SupportMail",
       links: [
         [m["nav.inviteBot"](), "/add"],
-        [m["nav.support"](), "https://help.supportmail.dev"],
+        [m["nav.support"](), "https://help.supportmail.dev/"],
         [m["nav.topgg"](), "https://top.gg/bot/" + env.PUBLIC_ClientId],
       ],
     },
@@ -30,12 +30,16 @@
         [m["nav.terms"](), legalLinks.terms],
         [m["nav.privacy"](), legalLinks.privacy],
         [m["nav.rightOfWithdrawal"](), legalLinks.withdrawal],
+        [m["nav.licenses"](), legalLinks.licenses],
       ],
     },
   ]);
 </script>
 
-<div class="bg-base-300 text-base-content flex justify-center bg-gradient-to-b to-transparent p-10 shadow-2xl shadow-slate-400">
+<div
+  id="footer"
+  class="bg-base-300 text-base-content flex justify-center bg-gradient-to-b to-transparent p-10 shadow-2xl shadow-slate-400"
+>
   <footer class="footer sm:footer-horizontal w-full max-w-[1200px]">
     <aside style="user-select: none;">
       <div class="avatar">
@@ -51,7 +55,7 @@
     </aside>
 
     {#snippet footerLink(text: string, href: string)}
-      <a {href} target="_blank" rel="noopener noreferrer" class="link">
+      <a {href} target={href.startsWith("/") ? "_self" : "_blank"} rel="noopener noreferrer" class="link">
         {text}
       </a>
     {/snippet}
