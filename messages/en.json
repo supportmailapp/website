@@ -20,7 +20,8 @@
     "rightOfWithdrawal": "Right of withdrawal",
     "home": "Home",
     "topgg": "Top.gg",
-    "status": "Status"
+    "status": "Status",
+    "licenses": "Licenses"
   },
   "footer": {
     "rightsReserved": "SupportMail - All rights reserved.",
@@ -31,7 +32,7 @@
     "description": "Effortlessly manage user tickets and reports with SupportMail"
   },
   "stats": {
-    "title": "Statistiken",
+    "title": "Statistics",
     "activeServers": "Active Servers",
     "usersServed": "Users Served",
     "ticketsProcessed": "Tickets Processed",

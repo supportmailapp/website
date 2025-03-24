@@ -20,7 +20,8 @@
     "inviteBot": "Bot einladen",
     "home": "Start",
     "topgg": "Top.gg",
-    "status": "Status"
+    "status": "Status",
+    "licenses": "Lizenzen"
   },
   "footer": {
     "rightsReserved": "SupportMail - Alle Rechte vorbehalten.",
@@ -43,7 +44,6 @@
     "id": "tickets",
     "title": "Tickets, aber im Modmail-Style",
     "description": "SupportMail ermöglicht es Nutzern, Tickets auf eine organisierte und einfache Weise zu erstellen.",
-    "image": "/",
     "benefit-0": "Organisiere in einem Forum",
     "benefit-1": "Verwende Anwendungsbefehle",
     "benefit-2": "Nutzerdefinierte Nachrichten",
@@ -54,7 +54,6 @@
     "id": "reports",
     "title": "Meldungen",
     "description": "Nutzer können andere Nutzer oder Nachrichten sicher und einfach an dein Serverteam melden.",
-    "image": "/",
     "benefit-0": "Nutzer und Nachrichten melden",
     "benefit-1": "Direkt Maßnahmen ergreifen",
     "benefit-2": "Nutzer benachrichtigen (oder auch nicht)",
@@ -68,7 +67,7 @@
   "cta": {
     "title": "Bereit loszulegen?",
     "description": "Schließe dich den {count} Servern an, die SupportMail bereits nutzen, um ihren Support zu verbessern und ihrem Team die Arbeit zu erleichtern.",
-    "addBot": "Lade den Bot ein",
+    "addBot": "Lade SupportMail ein",
     "readDocumentation": "Lies die Dokumentation"
   },
   "faq": "Häufig gestellte Fragen",
@@ -142,7 +141,7 @@
       "yearlyPerMonth": "3,50 €",
       "note": "Die Preise sind in USD aufgrund der Richtlinien von Discord.",
       "benefit-0": "Höhere Limits",
-      "benefit-1": "Benutzerdefinierter Alias",
+      "benefit-1": "Benutzerdefinierter Anonym-Alias",
       "benefit-2": "Feedback-Fragen",
       "benefit-3": "Benutzerdefinierte Nachrichten"
     },
@@ -152,7 +151,7 @@
       "yearly": "96 €",
       "yearlyPerMonth": "8 €",
       "benefit-0": "Höhere Limits",
-      "benefit-1": "Benutzerdefinierter Alias",
+      "benefit-1": "Benutzerdefinierter Anonym-Alias",
       "benefit-2": "Feedback-Fragen",
       "benefit-3": "Benutzerdefinierte Nachrichten",
       "benefit-4": "Benutzerdefinierter Name, Info, Avatar, Status"
