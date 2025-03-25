@@ -1,3 +1,4 @@
+import { deLocalizeUrl } from "$lib/paraglide/runtime";
 import { paraglideMiddleware } from "$lib/paraglide/server";
 import { redirect, type Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
@@ -22,14 +23,14 @@ const paraglideHandle: Handle = async ({ event, resolve }) =>
   });
 
 const legacyHandle: Handle = async ({ event, resolve }) => {
-  const legacyUrl = legacyRoutes.get(event.url.pathname);
+  const legacyUrl = legacyRoutes.get(deLocalizeUrl(event.url).pathname);
   if (legacyUrl) {
     redirect(301, legacyUrl);
   }
   return resolve(event);
 };
 
-export const handle = sequence(paraglideHandle, legacyHandle);
+export const handle = sequence(legacyHandle, paraglideHandle);
 
 export async function handleError({ error, status, event, message }) {
   if (status !== 404) console.error(`Error ${status}: ${message}`, error);
