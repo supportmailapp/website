@@ -156,5 +156,10 @@
       "benefit-3": "Benutzerdefinierte Nachrichten",
       "benefit-4": "Benutzerdefinierter Name, Info, Avatar, Status"
     }
+  },
+  "error": {
+    "title": "Hoppla, da ist etwas schiefgelaufen",
+    "description": "Es tut uns leid für die Unannehmlichkeiten. Bitte versuche es erneut oder gehe zurück zur Startseite.",
+    "goBack": "Zurück"
   }
 }
