@@ -1,6 +1,5 @@
 import { type Reroute } from "@sveltejs/kit";
 import { deLocalizeUrl } from "$lib/paraglide/runtime";
-import { goto } from "$app/navigation";
 
 export const reroute: Reroute = (request) => {
   console.log(`Reroute ${request.url.pathname}`);
