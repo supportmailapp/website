@@ -11,13 +11,13 @@ declare global {
         guilds: number;
         users: number;
         tickets: number;
-      }
+      };
     }
     // interface PageState {}
     interface Platform {
       env: {
         SUPPORTMAIL_API_KEY: string;
-      }
+      };
     }
   }
 }
