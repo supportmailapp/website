@@ -12,6 +12,15 @@ const legacyRoutes = new Map([
   ["/terms", "https://legal.supportmail.dev/terms"],
 ]);
 
+const legacyHandle: Handle = async ({ event, resolve }) => {
+  const legacyUrl = legacyRoutes.get(deLocalizeUrl(event.url).pathname);
+  if (legacyUrl) {
+    console.log(`Redirecting ${event.url.pathname} to ${legacyUrl}`);
+    redirect(301, legacyUrl);
+  }
+  return resolve(event);
+};
+
 const paraglideHandle: Handle = async ({ event, resolve }) =>
   paraglideMiddleware(event.request, ({ request: localizedRequest, locale }) => {
     event.request = localizedRequest;
@@ -21,14 +30,6 @@ const paraglideHandle: Handle = async ({ event, resolve }) =>
       },
     });
   });
-
-const legacyHandle: Handle = async ({ event, resolve }) => {
-  const legacyUrl = legacyRoutes.get(deLocalizeUrl(event.url).pathname);
-  if (legacyUrl) {
-    redirect(301, legacyUrl);
-  }
-  return resolve(event);
-};
 
 export const handle = sequence(legacyHandle, paraglideHandle);
 
