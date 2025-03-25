@@ -2,7 +2,7 @@
   import * as env from "$env/static/public";
   import { m } from "$lib/paraglide/messages";
   import { getLocale, locales, localizeHref, setLocale } from "$lib/paraglide/runtime";
-  import { fade } from "svelte/transition";
+  import { slide } from "svelte/transition";
 
   let isMenuOpen = $state(false);
   const languages: Record<string, string> = {
@@ -29,11 +29,13 @@
     const toggleButton = document.getElementById("menu-button");
     const closeLanguageDialog = document.getElementById("close-language-dialog");
     const mobileMenu = document.getElementById("mobile-menu");
+    const languageDialog = document.getElementById("language-modal");
     if (
       isMenuOpen &&
       !closeLanguageDialog?.contains(event.target) &&
       !toggleButton?.contains(event.target) &&
-      !mobileMenu?.contains(event.target)
+      !mobileMenu?.contains(event.target) &&
+      !languageDialog?.contains(event.target)
     )
       toggleMenu();
   };
@@ -104,10 +106,14 @@
 
   <!-- Mobile Menu -->
   {#if isMenuOpen}
-    <div id="mobile-menu" class="mobile-menu" transition:fade={{ duration: 100, easing: (t) => t / 2 }}>
+    <div id="mobile-menu" class="mobile-menu" transition:slide={{ duration: 50, axis: "y" }}>
       <div class="container mx-auto flex flex-col gap-4 px-4 py-4 text-center">
-        <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">{m["nav.docs"]()}</a>
-        <a href={localizeHref("/premium")} class="nav-link nav-link-premium">{m["nav.premium"]()}</a>
+        <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link" onclick={toggleMenu}>
+          {m["nav.docs"]()}
+        </a>
+        <a href={localizeHref("/premium")} class="nav-link nav-link-premium" onclick={toggleMenu}>
+          {m["nav.premium"]()}
+        </a>
 
         <!-- Mobile Language Selector -->
         <div class="flex justify-center">
@@ -138,7 +144,7 @@
         {#each locales as locale}
           <li class="flex w-full flex-row justify-center gap-1">
             <button
-              class="btn btn-soft w-48 justify-center {getLocale() == locale ? 'btn-success' : ''}"
+              class="btn btn-soft w-48 justify-center {getLocale() == locale ? 'btn-disabled' : ''}"
               onclick={() => setLocale(locale)}>{languages[locale]}</button
             >
           </li>
