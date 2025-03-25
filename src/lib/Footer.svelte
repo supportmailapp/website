@@ -44,7 +44,7 @@
     <aside style="user-select: none;">
       <div class="avatar">
         <div class="size-12 rounded">
-          <img src="/logo.png" alt="SupportMail Logo" />
+          <img src="/assets/logo.png" alt="SupportMail Logo" />
         </div>
       </div>
       <p style="user-select: text;">

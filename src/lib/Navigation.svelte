@@ -49,7 +49,7 @@
       <div class="flex items-center">
         <a href={localizeHref("/")} class="flex items-center gap-2 transition-colors duration-150 hover:text-white">
           <div class="avatar size-14">
-            <img src="/logo.png" alt="SupportMail Logo" class="mask mask-circle" />
+            <img src="/assets/logo.png" alt="SupportMail Logo" class="mask mask-circle" />
           </div>
           <span class="text-3xl font-semibold">SupportMail</span>
         </a>
