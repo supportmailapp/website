@@ -100,7 +100,7 @@
   }
 
   .mobile-menu {
-    @apply border-base-200 bg-base-200 top-20 gap-2 border-b shadow-2xl md:hidden;
+    @apply border-base-200 bg-base-200 top-20 gap-2 border-b shadow-2xl lg:hidden;
     position: absolute;
     left: 0;
     right: 0;
