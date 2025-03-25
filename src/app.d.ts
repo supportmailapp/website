@@ -1,6 +1,10 @@
 declare global {
   namespace App {
-    // interface Error {}
+    interface Error {
+      status: number;
+      message: string;
+      route: string;
+    }
     // interface Locals {}
     interface PageData {
       stats: {

@@ -12,3 +12,12 @@ const paraglideHandle: Handle = async ({ event, resolve }) =>
   });
 
 export const handle = paraglideHandle;
+
+export async function handleError({ error, status, event, message }) {
+  if (status !== 404) console.error(`Error ${status}: ${message}`, error);
+  return {
+    status,
+    message,
+    route: event.url.pathname,
+  };
+}
