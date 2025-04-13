@@ -1,22 +1,16 @@
 <script lang="ts">
   import { page } from "$app/state";
+  import { formatNumber } from "$lib";
   import ModMailIcon from "$lib/assets/ModMailIcon.svelte";
   import ReportsIcon from "$lib/assets/ReportsIcon.svelte";
   import { m } from "$lib/paraglide/messages";
   import { localizeHref } from "$lib/paraglide/runtime";
   import { blur, slide } from "svelte/transition";
 
-  // Format large numbers with commas
-  const formatNumber = (num: number, step = 100) => {
-    // Round down to nearest step
-    const roundedNum = Math.floor(num / step) * step;
-
-    // Format with commas + '+'
-    return roundedNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "+";
-  };
-
   const features = $state(
-    Array.from({ length: 2 }).map((_, i) => {
+    Array.from({
+      length: 2,
+    }).map((_, i) => {
       // Helper function to safely access dynamic message keys | This is a workaround for TypeScript
       const getMessage = (key: string) => {
         return ((m as unknown as Record<string, Function>)[key] || (() => key)) as () => string;
@@ -25,8 +19,15 @@
       const id = getMessage(`${key}.id`)();
       const title = getMessage(`${key}.title`)();
       const description = getMessage(`${key}.description`)();
-      const benefits = Array.from({ length: 4 }).map((_, j) => getMessage(`${key}.benefit-${j}`)());
-      return { id, title, description, benefits };
+      const benefits = Array.from({
+        length: 4,
+      }).map((_, j) => getMessage(`${key}.benefit-${j}`)());
+      return {
+        id,
+        title,
+        description,
+        benefits,
+      };
     }),
   );
 
@@ -113,7 +114,7 @@
           </svg>
         </div>
         <div class="stat-title">{m["stats.activeServers"]()}</div>
-        <div class="stat-value text-primary">{formatNumber(page.data.stats.guilds, 50)}</div>
+        <div class="stat-value text-primary">{formatNumber(page.data.stats.guilds, 10)}</div>
       </div>
 
       <div class="stat">
