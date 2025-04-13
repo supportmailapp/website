@@ -31,7 +31,17 @@ const paraglideHandle: Handle = async ({ event, resolve }) =>
     });
   });
 
-export const handle = sequence(legacyHandle, paraglideHandle);
+// For the funny ones...
+const securityRegex = new RegExp(".*(\\.env|config/|config\\.yml|config\\.json|\\.git|\\.aws).*", "i");
+
+const securityRedirectHandle: Handle = async ({ event, resolve }) => {
+  if (event.url.pathname.includes("%20%20%20%20%22") || securityRegex.test(event.url.pathname)) {
+    redirect(300, "https://youtube.com/watch?v=dQw4w9WgXcQ"); // We all know where this leads...
+  }
+  return resolve(event);
+};
+
+export const handle = sequence(securityRedirectHandle, legacyHandle, paraglideHandle);
 
 export async function handleError({ error, status, event, message }) {
   if (status !== 404) console.error(`Error ${status}: ${message}`, error);
