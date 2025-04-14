@@ -6,6 +6,7 @@ import { sequence } from "@sveltejs/kit/hooks";
 // For the funny ones...
 const securityRegex = new RegExp(".*(\.env|config\/|config\.yml|config\.json|\.git|\.aws).*", "i");
 
+// Under construction; Removed for simplicity
 const securityRedirectHandle: Handle = async ({ event, resolve }) => {
   if (event.url.pathname.includes("%20%20%20%20%22") || securityRegex.test(deLocalizeUrl(event.url).pathname)) {
     console.log(`Security check for "${event.url.pathname}" failed. IP:`, event.getClientAddress());
