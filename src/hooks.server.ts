@@ -1,4 +1,4 @@
-import { deLocalizeUrl, localizeUrl } from "$lib/paraglide/runtime";
+import { deLocalizeUrl } from "$lib/paraglide/runtime";
 import { paraglideMiddleware } from "$lib/paraglide/server";
 import { redirect, type Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
@@ -18,13 +18,13 @@ const securityRegex = new RegExp(".*(\.env|config\/|config\.yml|config\.json|\.g
 
 const securityRedirectHandle: Handle = async ({ event, resolve }) => {
   if (event.url.pathname.includes("%20%20%20%20%22") || securityRegex.test(deLocalizeUrl(event.url).pathname)) {
-    console.log(`Security check for "${event.url.pathname}" failed.`);
-    redirect(303, localizeUrl(new URL("/newsletter", event.url.origin), { locale: "en" }));
+    console.log(`Security check for "${event.url.pathname}" failed. IP:`, event.getClientAddress());
+    redirect(303, "/add/undefined");
   }
   return resolve(event);
 };
 
-export const handle = sequence(paraglideHandle, securityRedirectHandle);
+export const handle = sequence(securityRedirectHandle, paraglideHandle);
 
 export async function handleError({ error, status, event, message }) {
   if (status !== 404) console.error(`Error ${status}: ${message}`, error);
