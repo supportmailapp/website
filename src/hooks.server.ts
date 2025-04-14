@@ -3,16 +3,6 @@ import { paraglideMiddleware } from "$lib/paraglide/server";
 import { redirect, type Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 
-const paraglideHandle: Handle = async ({ event, resolve }) =>
-  paraglideMiddleware(event.request, ({ request: localizedRequest, locale }) => {
-    event.request = localizedRequest;
-    return resolve(event, {
-      transformPageChunk: ({ html }) => {
-        return html.replace("%lang%", locale);
-      },
-    });
-  });
-
 // For the funny ones...
 const securityRegex = new RegExp(".*(\.env|config\/|config\.yml|config\.json|\.git|\.aws).*", "i");
 
@@ -24,7 +14,17 @@ const securityRedirectHandle: Handle = async ({ event, resolve }) => {
   return resolve(event);
 };
 
-export const handle = sequence(paraglideHandle, securityRedirectHandle);
+const paraglideHandle: Handle = async ({ event, resolve }) =>
+  paraglideMiddleware(event.request, ({ request: localizedRequest, locale }) => {
+    event.request = localizedRequest;
+    return resolve(event, {
+      transformPageChunk: ({ html }) => {
+        return html.replace("%lang%", locale);
+      },
+    });
+  });
+
+export const handle = sequence(securityRedirectHandle, paraglideHandle);
 
 export async function handleError({ error, status, event, message }) {
   if (status !== 404) console.error(`Error ${status}: ${message}`, error);

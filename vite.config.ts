@@ -11,15 +11,6 @@ export default defineConfig({
       project: "./project.inlang",
       outdir: "./src/lib/paraglide",
       strategy: ["url", "preferredLanguage", "baseLocale"],
-      urlPatterns: [
-        {
-          pattern: "/:path(.*)?",
-          localized: [
-            ["de", "/de/:path(.*)?"],
-            ["en", "/:path(.*)?"],
-          ],
-        },
-      ],
     }),
   ],
 
