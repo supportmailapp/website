@@ -24,3 +24,5 @@ export const legalLinks = {
   withdrawal: env.PUBLIC_legalHost + "/right-of-withdrawal",
   licenses: env.PUBLIC_legalHost + "/licenses",
 };
+
+export const EasterEgg = "https://youtube.com/watch?v=dQw4w9WgXcQ"; // We all know where this leads...

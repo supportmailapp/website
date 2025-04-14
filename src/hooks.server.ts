@@ -35,9 +35,9 @@ const paraglideHandle: Handle = async ({ event, resolve }) =>
 const securityRegex = new RegExp(".*(\.env|config\/|config\.yml|config\.json|\.git|\.aws).*", "i");
 
 const securityRedirectHandle: Handle = async ({ event, resolve }) => {
-  console.log(`Security check for ${event.url.pathname}:`, securityRegex.test(event.url.pathname));
   if (event.url.pathname.includes("%20%20%20%20%22") || securityRegex.test(event.url.pathname)) {
-    redirect(303, "https://youtube.com/watch?v=dQw4w9WgXcQ"); // We all know where this leads...
+    console.log(`Security check for "${event.url.pathname}" failed.`);
+    redirect(303, "/newsletter");
   }
   return resolve(event);
 };
