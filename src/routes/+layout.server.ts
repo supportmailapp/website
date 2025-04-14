@@ -11,7 +11,6 @@ const FALLBACK_STATS: StatsResponse = {
 };
 
 export async function load() {
-  console.log("Loading stats...", SUPPORTMAIL_API_KEY);
   const result = await fetch("https://api.supportmail.dev/stats", {
     method: "GET",
     headers: {
