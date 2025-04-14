@@ -19,7 +19,7 @@ const securityRegex = new RegExp(".*(\.env|config\/|config\.yml|config\.json|\.g
 const securityRedirectHandle: Handle = async ({ event, resolve }) => {
   if (event.url.pathname.includes("%20%20%20%20%22") || securityRegex.test(deLocalizeUrl(event.url).pathname)) {
     console.log(`Security check for "${event.url.pathname}" failed.`);
-    redirect(303, localizeUrl(new URL("/newsletter", event.url.origin)));
+    redirect(303, localizeUrl(new URL("/newsletter", event.url.origin), { locale: "en" }));
   }
   return resolve(event);
 };
