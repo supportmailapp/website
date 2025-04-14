@@ -24,7 +24,7 @@ const securityRedirectHandle: Handle = async ({ event, resolve }) => {
   return resolve(event);
 };
 
-export const handle = sequence(securityRedirectHandle, paraglideHandle);
+export const handle = sequence(paraglideHandle, securityRedirectHandle);
 
 export async function handleError({ error, status, event, message }) {
   if (status !== 404) console.error(`Error ${status}: ${message}`, error);
