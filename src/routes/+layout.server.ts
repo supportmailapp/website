@@ -18,13 +18,13 @@ export async function load() {
       Authorization: `Bearer ${SUPPORTMAIL_API_KEY}`,
     },
   })
-    .then((res) => {
+    .then(async (res) => {
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }
       if (res.status === 404) return FALLBACK_STATS;
 
-      const _data = res.json() as Promise<StatsResponse>;
+      const _data = await res.json() as Promise<StatsResponse>;
       console.log("Fetched stats from SupportMail API", _data);
       return _data;
     })
