@@ -29,7 +29,8 @@ const paraglideHandle: Handle = async ({ event, resolve }) =>
 export const handle = sequence(paraglideHandle);
 
 export async function handleError({ error, status, event, message }) {
-  if (status !== 404) console.error(`Error ${status}: ${message}`, error);
+  // if (status !== 404) console.error(`Error ${status}: ${message}`, error);
+  console.error(`Error ${status}: ${message}`, error);
   return {
     status,
     message,
