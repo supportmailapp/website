@@ -1,3 +1,4 @@
+import { EasterEgg } from "$lib/constants";
 import { deLocalizeUrl, localizeHref } from "$lib/paraglide/runtime";
 import { paraglideMiddleware } from "$lib/paraglide/server";
 import { redirect, type Handle } from "@sveltejs/kit";
@@ -10,7 +11,7 @@ const securityRegex = new RegExp(".*(\.env|config\/|config\.yml|config\.json|\.g
 const securityRedirectHandle: Handle = async ({ event, resolve }) => {
   if (event.url.pathname.includes("%20%20%20%20%22") || securityRegex.test(deLocalizeUrl(event.url).pathname)) {
     console.log(`Security check for "${event.url.pathname}" failed. IP:`, event.getClientAddress());
-    redirect(303, localizeHref("/add/undefined"));
+    return Response.json({ secret: EasterEgg }, { status: 200 });
   }
   return resolve(event);
 };
