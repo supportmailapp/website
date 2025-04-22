@@ -5,9 +5,9 @@ export const prerender = true;
 declare type StatsResponse = { guilds: number; users: number; tickets: number };
 
 const FALLBACK_STATS: StatsResponse = {
-  guilds: 550,
-  users: 180_000,
-  tickets: 2_000,
+  guilds: 580,
+  users: 198_000,
+  tickets: 2_030,
 };
 
 export async function load() {
@@ -23,7 +23,9 @@ export async function load() {
       }
       if (res.status === 404) return FALLBACK_STATS;
 
-      return res.json() as Promise<StatsResponse>;
+      const _data = res.json() as Promise<StatsResponse>;
+      console.log("Fetched stats from SupportMail API", _data);
+      return _data;
     })
     .catch(() => FALLBACK_STATS);
 
