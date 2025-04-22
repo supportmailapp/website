@@ -2,12 +2,13 @@ import { SUPPORTMAIL_API_KEY } from "$env/static/private";
 
 export const prerender = true;
 
-declare type StatsResponse = { guilds: number; users: number; tickets: number };
+declare type StatsResponse = { guilds: number; users: number; tickets: number; fallback?: true };
 
 const FALLBACK_STATS: StatsResponse = {
   guilds: 580,
   users: 198_000,
   tickets: 2_030,
+  fallback: true,
 };
 
 export async function load() {
