@@ -7,8 +7,13 @@
   import { m } from "$lib/paraglide/messages";
   import "../app.css";
   import { locales, localizeHref } from "$lib/paraglide/runtime";
+  import { onMount } from "svelte";
 
-  let { children } = $props();
+  let { children, data } = $props();
+
+  onMount(() => {
+    console.log("Bot Stats", data.stats);
+  });
 </script>
 
 <svelte:head>
