@@ -12,7 +12,7 @@
         [m["nav.status"](), "https://status.supportmail.dev/"],
         [m["nav.premium"](), localizeHref("/premium")],
         [m["nav.docs"](), "https://docs.supportmail.dev/"],
-        [m["nav.dashboard"](), localizeHref(env.PUBLIC_DashboardUrl)],
+        [m["nav.dashboard"](), env.PUBLIC_DashboardUrl],
       ],
     },
     {
