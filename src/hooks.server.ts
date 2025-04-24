@@ -17,7 +17,7 @@ const securityRedirectHandle: Handle = async ({ event, resolve }) => {
 };
 
 const paraglideHandle: Handle = async ({ event, resolve }) =>
-  paraglideMiddleware(event.request, ({ request: localizedRequest, locale }) => {
+  paraglideMiddleware(event.request, function resolveLocalized({ request: localizedRequest, locale }) {
     event.request = localizedRequest;
     return resolve(event, {
       transformPageChunk: ({ html }) => {
