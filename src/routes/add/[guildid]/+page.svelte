@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { goto } from "$app/navigation";
   import { page } from "$app/state";
   import { urls } from "$lib/constants";
@@ -10,5 +10,7 @@
 </script>
 
 <svelte:head>
-  <meta http-equiv="refresh" content="0; url=https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+  {#if page.params.guildid === "undefined"}
+    <meta http-equiv="refresh" content="0; url=https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+  {/if}
 </svelte:head>
