@@ -1,5 +1,6 @@
 <script lang="ts">
   import * as env from "$env/static/public";
+  import LinkArrow from "./assets/LinkArrow.svelte";
   import { legalLinks } from "./constants";
   import { m } from "./paraglide/messages";
   import { localizeHref } from "./paraglide/runtime";
@@ -56,8 +57,16 @@
     </aside>
 
     {#snippet footerLink(text: string, href: string)}
-      <a {href} target={href.startsWith("/") ? "_self" : "_blank"} rel="noopener noreferrer" class="link">
+      <a
+        {href}
+        target={href.startsWith("/") ? "_self" : "_blank"}
+        rel="noopener noreferrer"
+        class="link grid grid-flow-col place-items-center"
+      >
         {text}
+        {#if !href.startsWith("/")}
+          <LinkArrow _class="size-4" />
+        {/if}
       </a>
     {/snippet}
 
