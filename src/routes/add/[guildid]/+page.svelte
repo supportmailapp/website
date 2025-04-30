@@ -1,16 +1,18 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { page } from "$app/state";
-  import { urls } from "$lib/constants";
+  import { EasterEgg, urls } from "$lib/constants";
   import { onMount } from "svelte";
 
+  const { data } = $props();
+
   onMount(() => {
-    goto(urls.botAuth(page.params.guildid));
+    if (!data.easterEgg) goto(urls.botAuth(page.params.guildid));
   });
 </script>
 
 <svelte:head>
-  {#if page.params.guildid === "undefined"}
-    <meta http-equiv="refresh" content="0; url=https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+  {#if data.easterEgg}
+    <meta http-equiv="refresh" content="0; url={EasterEgg}" />
   {/if}
 </svelte:head>
