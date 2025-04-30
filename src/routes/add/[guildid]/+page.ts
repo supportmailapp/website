@@ -4,6 +4,6 @@ import { redirect } from "@sveltejs/kit";
 
 export const prerender = false;
 
-export const load = async function () {
+export async function load() {
   return redirect(302, urls.botAuth(page.params.guildid));
-};
+}
