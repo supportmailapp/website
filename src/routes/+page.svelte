@@ -166,7 +166,6 @@
     </div>
 
     <div class="grid gap-8 md:grid-cols-2 md:gap-12">
-      <!-- Feature 1: Modmail -->
       {#each features as feature}
         <div class="card bg-base-100 drop-shadow-md transition-shadow hover:shadow-lg">
           <div class="card-body">
