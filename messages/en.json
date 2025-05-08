@@ -21,7 +21,8 @@
     "home": "Home",
     "topgg": "Top.gg",
     "status": "Status",
-    "licenses": "Licenses"
+    "licenses": "Licenses",
+    "about": "About"
   },
   "footer": {
     "rightsReserved": "SupportMail - All rights reserved.",
@@ -126,8 +127,13 @@
     "chooseServer": "Choose Your Server",
     "saveMonths": [
       {
-        "declarations": ["input count", "local countPlural = count: plural"],
-        "selectors": ["countPlural"],
+        "declarations": [
+          "input count",
+          "local countPlural = count: plural"
+        ],
+        "selectors": [
+          "countPlural"
+        ],
         "match": {
           "countPlural=one": "Save 1 month",
           "countPlural=other": "Save {count} months"

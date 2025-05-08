@@ -21,7 +21,8 @@
     "home": "Start",
     "topgg": "Top.gg",
     "status": "Status",
-    "licenses": "Lizenzen"
+    "licenses": "Lizenzen",
+    "about": "Über"
   },
   "footer": {
     "rightsReserved": "SupportMail - Alle Rechte vorbehalten.",
@@ -126,8 +127,13 @@
     "chooseServer": "Wähle deinen Server",
     "saveMonths": [
       {
-        "declarations": ["input count", "local countPlural = count: plural"],
-        "selectors": ["countPlural"],
+        "declarations": [
+          "input count",
+          "local countPlural = count: plural"
+        ],
+        "selectors": [
+          "countPlural"
+        ],
         "match": {
           "countPlural=one": "Spare 1 Monat",
           "countPlural=other": "Spare {count} Monate"

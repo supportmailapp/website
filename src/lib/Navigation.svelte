@@ -90,6 +90,7 @@
           </ul>
         </div>
         <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">{m["nav.docs"]()}</a>
+        <a href={localizeHref("/about")} class="nav-link">{m["nav.about"]()}</a>
         <a href={localizeHref("/premium")} class="nav-link nav-link-premium">{m["nav.premium"]()}</a>
         <a href="{localizeHref(env.PUBLIC_DashboardUrl)}/" class="nav-button">{m["nav.dashboard"]()}</a>
       </nav>
