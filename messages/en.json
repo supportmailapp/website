@@ -127,13 +127,8 @@
     "chooseServer": "Choose Your Server",
     "saveMonths": [
       {
-        "declarations": [
-          "input count",
-          "local countPlural = count: plural"
-        ],
-        "selectors": [
-          "countPlural"
-        ],
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
         "match": {
           "countPlural=one": "Save 1 month",
           "countPlural=other": "Save {count} months"
@@ -167,5 +162,24 @@
     "title": "Oops, something went wrong",
     "description": "We're sorry for the inconvenience. Please try again or go back to the home page.",
     "goBack": "Go Back"
+  },
+  "about": {
+    "title": "About SupportMail",
+    "whatIs_Title": "What is SupportMail?",
+    "whatIs_Content": "SupportMail is a Discord bot designed to streamline communication between server members and staff. Instead of using a traditional ticket system, this system allows servers to look cleaner and more organized. It is a simple and effective solution for managing support requests and inquiries within your Discord server.",
+    "howTheBotWorks_Title": "How does the bot work?",
+    "howTheBotWorks_Content": "Using SupportMail is incredibly simple! Just send a direct message to the bot with your question or issue, log in with your Discord account, select your target server from the dropdown, and your support request is on its way! Staff will respond directly through the same conversation.<br />To reply back, just send another message with the bot or reply to the mod's answer - everything in your DMs!",
+    "features_Title": "Features",
+    "features-1": "Create private support tickets by simply messaging the bot",
+    "features-2": "Use forums for superior organization",
+    "features-3": "Use application commands (slash commands)",
+    "features-4": "Many customizable features",
+    "features-5": "Use tags (message snippets) to save time",
+    "features-6": "Easy to use and set up",
+    "theTeam_Title": "The Team",
+    "theTeam_Content": "Hey there! I’m LukeZ, the creator of SupportMail. I first dove into Python in early 2023 - about six months into my coding journey in school - and quickly got the itch to build something useful outside of school. After trying out a bunch of modmail tools that felt outdated, clunky, or just too locked-down, I figured, \"Why not make my own?\"\nAs a Discord server admin, I needed something flexible and easy to customize, so I designed SupportMail to be exactly that: lightweight, reliable, and ready to go in minutes. Since then, I’ve fallen in love with building better server-management tools (and I’ve even whipped up a few other handy utilities along the way).\nMy mission hasn’t changed: I’m here to make support effortless for everyone. That’s why I lean on our community’s feedback and suggestions - to keep improving the bot every day. I want SupportMail to be more than just a tool; I want it to be a genuine asset for both server administrators and members. If you have ideas or feedback, please share them in our [Discord server](https://help.supportmail.dev/).\nIn short, my goal is simple: streamline support for communities of any size. Thank you for trying SupportMail - let’s keep building something great, together!",
+    "contactMe_Title": "Contact Me",
+    "contactMe_1": "Have questions or suggestions? Join our [Discord server](https://help.supportmail.dev/)!",
+    "contactMe_2": "Urgent **(not general)** requests should be directed to [contact@supportmail.dev](mailto:contact@supportmail.dev). I'm usually responding within 24 hours during business hours."
   }
 }

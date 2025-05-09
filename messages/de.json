@@ -127,13 +127,8 @@
     "chooseServer": "Wähle deinen Server",
     "saveMonths": [
       {
-        "declarations": [
-          "input count",
-          "local countPlural = count: plural"
-        ],
-        "selectors": [
-          "countPlural"
-        ],
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
         "match": {
           "countPlural=one": "Spare 1 Monat",
           "countPlural=other": "Spare {count} Monate"
@@ -167,5 +162,24 @@
     "title": "Hoppla, da ist etwas schiefgelaufen",
     "description": "Es tut uns leid für die Unannehmlichkeiten. Bitte versuche es erneut oder gehe zurück zur Startseite.",
     "goBack": "Zurück"
+  },
+  "about": {
+    "title": "Über SupportMail",
+    "whatIs_Title": "Was ist SupportMail?",
+    "whatIs_Content": "SupportMail ist ein Discord-Bot, der entwickelt wurde, um die Kommunikation zwischen Servermitgliedern und dem Team zu optimieren. Anstelle eines traditionellen Ticketsystems ermöglicht dieses System Servern, sauberer und organisierter auszusehen. Es ist eine einfache und effektive Lösung für die Verwaltung von Supportanfragen und -anliegen innerhalb deines Discord-Servers.",
+    "howTheBotWorks": "Wie funktioniert der Bot?",
+    "howTheBotWorks_Content": "Die Nutzung von SupportMail ist unglaublich einfach! Sende einfach eine Direktnachricht an den Bot mit deiner Frage oder deinem Anliegen, melde dich mit deinem Discord-Konto an, wähle deinen Zielserver aus dem Dropdown-Menü aus, und deine Supportanfrage ist unterwegs! Das Team wird direkt über dieselbe Unterhaltung antworten.<br />Um zu antworten, sende einfach eine weitere Nachricht an den Bot oder antworte auf die Antwort des Moderators - alles in deinen DMs!",
+    "features_Title": "Funktionen",
+    "features-1": "Erstelle private Support-Tickets, indem du dem Bot einfach eine Nachricht sendest",
+    "features-2": "Nutze Foren für eine bessere Organisation",
+    "features-3": "Verwende Anwendungsbefehle (Slash-Befehle)",
+    "features-4": "Viele anpassbare Funktionen",
+    "features-5": "Verwende Tags (Nachrichtenschnipsel), um Zeit zu sparen",
+    "features-6": "Einfach zu bedienen und einzurichten",
+    "theTeam_Title": "Das Team",
+    "theTeam_Content": "Hey! Ich bin LukeZ, der Entwickler von SupportMail. Anfang 2023 – etwa sechs Monate nach Beginn meiner Programmierlaufbahn in der Schule – habe ich mich zum ersten Mal mit Python beschäftigt und schnell den Drang verspürt, etwas Nützliches außerhalb der Schule zu entwickeln. Nachdem ich eine Reihe von Modmail-Tools ausprobiert hatte, die sich veraltet, klobig oder einfach zu \"eng\" anfühlten, dachte ich mir: \"Warum nicht mein eigenes entwickeln?\"\nAls Discord-Server-Admin brauchte ich etwas Flexibles und einfach Anpassbares, also habe ich SupportMail genau so konzipiert: einfach, zuverlässig und in Minutenschnelle einsatzbereit. Seitdem habe ich großen Gefallen daran gefunden, bessere Server-Management-Tools zu entwickeln (und habe nebenbei sogar ein paar andere praktische Helfer erstellt).\nMeine Mission hat sich nicht geändert: Ich möchte Support für jeden mühelos gestalten. Deshalb verlasse ich mich auf das Feedback und die Vorschläge der Community, um den Bot jeden Tag weiter zu verbessern. Ich möchte, dass SupportMail mehr als nur ein Werkzeug ist; ich möchte, dass es ein echter Gamechanger für Serveradministratoren und Mitglieder gleichermaßen ist. Wenn du Ideen oder Feedback hast, teile sie bitte auf unserem [Discord server](https://help.supportmail.dev/).\nKurz gesagt, mein Ziel ist einfach: Support für Comunities jeder Größe zu optimieren. Vielen Dank, dass du SupportMail ausprobierst – lass es uns gemeinsam weiterentwickeln!",
+    "contactMe_Title": "Kontaktiere mich",
+    "contactMe_1": "Hast du Fragen oder Vorschläge? Tritt unserem [Discord server](https://help.supportmail.dev/) bei!",
+    "contactMe_2": "Sende dringende **(keine allgemeinen)** Anfragen bitte an [contact@supportmail.dev](mailto:contact@supportmail.dev). Ich antworte in der Regel innerhalb von 24 Stunden an Werktagen."
   }
 }
