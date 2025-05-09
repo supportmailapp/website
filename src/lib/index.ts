@@ -1,5 +1,7 @@
-export function markdownToHtml(markdown: string): string {
-  if (!markdown) return "";
+import { m } from "./paraglide/messages";
+
+export function markdownToHtml(markdown: string, infoLink = false): string {
+  if (typeof markdown !== "string") return "";
 
   let html = markdown.replace(/\\n/g, "<br />");
   // Bold: **text**
@@ -12,10 +14,16 @@ export function markdownToHtml(markdown: string): string {
   // Underline: __text__
   html = html.replace(/__([^_]+)__/g, "<u>$1</u>");
 
+  // Link: [text](url)
+  // Note: This regex does not support nested brackets or parentheses
+  // and will not work for all edge cases. Use with caution.
   html = html.replace(
     /\[([^\]]+)\]\(([^) ]+)\)/gi,
-    '<a href="$2" class="link link-primary link-hover" target="_blank" rel="noopener noreferrer">$1</a>',
+    `<a href="$2" class="link link-${infoLink ? "info" : "primary"} link-hover" target="_blank" rel="noopener noreferrer">$1</a>`,
   );
+
+  // Line break: \n
+  html = html.replace(/\\n/g, "<br />");
 
   return html;
 }
@@ -35,3 +43,8 @@ export function formatNumber(num: number, step = 100) {
   // Format with commas + '+'
   return roundedNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "+";
 }
+
+// Helper function to safely access dynamic message keys - utility function first
+export const getMessage = (key: string) => {
+  return ((m as unknown as Record<string, Function>)[key] || (() => key)) as () => string;
+};
