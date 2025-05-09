@@ -1,14 +1,9 @@
 <script lang="ts">
   import * as env from "$env/static/public";
-  import { markdownToHtml } from "$lib";
+  import { getMessage, markdownToHtml } from "$lib";
   import GreenCheckPlain from "$lib/assets/GreenCheckPlain.svelte";
   import { m } from "$lib/paraglide/messages";
   import { fade } from "svelte/transition";
-
-  // Helper function to safely access dynamic message keys - utility function first
-  const getMessage = (key: string) => {
-    return ((m as unknown as Record<string, Function>)[key] || (() => key)) as () => string;
-  };
 
   // Billing options and state
   const BillingOptions = ["Monthly", "Yearly"] as const;
