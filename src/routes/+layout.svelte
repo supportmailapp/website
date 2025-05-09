@@ -53,5 +53,6 @@
   {#each locales as locale}
     <a href={localizeHref(page.url.pathname, { locale })}>{locale}</a>
   {/each}
+  <!-- svelte-ignore a11y_missing_attribute -->
   <a class="link link-info">text</a>
 </div>
