@@ -7,6 +7,8 @@
   import { localizeHref } from "$lib/paraglide/runtime";
   import { blur, slide } from "svelte/transition";
 
+  let stats = $derived(page.data.stats);
+
   const features = $state(
     Array.from({
       length: 2,
@@ -114,7 +116,7 @@
           </svg>
         </div>
         <div class="stat-title">{m["stats.activeServers"]()}</div>
-        <div class="stat-value text-primary">{formatNumber(page.data.stats.guilds, 10)}</div>
+        <div class="stat-value text-primary">{formatNumber(stats.guilds, 10)}</div>
       </div>
 
       <div class="stat">
@@ -129,7 +131,7 @@
           </svg>
         </div>
         <div class="stat-title">{m["stats.usersServed"]()}</div>
-        <div class="stat-value text-secondary">{formatNumber(page.data.stats.users)}</div>
+        <div class="stat-value text-secondary">{formatNumber(stats.users)}</div>
       </div>
 
       <div class="stat">
@@ -205,7 +207,7 @@
     <div class="mx-auto max-w-3xl">
       <h2 class="mb-6 text-3xl font-bold md:text-4xl">{m["cta.title"]()}</h2>
       <p class="text-base-content/80 mb-8 text-lg">
-        {m["cta.description"]({ count: formatNumber(page.data.stats.guilds) })}
+        {m["cta.description"]({ count: formatNumber(stats.guilds) })}
       </p>
       <div class="flex flex-col justify-center gap-4 sm:flex-row">
         <a href={localizeHref("/add")} class="add-bot-btn">{m["cta.addBot"]()}</a>
