@@ -1,7 +1,5 @@
-import { browser, building } from "$app/environment";
+import { building } from "$app/environment";
 import { SUPPORTMAIL_API_KEY } from "$env/static/private";
-
-export const prerender = true;
 
 declare type StatsResponse = { guilds: number; users: number; tickets: number; fallback?: true };
 
@@ -23,7 +21,7 @@ export async function load() {
       })
         .then(async (res) => {
           if (!res.ok) {
-            throw new Error("Network response was not ok");
+            console.error("Failed to fetch stats from SupportMail API", res);
           }
           if (res.status === 404) return FALLBACK_STATS;
 
@@ -31,7 +29,10 @@ export async function load() {
           console.log("Fetched stats from SupportMail API", _data);
           return _data;
         })
-        .catch(() => FALLBACK_STATS);
+        .catch((err) => {
+          console.error("Unknown Error fetching stats from SupportMail API", err);
+          return FALLBACK_STATS;
+        });
 
   return {
     stats: result,
