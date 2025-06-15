@@ -13,7 +13,7 @@ const FALLBACK_STATS: StatsResponse = {
 export async function load() {
   const result = building
     ? FALLBACK_STATS
-    : await fetch("https://api.supportmail.dev/stats", {
+    : await fetch("https://api.supportmail.dev/stats/current", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${SUPPORTMAIL_API_KEY}`,
