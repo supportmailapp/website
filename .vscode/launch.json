@@ -5,11 +5,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node-terminal",
-      "name": "Run Script: dev",
+      "type": "node",
       "request": "launch",
-      "command": "npm run dev",
-      "cwd": "${workspaceFolder}"
+      "name": "Run App (Dev)",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [ "run", "dev" ]
     }
   ]
 }
