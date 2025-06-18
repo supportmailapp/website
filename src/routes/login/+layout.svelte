@@ -60,6 +60,6 @@
   }
 
   .card-bg {
-    background: color-mix(in oklab, transparent 70%, black);
+    background: color-mix(in oklab, transparent 90%, white);
   }
 </style>
