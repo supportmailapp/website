@@ -1,7 +1,5 @@
 import { PUBLIC_ClientId } from "$env/static/public";
 
-export const prerender = false; // Disable prerendering for this route
-
 function botAuth({ state }: { state?: string } = {}) {
   const url = new URL("https://discord.com/api/oauth2/authorize");
   const searchP = new URLSearchParams({
