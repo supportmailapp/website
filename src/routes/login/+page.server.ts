@@ -1,16 +1,16 @@
-import { env } from "$env/dynamic/public";
+import { PUBLIC_ClientId, PUBLIC_botPermissions } from "$env/static/public";
 
 export const prerender = false; // Disable prerendering for this route
 
 function botAuth({ guildId, state, addBot }: { guildId?: string; state?: string; addBot?: boolean } = {}) {
   const url = new URL("https://discord.com/api/oauth2/authorize");
   const searchP = new URLSearchParams({
-    client_id: env.PUBLIC_ClientId,
+    client_id: PUBLIC_ClientId,
   });
 
   if (addBot) {
     searchP.set("scope", "bot applications.commands");
-    searchP.set("permissions", "1635040881911");
+    searchP.set("permissions", PUBLIC_botPermissions);
     searchP.set("integration_type", "0");
   } else {
     searchP.set("scope", "identify guilds guilds.members.read");
@@ -24,7 +24,7 @@ function botAuth({ guildId, state, addBot }: { guildId?: string; state?: string;
 }
 
 export const actions = {
-  default: async function ({ cookies, request, url }) {
+  default: async function ({ cookies, request }) {
     const formData = await request.formData();
     const stayLoggedIn = formData.get("stayLoggedIn") === "on"; // Currently unused
     const state = crypto.randomUUID();
