@@ -9,16 +9,22 @@
 <form
   class="grid place-items-center gap-5"
   method="POST"
-  use:enhance={() => {
+  onsubmit={async (_e) => {
+    _e.preventDefault();
     showLoading = true;
-    return ({ result }) => {
-      console.log("Login result:", result);
-      if (result.type === "success") {
-        open((result.data?.url as string) || "/", "_self");
-      } else {
-        showLoading = false;
-      }
-    };
+    const formData = new FormData(_e.target as HTMLFormElement);
+    const response = await fetch("/login", {
+      method: "POST",
+      body: formData,
+      headers: {
+        "content-type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      open(data.url || "/login?error=Something+went+wrong", "_self");
+    }
   }}
 >
   <input type="hidden" name="development" value={page.url.searchParams.get("dev") === "true"} />
