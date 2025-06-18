@@ -18,8 +18,8 @@ export async function POST({ cookies, request }) {
   const formData = await request.formData();
   const stayLoggedIn = formData.get("stayLoggedIn") === "on";
   const state = crypto.randomUUID();
-  cookies.set("state", state, { path: "/", sameSite: "lax" });
-  cookies.set("keep-refresh-token", String(stayLoggedIn), { path: "/", sameSite: "lax" });
+  cookies.set("state", state, { path: "/", sameSite: "lax", domain: ".supportmail.dev" });
+  cookies.set("keep-refresh-token", String(stayLoggedIn), { path: "/", sameSite: "lax", domain: ".supportmail.dev" });
   console.log("State set in cookie:", state);
   return Response.json({
     url: botAuth({ state }),
