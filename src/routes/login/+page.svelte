@@ -1,5 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
+  import { m } from "$lib/paraglide/messages";
 
   let showLoading = $state(false);
 </script>
@@ -26,6 +27,6 @@
       <img src="/icons/discord-mark-white.svg" alt="Discord Logo" class="size-8" />
     {/if}
 
-    <span class="text-lg text-white">{showLoading ? "Logging in..." : "Login with Discord"}</span>
+    <span class="text-lg text-white">{showLoading ? "" : m["login.loginWithDiscord"]()}</span>
   </button>
 </form>
