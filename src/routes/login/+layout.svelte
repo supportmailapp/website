@@ -37,7 +37,7 @@
       <img src="/assets/logo.png" alt="Logo" class="size-12" />
       <h1 class="text-3xl font-bold">SupportMail</h1>
     </div>
-    <div class="card-body text-center">
+    <div class="card-body py-4 text-center">
       {@render children()}
     </div>
   </div>
@@ -60,6 +60,6 @@
   }
 
   .card-bg {
-    background: color-mix(in oklab, transparent 90%, white);
+    background: color-mix(in oklab, transparent 85%, black);
   }
 </style>
