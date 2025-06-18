@@ -12,7 +12,15 @@ const paraglideHandle: Handle = async ({ event, resolve }) =>
     });
   });
 
-export const handle = sequence(paraglideHandle);
+const devToolsHandle: Handle = async ({ event, resolve }) => {
+  if (event.url.pathname.startsWith("/.well-known/appspecific/com.chrome.devtools.json")) {
+    console.log("DevTools request received");
+    return new Response();
+  }
+  return resolve(event);
+};
+
+export const handle = sequence(paraglideHandle, devToolsHandle);
 
 export async function handleError({ error, status, event, message }) {
   // if (status !== 404) console.error(`Error ${status}: ${message}`, error);
