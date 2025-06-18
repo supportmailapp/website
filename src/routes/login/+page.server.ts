@@ -25,7 +25,7 @@ function botAuth({ state, isDev }: { state?: string; isDev?: boolean } = {}) {
 export const actions = {
   default: async function ({ cookies, request }) {
     const formData = await request.formData();
-    const isDev = formData.get("dev") === "true";
+    const isDev = formData.get("development") === "true";
     const stayLoggedIn = formData.get("stayLoggedIn") === "on"; // Currently unused
     const state = crypto.randomUUID();
     cookies.set("state", state, { path: "/" });
@@ -33,7 +33,7 @@ export const actions = {
     console.log("State set in cookie:", state);
     return {
       success: true,
-      url: botAuth({ state }),
+      url: botAuth({ state, isDev }),
     };
   },
 };
