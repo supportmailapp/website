@@ -7,9 +7,11 @@
   const { data } = $props();
 
   onMount(() => {
-    if (!data.easterEgg) goto(urls.botAuth(page.params.guildid));
+    if (!data.easterEgg) goto(urls.botAdd(page.params.guildid));
   });
 </script>
+
+botAdd
 
 <svelte:head>
   {#if data.easterEgg}
