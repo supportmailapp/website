@@ -1,5 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
+  import { page } from "$app/state";
   import { m } from "$lib/paraglide/messages";
 
   let showLoading = $state(false);
@@ -20,6 +21,7 @@
     };
   }}
 >
+  <input type="hidden" name="development" value={page.url.searchParams.get("dev") === "true"} />
   <button type="submit" class="btn btn-primary btn-soft w-full max-w-xs" disabled={showLoading}>
     {#if showLoading}
       <div class="loading-spinner loading size-8"></div>

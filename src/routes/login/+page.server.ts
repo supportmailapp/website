@@ -2,30 +2,30 @@ import { PUBLIC_ClientId, PUBLIC_botPermissions } from "$env/static/public";
 
 export const prerender = false; // Disable prerendering for this route
 
-function botAuth({ guildId, state, addBot }: { guildId?: string; state?: string; addBot?: boolean } = {}) {
+function botAuth({ state, isDev }: { state?: string; isDev?: boolean } = {}) {
   const url = new URL("https://discord.com/api/oauth2/authorize");
   const searchP = new URLSearchParams({
     client_id: PUBLIC_ClientId,
   });
 
-  if (addBot) {
-    searchP.set("scope", "bot applications.commands");
-    searchP.set("permissions", PUBLIC_botPermissions);
-    searchP.set("integration_type", "0");
-  } else {
-    searchP.set("scope", "identify guilds guilds.members.read");
-    searchP.set("response_type", "code");
-    searchP.set("redirect_uri", "https://api.supportmail.dev/discord/callback");
-    searchP.set("prompt", "true");
-  }
+  searchP.set("scope", "identify guilds guilds.members.read");
+  searchP.set("response_type", "code");
+  searchP.set("prompt", "true");
+
   if (state) searchP.set("state", state);
-  if (guildId) searchP.set("guild_id", guildId);
+  if (isDev) {
+    // This is the local development URL for the bot
+    searchP.set("redirect_uri", "http://localhost:3000/discord/callback");
+  } else {
+    searchP.set("redirect_uri", "https://api.supportmail.dev/discord/callback");
+  }
   return url.toString() + `?${searchP.toString()}`;
 }
 
 export const actions = {
   default: async function ({ cookies, request }) {
     const formData = await request.formData();
+    const isDev = formData.get("dev") === "true";
     const stayLoggedIn = formData.get("stayLoggedIn") === "on"; // Currently unused
     const state = crypto.randomUUID();
     cookies.set("state", state, { path: "/" });
