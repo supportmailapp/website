@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "local": "cross-env PORT=6060 HOST=localhost ORIGIN=http://localhost:6060 node build/index.js",
+    "local": "vite build && vite preview --port 6060 --host localhost",
     "start": "cross-env PORT=6060 HOST=localhost ORIGIN=https://supportmail.dev node build/index.js",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --port 6060 --host localhost",
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
