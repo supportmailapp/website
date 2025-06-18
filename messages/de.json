@@ -181,5 +181,11 @@
     "contactMe_Title": "Kontaktiere mich",
     "contactMe_1": "Hast du Fragen oder Vorschläge? Tritt unserem [Discord server](https://help.supportmail.dev/) bei!",
     "contactMe_2": "Sende dringende **(keine allgemeinen)** Anfragen bitte an [contact@supportmail.dev](mailto:contact@supportmail.dev). Ich antworte in der Regel innerhalb von 24 Stunden an Werktagen."
+  },
+  "login": {
+    "loginWithDiscord": "Mit Discord anmelden",
+    "loginDescription": "Das ist nicht für ein Dashboard, sondern damit die gemeinsamen Server zwischen dir und dem Bot bestimmt werden können, was notwendig für die Nutzung ist.",
+    "loginSuccess": "Login erfolgreich!",
+    "loginSuccessDescription": "Du kannst jetzt diesen Tab schließen und zu Discord zurückkehren."
   }
 }

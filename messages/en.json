@@ -181,5 +181,11 @@
     "contactMe_Title": "Contact Me",
     "contactMe_1": "Have questions or suggestions? Join our [Discord server](https://help.supportmail.dev/)!",
     "contactMe_2": "Urgent **(not general)** requests should be directed to [contact@supportmail.dev](mailto:contact@supportmail.dev). I'm usually responding within 24 hours during business hours."
+  },
+  "login": {
+    "loginWithDiscord": "Login with Discord",
+    "loginDescription": "This is not for a dashboard, but so that the mutual servers between you and the bot can be determined, which is essential for use.",
+    "loginSuccess": "Login successful!",
+    "loginSuccessDescription": "You can now close this tab and return to Discord."
   }
 }
