@@ -6,7 +6,7 @@
 </script>
 
 <form
-  class="grid place-items-center gap-6"
+  class="grid place-items-center gap-5"
   method="POST"
   use:enhance={() => {
     showLoading = true;
@@ -29,4 +29,5 @@
 
     <span class="text-lg text-white">{showLoading ? "" : m["login.loginWithDiscord"]()}</span>
   </button>
+  <p class="text-xs text-white">{m["login.loginDescription"]()}</p>
 </form>
