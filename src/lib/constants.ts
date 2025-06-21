@@ -6,7 +6,7 @@ export const urls = {
   // We will enable th redirect uri when the dashboard is ready
   botAdd: function (guildId: string | null = null): string {
     const params = new URLSearchParams({
-      client_id: env.PUBLIC_ClientId,
+      client_id: env.PUBLIC_ClientId_Prod,
       permissions: env.PUBLIC_botPermissions,
       scope: "bot applications.commands",
     });
