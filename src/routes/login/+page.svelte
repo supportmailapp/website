@@ -13,7 +13,7 @@
     _e.preventDefault();
     showLoading = true;
     const formData = new FormData(_e.target as HTMLFormElement);
-    const response = await fetch("/login", {
+    const response = await fetch(page.url, {
       method: "POST",
       body: formData,
       headers: {
