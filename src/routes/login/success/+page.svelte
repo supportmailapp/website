@@ -9,8 +9,6 @@
   <h1 class="text-2xl font-bold">{m["login.loginSuccess"]()}</h1>
   <p class="text-sm text-slate-800">{m["login.loginSuccessDescription"]()}</p>
   {#if isDev}
-    <p class="text-sm text-slate-800">
-      Development Mode
-    </p>
+    <p class="text-sm text-slate-800">Development Mode</p>
   {/if}
 </div>
