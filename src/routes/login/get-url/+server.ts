@@ -15,7 +15,7 @@ function botAuth({ state, isDev }: { state: string; isDev: boolean }) {
 }
 
 export async function GET({ cookies, url }) {
-  const params = new URLSearchParams(url);
+  const params = new URLSearchParams(url.search);
   const stayLoggedIn = params.get("stayLoggedIn") === "on";
   const state = crypto.randomUUID();
   const isDev = params.get("dev") === "true";
