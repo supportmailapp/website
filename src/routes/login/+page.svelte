@@ -4,21 +4,13 @@
   import { m } from "$lib/paraglide/messages";
 
   let showLoading = $state(false);
-</script>
 
-<form
-  class="grid place-items-center gap-5"
-  onsubmit={async (e) => {
-    e.preventDefault();
+  async function handleLogin() {
     showLoading = true;
     
-    const formData = new FormData(e.currentTarget as HTMLFormElement);
-    
     try {
-      const response = await fetch(page.url, {
-        method: "POST",
-        body: formData,
-        // Remove the content-type header - let the browser set it automatically
+      const response = await fetch('/login/get-url', {
+        method: "GET",
       });
 
       if (response.ok) {
@@ -32,10 +24,16 @@
     } finally {
       showLoading = false;
     }
-  }}
->
-  <input type="hidden" name="development" value={page.url.searchParams.get("dev") === "true"} />
-  <button type="submit" class="btn btn-primary btn-soft w-full max-w-xs" disabled={showLoading}>
+  }
+</script>
+
+<div class="grid place-items-center gap-5">
+  <button 
+    type="button" 
+    class="btn btn-primary btn-soft w-full max-w-xs" 
+    disabled={showLoading}
+    onclick={handleLogin}
+  >
     {#if showLoading}
       <div class="loading-spinner loading size-8"></div>
     {:else}
@@ -45,4 +43,4 @@
     <span class="text-lg text-white">{showLoading ? "" : m["login.loginWithDiscord"]()}</span>
   </button>
   <p class="text-xs text-white">{m["login.loginDescription"]()}</p>
-</form>
+</div>
