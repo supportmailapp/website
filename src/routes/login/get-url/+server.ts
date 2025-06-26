@@ -7,10 +7,10 @@ function botAuth({ state, isDev }: { state: string; isDev: boolean }) {
     scope: "identify guilds guilds.members.read",
     response_type: "code",
     prompt: "true",
+    state: state,
     redirect_uri: isDev ? "http://localhost:3000/discord/callback" : "https://api.supportmail.dev/discord/callback",
   });
 
-  if (state) searchP.set("state", state);
   return url.toString() + `?${searchP.toString()}`;
 }
 
