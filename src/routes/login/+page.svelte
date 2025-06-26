@@ -8,22 +8,29 @@
 
 <form
   class="grid place-items-center gap-5"
-  method="POST"
-  onsubmit={async (_e) => {
-    _e.preventDefault();
+  onsubmit={async (e) => {
+    e.preventDefault();
     showLoading = true;
-    const formData = new FormData(_e.target as HTMLFormElement);
-    const response = await fetch(page.url, {
-      method: "POST",
-      body: formData,
-      headers: {
-        "content-type": "application/x-www-form-urlencoded",
-      },
-    });
+    
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    
+    try {
+      const response = await fetch(page.url, {
+        method: "POST",
+        body: formData,
+        // Remove the content-type header - let the browser set it automatically
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      open(data.url || "/login?error=Something+went+wrong", "_self");
+      if (response.ok) {
+        const data = await response.json();
+        window.open(data.url || "/login?error=Something+went+wrong", "_self");
+      } else {
+        console.error('Response not ok:', response.status);
+      }
+    } catch (error) {
+      console.error('Fetch error:', error);
+    } finally {
+      showLoading = false;
     }
   }}
 >
