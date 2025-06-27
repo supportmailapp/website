@@ -35,8 +35,7 @@
     }
   },
   "build": {
-    "watch_dir": "./src",
     "command": "pnpm run build",
-    "cwd": "./src",
+    "cwd": "./", 
   }
 }
