@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { env } from "$env/dynamic/public";
+  import { PUBLIC_ClientId, PUBLIC_DashboardUrl, PUBLIC_githubOrga } from "$env/static/public";
   import LinkArrow from "./assets/LinkArrow.svelte";
   import { legalLinks } from "./constants";
   import { m } from "./paraglide/messages";
@@ -13,7 +13,7 @@
         [m["nav.status"](), "https://status.supportmail.dev/"],
         [m["nav.premium"](), localizeHref("/premium")],
         [m["nav.docs"](), "https://docs.supportmail.dev/"],
-        [m["nav.dashboard"](), env.PUBLIC_DashboardUrl],
+        [m["nav.dashboard"](), PUBLIC_DashboardUrl],
       ],
     },
     {
@@ -21,8 +21,8 @@
       links: [
         [m["nav.inviteBot"](), localizeHref("/add")],
         [m["nav.support"](), "https://help.supportmail.dev/"],
-        [m["nav.topgg"](), "https://top.gg/bot/" + env.PUBLIC_ClientId_Prod],
-        ["GitHub", env.PUBLIC_githubOrga],
+        [m["nav.topgg"](), "https://top.gg/bot/" + PUBLIC_ClientId],
+        ["GitHub", PUBLIC_githubOrga],
       ],
     },
     {

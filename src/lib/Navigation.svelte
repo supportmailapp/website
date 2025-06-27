@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { env } from "$env/dynamic/public";
+  import { PUBLIC_DashboardUrl } from "$env/static/public";
   import { m } from "$lib/paraglide/messages";
   import { getLocale, locales, localizeHref, setLocale } from "$lib/paraglide/runtime";
   import { slide } from "svelte/transition";
@@ -8,6 +8,7 @@
   const languages: Record<string, string> = {
     en: "English",
     de: "Deutsch",
+    fr: "Français",
   };
 
   // Toggle mobile menu
@@ -92,7 +93,7 @@
         <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">{m["nav.docs"]()}</a>
         <a href={localizeHref("/about")} class="nav-link">{m["nav.about"]()}</a>
         <a href={localizeHref("/premium")} class="nav-link nav-link-premium">{m["nav.premium"]()}</a>
-        <a href="{localizeHref(env.PUBLIC_DashboardUrl)}/" class="nav-button">{m["nav.dashboard"]()}</a>
+        <a href="{localizeHref(PUBLIC_DashboardUrl)}/" class="nav-button">{m["nav.dashboard"]()}</a>
       </nav>
 
       <!-- Mobile Menu Button -->
@@ -131,7 +132,7 @@
           </button>
         </div>
 
-        <a href="{localizeHref(env.PUBLIC_DashboardUrl)}/" class="nav-button">{m["nav.dashboard"]()}</a>
+        <a href="{localizeHref(PUBLIC_DashboardUrl)}/" class="nav-button">{m["nav.dashboard"]()}</a>
       </div>
     </div>
   {/if}

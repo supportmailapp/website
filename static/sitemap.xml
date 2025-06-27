@@ -14,6 +14,13 @@
     <changefreq>weekly</changefreq>
   </url>
 
+  <!-- French home page -->
+  <url>
+    <loc>https://supportmail.dev/fr/</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
   <!-- Premium page -->
   <url>
     <loc>https://supportmail.dev/premium</loc>

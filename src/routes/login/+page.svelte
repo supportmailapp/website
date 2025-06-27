@@ -22,8 +22,8 @@
     });
 
     if (response.ok) {
-      const data = await response.json();
-      open(data.url || "/login?error=Something+went+wrong", "_self");
+      const data = await response.json<any>();
+      window.open(data.url || "/login?error=Something+went+wrong", "_self");
     }
   }}
 >

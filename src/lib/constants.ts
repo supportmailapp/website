@@ -1,13 +1,13 @@
 // Constants (Public)
 
-import * as env from "$env/static/public";
+import { PUBLIC_botPermissions, PUBLIC_ClientId, PUBLIC_legalHost } from "$env/static/public";
 
 export const urls = {
-  // We will enable th redirect uri when the dashboard is ready
+  // We will add the redirect uri when the dashboard is ready
   botAdd: function (guildId: string | null = null): string {
     const params = new URLSearchParams({
-      client_id: env.PUBLIC_ClientId_Prod,
-      permissions: env.PUBLIC_botPermissions,
+      client_id: PUBLIC_ClientId,
+      permissions: PUBLIC_botPermissions,
       scope: "bot applications.commands",
     });
     if (guildId) params.append("guild_id", guildId);
@@ -16,11 +16,11 @@ export const urls = {
 };
 
 export const legalLinks = {
-  base: env.PUBLIC_legalHost,
-  terms: env.PUBLIC_legalHost + "/terms",
-  privacy: env.PUBLIC_legalHost + "/privacy",
-  withdrawal: env.PUBLIC_legalHost + "/right-of-withdrawal",
-  licenses: env.PUBLIC_legalHost + "/licenses",
+  base: PUBLIC_legalHost,
+  terms: PUBLIC_legalHost + "/terms",
+  privacy: PUBLIC_legalHost + "/privacy",
+  withdrawal: PUBLIC_legalHost + "/right-of-withdrawal",
+  licenses: PUBLIC_legalHost + "/licenses",
 };
 
 export const EasterEgg = "https://youtube.com/watch?v=dQw4w9WgXcQ"; // We all know where this leads...
