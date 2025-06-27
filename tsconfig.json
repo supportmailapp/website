@@ -13,7 +13,7 @@
     "target": "ES6",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "allowArbitraryExtensions": true, /* Why tf is this needed? Remove it and see the root +layout.svelte */
-    "types": [ "./src/worker-configuration.d.ts" ]
+    "allowArbitraryExtensions": true /* Why tf is this needed? Remove it and see the root +layout.svelte */,
+    "types": ["./src/worker-configuration.d.ts"]
   }
 }
