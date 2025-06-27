@@ -186,6 +186,7 @@
     "loginWithDiscord": "Se connecter avec Discord",
     "loginDescription": "Ce n'est pas pour un tableau de bord, mais pour que les serveurs mutuels entre vous et le bot puissent être déterminés, ce qui est essentiel pour l'utilisation.",
     "loginSuccess": "Connexion réussie !",
-    "loginSuccessDescription": "Vous pouvez maintenant fermer cet onglet et retourner sur Discord."
+    "loginSuccessDescription": "Vous pouvez maintenant fermer cet onglet et retourner sur Discord.",
+    "stayLoggedIn": "Rester connecté"
   }
 }

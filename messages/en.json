@@ -186,6 +186,7 @@
     "loginWithDiscord": "Login with Discord",
     "loginDescription": "This is not for a dashboard, but so that the mutual servers between you and the bot can be determined, which is essential for use.",
     "loginSuccess": "Login successful!",
-    "loginSuccessDescription": "You can now close this tab and return to Discord."
+    "loginSuccessDescription": "You can now close this tab and return to Discord.",
+    "stayLoggedIn": "Stay logged in"
   }
 }
