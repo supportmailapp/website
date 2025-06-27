@@ -10,7 +10,7 @@
     try {
       const search = new URLSearchParams({
         keeprefresh: keepRefresh ? "1" : "0",
-        isSubRequest: "1",
+        fromlogin: "1", // Indicate that this is from the login page
       });
       const response = await fetch("/login/get-url?" + search.toString());
 

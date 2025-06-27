@@ -23,7 +23,7 @@ export async function GET({ cookies, url }) {
   cookies.set("state", state, { path: "/", sameSite: "lax", domain: cookiesDomain });
   cookies.set("keep-refresh-token", String(stayLoggedIn), { path: "/", sameSite: "lax", domain: cookiesDomain });
   console.log("State set in cookie:", state);
-  if (searchParams.get("isSubRequest") !== "1") {
+  if (searchParams.get("fromlogin") !== "1") {
     redirect(302, botAuth({ state })); // Redirect to Discord OAuth2 URL
   }
 
