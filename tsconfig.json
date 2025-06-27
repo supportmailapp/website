@@ -9,7 +9,6 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "outDir": "build",
     "target": "ES6",
     "module": "ESNext",
     "moduleResolution": "bundler",
