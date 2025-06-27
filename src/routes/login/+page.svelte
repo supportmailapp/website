@@ -13,6 +13,7 @@
 
       if (response.ok) {
         const data = await response.json<any>();
+        console.log("Login data", data);
         window.open(data.url || "/login?error=Something+went+wrong", "_self");
       } else {
         console.error("Response not ok:", response.status);
@@ -26,13 +27,6 @@
 </script>
 
 <div class="grid place-items-center gap-5">
-  <input
-    type="checkbox"
-    class="checkbox checkbox-primary checkbox-sm"
-    id="keeprefresh"
-    name="keeprefresh"
-    bind:checked={keepRefresh}
-  />
   <button type="button" class="btn btn-primary btn-soft w-full max-w-xs" disabled={showLoading} onclick={handleLogin}>
     {#if showLoading}
       <div class="loading-spinner loading size-8"></div>
@@ -42,5 +36,18 @@
 
     <span class="text-lg text-white">{showLoading ? "" : m["login.loginWithDiscord"]()}</span>
   </button>
+  <!--
+  ? Why did I even add this???
+  <label class="label text-white">
+    <input
+      type="checkbox"
+      class="checkbox checkbox-primary checkbox-sm"
+      id="keeprefresh"
+      name="keeprefresh"
+      bind:checked={keepRefresh}
+    />
+    {m["login.stayLoggedIn"]()}
+  </label>
+  -->
   <p class="text-xs text-white">{m["login.loginDescription"]()}</p>
 </div>
