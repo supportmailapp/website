@@ -15,7 +15,7 @@ function botAuth({ state }: { state: string }) {
   return url.toString() + `?${searchP.toString()}`;
 }
 
-export async function GET({ cookies, url, isSubRequest }) {
+export async function GET({ cookies, url }) {
   const searchParams = url.searchParams;
   const stayLoggedIn = searchParams.get("keeprefresh") === "1";
   const state = crypto.randomUUID();
@@ -23,7 +23,7 @@ export async function GET({ cookies, url, isSubRequest }) {
   cookies.set("state", state, { path: "/", sameSite: "lax", domain: cookiesDomain });
   cookies.set("keep-refresh-token", String(stayLoggedIn), { path: "/", sameSite: "lax", domain: cookiesDomain });
   console.log("State set in cookie:", state);
-  if (!isSubRequest) {
+  if (searchParams.get("isSubRequest") !== "1") {
     redirect(302, botAuth({ state })); // Redirect to Discord OAuth2 URL
   }
 

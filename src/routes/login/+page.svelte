@@ -8,8 +8,11 @@
     showLoading = true;
 
     try {
-      const url = keepRefresh ? "/login/get-url?keeprefresh=1" : "/login/get-url";
-      const response = await fetch(url);
+      const search = new URLSearchParams({
+        keeprefresh: keepRefresh ? "1" : "0",
+        isSubRequest: "1",
+      });
+      const response = await fetch("/login/get-url?" + search.toString());
 
       if (response.ok) {
         const data = await response.json<any>();
