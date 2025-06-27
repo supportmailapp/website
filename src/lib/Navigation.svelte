@@ -1,5 +1,5 @@
 <script lang="ts">
-  import * as env from "$env/static/public";
+  import { env } from "$env/dynamic/public";
   import { m } from "$lib/paraglide/messages";
   import { getLocale, locales, localizeHref, setLocale } from "$lib/paraglide/runtime";
   import { slide } from "svelte/transition";
