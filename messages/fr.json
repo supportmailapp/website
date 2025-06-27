@@ -1,0 +1,191 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "app": {
+    "title": "SupportMail | Modmail Moderne + Rapports",
+    "description": "SupportMail est un bot Discord moderne qui propose du modmail et des rapports pour améliorer la modération de votre serveur."
+  },
+  "nav": {
+    "language": "Langue",
+    "selectLanguage": "Sélectionnez votre langue",
+    "docs": "Documentation",
+    "premium": "Premium",
+    "support": "Serveur de Support",
+    "inviteBot": "Inviter le Bot",
+    "dashboard": "Tableau de bord",
+    "addBot": "Ajouter le Bot",
+    "getHelp": "Obtenir de l'aide",
+    "legaNotice": "Mentions légales",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité",
+    "rightOfWithdrawal": "Droit de rétractation",
+    "home": "Accueil",
+    "topgg": "Top.gg",
+    "status": "Statut",
+    "licenses": "Licences",
+    "about": "À propos"
+  },
+  "footer": {
+    "rightsReserved": "SupportMail - Tous droits réservés.",
+    "navigation": "Navigation",
+    "legal": "Légal"
+  },
+  "hero": {
+    "description": "Gérez facilement les tickets utilisateur et les rapports avec SupportMail"
+  },
+  "stats": {
+    "title": "Statistiques",
+    "activeServers": "Serveurs Actifs",
+    "usersServed": "Utilisateurs Servis",
+    "ticketsProcessed": "Tickets Traités",
+    "realTimeData": "Données en temps réel"
+  },
+  "featuresTitle": "Fonctionnalités",
+  "featuresDescription": "SupportMail est livré avec des outils conçus pour faciliter le travail de votre équipe de serveur",
+  "feature-0": {
+    "id": "tickets",
+    "title": "Tickets, mais Modmail",
+    "description": "SupportMail permet aux utilisateurs d'ouvrir des tickets avec le personnel de votre serveur de manière fluide et organisée.",
+    "benefit-0": "Organiser dans un Forum",
+    "benefit-1": "Utiliser les Commandes d'Application",
+    "benefit-2": "Messages Personnalisés",
+    "benefit-3": "Étiquettes (Extraits de Messages)",
+    "benefit-4": "Listes noires/blanches"
+  },
+  "feature-1": {
+    "id": "reports",
+    "title": "Rapports",
+    "description": "Les utilisateurs peuvent signaler d'autres utilisateurs ou messages à votre équipe de serveur de manière sûre et facile.",
+    "benefit-0": "Signaler les Utilisateurs et Messages",
+    "benefit-1": "Prendre des mesures directement",
+    "benefit-2": "Notifier l'utilisateur (ou non)",
+    "benefit-3": "Limites de signalement",
+    "benefit-4": "Listes noires/blanches"
+  },
+  "testimonials": {
+    "title": "Ce que disent nos utilisateurs",
+    "description": "Ne nous croyez pas sur parole - écoutez les gestionnaires de communauté qui utilisent notre bot tous les jours"
+  },
+  "cta": {
+    "title": "Prêt à commencer ?",
+    "description": "Rejoignez les {count} serveurs qui utilisent déjà SupportMail pour améliorer leur support et faciliter le travail de leur équipe.",
+    "addBot": "Ajouter SupportMail à votre Serveur",
+    "readDocumentation": "Lire la Documentation"
+  },
+  "faq": "Questions Fréquemment Posées",
+  "premium-faq-0": {
+    "question": "Qu'est-ce que SupportMail Premium ?",
+    "answer": "SupportMail Premium est un service d'abonnement qui offre des fonctionnalités supplémentaires, des limites plus élevées et d'autres avantages à votre serveur."
+  },
+  "premium-faq-1": {
+    "question": "Combien coûte SupportMail Premium ?",
+    "answer": "Le prix dépend du plan que vous choisissez. Actuellement, il y a deux plans par défaut : Gold (Basique) et Diamond (Marque blanche). Tout est tarifé de manière appropriée pour les fonctionnalités que vous obtenez."
+  },
+  "premium-faq-2": {
+    "question": "Comment acheter SupportMail Premium ?",
+    "answer": "Vous pouvez acheter SupportMail Premium via le tableau de bord. Cliquez simplement sur l'onglet 'Premium' et suivez les instructions."
+  },
+  "premium-faq-3": {
+    "question": "Comment les paiements sont-ils traités ?",
+    "answer": "Nous utilisons Paddle pour traiter les paiements. Paddle est un processeur de paiement sécurisé et fiable qui accepte une large gamme de méthodes de paiement. Vous pouvez payer par carte de crédit, PayPal, Apple Pay, Google Pay et plus encore."
+  },
+  "premium-faq-4": {
+    "question": "Puis-je annuler mon abonnement ?",
+    "answer": "Oui, vous pouvez annuler votre abonnement à tout moment. Vous conserverez vos fonctionnalités premium jusqu'à la fin de la période de facturation."
+  },
+  "premium-faq-5": {
+    "question": "Offrez-vous des remboursements ?",
+    "answer": "Nous offrons des remboursements dans les 14 jours suivant la date d'achat. Si vous n'êtes pas satisfait du service, veuillez nous contacter et nous rembourserons votre paiement. Veuillez vous référer à votre [Droit de rétractation](https://legal.supportmail.dev/right-of-withdrawal) pour plus d'informations."
+  },
+  "premium-faq-6": {
+    "question": "Puis-je upgrader ou downgrader mon plan une fois abonné ?",
+    "answer": "Non, vous ne pouvez pas upgrader ou downgrader votre plan une fois abonné. Si vous voulez changer de plan, vous devrez annuler votre abonnement actuel et en acheter un nouveau."
+  },
+  "premium-faq-7": {
+    "question": "Puis-je utiliser SupportMail Premium sur plusieurs serveurs ?",
+    "answer": "Non, Premium est lié à un seul serveur. Si vous voulez utiliser Premium sur plusieurs serveurs, vous devrez acheter un abonnement pour chaque serveur."
+  },
+  "premium-faq-8": {
+    "question": "Puis-je transférer mon abonnement Premium vers un autre serveur ?",
+    "answer": "Non, les abonnements Premium sont liés au serveur pour lequel ils ont été achetés. Si vous voulez transférer votre abonnement vers un autre serveur, vous devrez annuler votre abonnement actuel et en acheter un nouveau pour le nouveau serveur."
+  },
+  "premium-faq-9": {
+    "question": "Comment obtenir du support pour Premium ?",
+    "answer": "Si vous avez des questions ou des problèmes concernant votre abonnement Premium, veuillez rejoindre notre [serveur de support](https://help.supportmail.dev/) et demander de l'aide dans le canal [#premium-support](https://discord.com/channels/1064594649668395128/1248923857272836106).\nSi votre demande est urgente, veuillez nous contacter à [premium@supportmail.dev](mailto:premium@supportmail.dev)."
+  },
+  "premium-faq-10": {
+    "question": "Puis-je utiliser un bot personnalisé avec SupportMail Premium ?",
+    "answer": "Cela dépend de votre plan. Le plan Gold ne supporte pas les bots personnalisés, tandis que le plan Diamond le fait. Si vous voulez utiliser un bot personnalisé avec SupportMail Premium, vous devrez acheter le plan Diamond."
+  },
+  "premium": {
+    "warning": "Veuillez noter que Premium est encore en cours de développement et n'est pas encore disponible. Cette page sert actuellement uniquement à présenter les plans. Soyez assuré que les informations sur cette page sont 100% exactes.",
+    "choosePlan": "Choisissez votre Plan",
+    "description": "Sélectionnez le plan parfait pour votre serveur Discord. Tous les plans sont facturés par serveur, pas par utilisateur.",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "month": "mois",
+    "year": "année",
+    "chooseServer": "Choisissez votre Serveur",
+    "saveMonths": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Économisez 1 mois",
+          "countPlural=other": "Économisez {count} mois"
+        }
+      }
+    ],
+    "plan-gold": {
+      "name": "Gold",
+      "monthly": "$3.99",
+      "yearly": "€42",
+      "yearlyPerMonth": "€3.50",
+      "note": "Les prix sont en USD en raison de la politique de Discord.",
+      "benefit-0": "Limites plus élevées",
+      "benefit-1": "Alias Anonyme Personnalisé",
+      "benefit-2": "Questions de Feedback",
+      "benefit-3": "Messages Personnalisés"
+    },
+    "plan-diamond": {
+      "name": "Diamond",
+      "monthly": "€9",
+      "yearly": "€96",
+      "yearlyPerMonth": "€8",
+      "benefit-0": "Limites plus élevées",
+      "benefit-1": "Alias Anonyme Personnalisé",
+      "benefit-2": "Questions de Feedback",
+      "benefit-3": "Messages Personnalisés",
+      "benefit-4": "Nom, À propos, Avatar, Statut Personnalisés"
+    }
+  },
+  "error": {
+    "title": "Oups, quelque chose s'est mal passé",
+    "description": "Nous sommes désolés pour la gêne occasionnée. Veuillez réessayer ou retourner à la page d'accueil.",
+    "goBack": "Retourner"
+  },
+  "about": {
+    "title": "À propos de SupportMail",
+    "whatIs_Title": "Qu'est-ce que SupportMail ?",
+    "whatIs_Content": "SupportMail est un bot Discord conçu pour rationaliser la communication entre les membres du serveur et le personnel. Au lieu d'utiliser un système de tickets traditionnel, ce système permet aux serveurs d'avoir l'air plus propres et plus organisés. C'est une solution simple et efficace pour gérer les demandes de support et les questions au sein de votre serveur Discord.",
+    "howTheBotWorks_Title": "Comment fonctionne le bot ?",
+    "howTheBotWorks_Content": "Utiliser SupportMail est incroyablement simple ! Il suffit d'envoyer un message privé au bot avec votre question ou problème, de vous connecter avec votre compte Discord, de sélectionner votre serveur cible dans le menu déroulant, et votre demande de support est en route ! Le personnel répondra directement via la même conversation.<br />Pour répondre, envoyez simplement un autre message avec le bot ou répondez à la réponse du modérateur - tout dans vos DM !",
+    "features_Title": "Fonctionnalités",
+    "features-1": "Créez des tickets de support privés en envoyant simplement un message au bot",
+    "features-2": "Utilisez des forums pour une organisation supérieure",
+    "features-3": "Utilisez les commandes d'application (commandes slash)",
+    "features-4": "Nombreuses fonctionnalités personnalisables",
+    "features-5": "Utilisez des étiquettes (extraits de messages) pour gagner du temps",
+    "features-6": "Facile à utiliser et à configurer",
+    "theTeam_Title": "L'Équipe",
+    "theTeam_Content": "Salut ! Je suis LukeZ, le créateur de SupportMail. J'ai d'abord plongé dans Python début 2023 - environ six mois après avoir commencé mon parcours de codage à l'école - et j'ai rapidement eu envie de construire quelque chose d'utile en dehors de l'école. Après avoir essayé un tas d'outils modmail qui semblaient obsolètes, encombrants ou trop verrouillés, je me suis dit : \"Pourquoi ne pas faire le mien ?\"\nEn tant qu'administrateur de serveur Discord, j'avais besoin de quelque chose de flexible et facile à personnaliser, alors j'ai conçu SupportMail pour être exactement cela : léger, fiable et prêt à fonctionner en quelques minutes. Depuis, je suis tombé amoureux de la création de meilleurs outils de gestion de serveur (et j'ai même créé quelques autres utilitaires pratiques en cours de route).\nMa mission n'a pas changé : je suis là pour rendre le support sans effort pour tout le monde. C'est pourquoi je m'appuie sur les commentaires et suggestions de notre communauté - pour continuer à améliorer le bot chaque jour. Je veux que SupportMail soit plus qu'un simple outil ; je veux qu'il soit un véritable atout pour les administrateurs de serveur et les membres. Si vous avez des idées ou des commentaires, veuillez les partager dans notre [serveur Discord](https://help.supportmail.dev/).\nEn bref, mon objectif est simple : rationaliser le support pour les communautés de toute taille. Merci d'essayer SupportMail - continuons à construire quelque chose de génial, ensemble !",
+    "contactMe_Title": "Me Contacter",
+    "contactMe_1": "Vous avez des questions ou des suggestions ? Rejoignez notre [serveur Discord](https://help.supportmail.dev/) !",
+    "contactMe_2": "Les demandes urgentes **(pas générales)** doivent être dirigées vers [contact@supportmail.dev](mailto:contact@supportmail.dev). Je réponds généralement dans les 24 heures pendant les heures de bureau."
+  },
+  "login": {
+    "loginWithDiscord": "Se connecter avec Discord",
+    "loginDescription": "Ce n'est pas pour un tableau de bord, mais pour que les serveurs mutuels entre vous et le bot puissent être déterminés, ce qui est essentiel pour l'utilisation.",
+    "loginSuccess": "Connexion réussie !",
+    "loginSuccessDescription": "Vous pouvez maintenant fermer cet onglet et retourner sur Discord."
+  }
+}
