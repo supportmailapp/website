@@ -1,5 +1,5 @@
 <script lang="ts">
-  import * as env from "$env/static/public";
+  import { env } from "$env/dynamic/public";
   import LinkArrow from "./assets/LinkArrow.svelte";
   import { legalLinks } from "./constants";
   import { m } from "./paraglide/messages";
