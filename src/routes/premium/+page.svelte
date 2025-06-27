@@ -1,5 +1,5 @@
 <script lang="ts">
-  import * as env from "$env/static/public";
+  import { PUBLIC_DashboardUrl } from "$env/static/public";
   import { getMessage, markdownToHtml } from "$lib";
   import GreenCheckPlain from "$lib/assets/GreenCheckPlain.svelte";
   import { m } from "$lib/paraglide/messages";
@@ -29,7 +29,7 @@
 
   // Action function
   function redirectToDashboard() {
-    window.location.href = env.PUBLIC_DashboardUrl + "?redirect=premium?plan=" + BillingState.toLowerCase();
+    window.location.href = PUBLIC_DashboardUrl + "?redirect=premium?plan=" + BillingState.toLowerCase();
   }
 </script>
 
