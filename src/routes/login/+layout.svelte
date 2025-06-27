@@ -33,10 +33,6 @@
   {/if}
 
   <div class="card card-bg w-full max-w-md shadow-xl shadow-black/40 backdrop-blur-2xl select-none">
-    <div class="flex flex-row items-center justify-center gap-2 p-4">
-      <img src="/assets/logo.png" alt="Logo" class="size-12" />
-      <h1 class="text-3xl font-bold">SupportMail</h1>
-    </div>
     <div class="card-body py-4 text-center">
       {@render children()}
     </div>
