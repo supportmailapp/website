@@ -1,11 +1,19 @@
 declare global {
   namespace App {
+    interface Platform {
+      env: Env;
+      cf: CfProperties;
+      ctx: ExecutionContext;
+    }
+
     interface Error {
       status: number;
       message: string;
       route: string;
     }
+
     // interface Locals {}
+
     interface PageData {
       stats: {
         guilds: number;
@@ -13,12 +21,8 @@ declare global {
         tickets: number;
       };
     }
+
     // interface PageState {}
-    interface Platform {
-      env: {
-        SUPPORTMAIL_API_KEY: string;
-      };
-    }
   }
 }
 
