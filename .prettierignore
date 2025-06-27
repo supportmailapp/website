@@ -2,6 +2,7 @@
 **/.svn
 **/.hg
 **/node_modules
+wrangler.jsonc
 
 # Package Managers
 package-lock.json

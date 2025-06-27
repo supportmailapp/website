@@ -16,14 +16,6 @@ export default defineConfig({
     }),
   ],
 
-  server: {
-    port: 6060,
-    host: "localhost",
-    cors: {
-      credentials: true,
-    },
-  },
-
   appType: "custom",
   logLevel: "info",
 });
