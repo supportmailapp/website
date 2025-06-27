@@ -1,5 +1,4 @@
 import { building } from "$app/environment";
-import { SUPPORTMAIL_API_KEY } from "$env/static/private";
 
 declare type StatsResponse = { guilds: number; users: number; tickets: number; fallback?: true };
 
@@ -10,13 +9,13 @@ const FALLBACK_STATS: StatsResponse = {
   fallback: true,
 };
 
-export async function load() {
+export async function load({ platform }) {
   const result = building
     ? FALLBACK_STATS
     : await fetch("https://api.supportmail.dev/stats/current", {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${SUPPORTMAIL_API_KEY}`,
+          Authorization: `Bearer ${platform?.env.SUPPORTMAIL_API_KEY}`,
         },
       })
         .then(async (res) => {
@@ -25,7 +24,7 @@ export async function load() {
           }
           if (res.status === 404) return FALLBACK_STATS;
 
-          const _data = (await res.json()) as Promise<StatsResponse>;
+          const _data = await res.json<StatsResponse>();
           console.log("Fetched stats from SupportMail API", _data);
           return _data;
         })
