@@ -13,6 +13,9 @@ const config = {
         include: ["/*"],
         exclude: ["<all>"],
       },
+      platformProxy: {
+        environment: "dev",
+      },
     }),
   },
 };
