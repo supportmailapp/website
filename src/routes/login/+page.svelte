@@ -4,31 +4,36 @@
   import { m } from "$lib/paraglide/messages";
 
   let showLoading = $state(false);
+
+  async function handleLogin() {
+    showLoading = true;
+    
+    try {
+      const response = await fetch('/login/get-url', {
+        method: "GET",
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        window.open(data.url || "/login?error=Something+went+wrong", "_self");
+      } else {
+        console.error('Response not ok:', response.status);
+      }
+    } catch (error) {
+      console.error('Fetch error:', error);
+    } finally {
+      showLoading = false;
+    }
+  }
 </script>
 
-<form
-  class="grid place-items-center gap-5"
-  method="POST"
-  onsubmit={async (_e) => {
-    _e.preventDefault();
-    showLoading = true;
-    const formData = new FormData(_e.target as HTMLFormElement);
-    const response = await fetch(page.url, {
-      method: "POST",
-      body: formData,
-      headers: {
-        "content-type": "application/x-www-form-urlencoded",
-      },
-    });
-
-    if (response.ok) {
-      const data = await response.json<any>();
-      window.open(data.url || "/login?error=Something+went+wrong", "_self");
-    }
-  }}
->
-  <input type="hidden" name="development" value={page.url.searchParams.get("dev") === "true"} />
-  <button type="submit" class="btn btn-primary btn-soft w-full max-w-xs" disabled={showLoading}>
+<div class="grid place-items-center gap-5">
+  <button 
+    type="button" 
+    class="btn btn-primary btn-soft w-full max-w-xs" 
+    disabled={showLoading}
+    onclick={handleLogin}
+  >
     {#if showLoading}
       <div class="loading-spinner loading size-8"></div>
     {:else}
@@ -38,4 +43,4 @@
     <span class="text-lg text-white">{showLoading ? "" : m["login.loginWithDiscord"]()}</span>
   </button>
   <p class="text-xs text-white">{m["login.loginDescription"]()}</p>
-</form>
+</div>
