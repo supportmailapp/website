@@ -14,9 +14,9 @@ function botAuth({ state }: { state: string }) {
   return url.toString() + `?${searchP.toString()}`;
 }
 
-export async function GET({ cookies, request }) {
-  const formData = await request.formData();
-  const stayLoggedIn = formData.get("stayLoggedIn") === "on";
+export async function GET({ cookies, url }) {
+  const searchParams = url.searchParams;
+  const stayLoggedIn = searchParams.get("keeprefresh") === "1";
   const state = crypto.randomUUID();
   const cookiesDomain = ".supportmail.dev";
   cookies.set("state", state, { path: "/", sameSite: "lax", domain: cookiesDomain });
