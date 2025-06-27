@@ -14,7 +14,7 @@ function botAuth({ state }: { state: string }) {
   return url.toString() + `?${searchP.toString()}`;
 }
 
-export async function POST({ cookies, request }) {
+export async function GET({ cookies, request }) {
   const formData = await request.formData();
   const stayLoggedIn = formData.get("stayLoggedIn") === "on";
   const state = crypto.randomUUID();
