@@ -46,7 +46,7 @@
 
 <!-- Header -->
 <header class="bg-base-200 sticky top-0 z-50 shadow-xl drop-shadow-md select-none">
-  <div class="container mx-auto max-w-(--max-w) px-4 py-3">
+  <div class="container mx-auto max-w-[1200px] px-4 py-3">
     <div class="flex items-center justify-between">
       <!-- Logo -->
       <div class="flex items-center">
@@ -60,6 +60,25 @@
 
       <!-- Desktop Navigation -->
       <nav class="hidden items-center gap-6 backdrop-blur-md lg:flex">
+        <!-- Primary Links (Buttons) -->
+        <div class="flex items-center gap-3">
+          <a href="{localizeHref(PUBLIC_DashboardUrl)}/" class="nav-button">{m["nav.dashboard"]()}</a>
+          <a href={localizeHref("/premium")} class="nav-button nav-button-premium">{m["nav.premium"]()}</a>
+        </div>
+
+        <!-- Separator -->
+        <div class="bg-secondary/40 h-6 w-px"></div>
+
+        <!-- Secondary Links (Text Links) -->
+        <div class="flex items-center gap-4">
+          <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">{m["nav.docs"]()}</a>
+          <a href={localizeHref("/venocix")} class="nav-link venocix-hover">{m["nav.venocix"]()}</a>
+          <a href={localizeHref("/about")} class="nav-link">{m["nav.about"]()}</a>
+        </div>
+
+        <!-- Separator -->
+        <div class="bg-base-300 h-6 w-px"></div>
+
         <!-- Language Selector Dropdown -->
         <div class="dropdown dropdown-end dropdown-bottom">
           <div tabindex="0" role="button" class="btn btn-dash btn-sm gap-1">
@@ -90,10 +109,6 @@
             {/each}
           </ul>
         </div>
-        <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">{m["nav.docs"]()}</a>
-        <a href={localizeHref("/about")} class="nav-link">{m["nav.about"]()}</a>
-        <a href={localizeHref("/premium")} class="nav-link nav-link-premium">{m["nav.premium"]()}</a>
-        <a href="{localizeHref(PUBLIC_DashboardUrl)}/" class="nav-button">{m["nav.dashboard"]()}</a>
       </nav>
 
       <!-- Mobile Menu Button -->
@@ -110,14 +125,26 @@
   {#if isMenuOpen}
     <div id="mobile-menu" class="mobile-menu" transition:slide={{ duration: 50, axis: "y" }}>
       <div class="container mx-auto flex flex-col gap-4 px-4 py-4 text-center">
-        <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link" onclick={toggleMenu}>
-          {m["nav.docs"]()}
-        </a>
-        <a href={localizeHref("/premium")} class="nav-link nav-link-premium" onclick={toggleMenu}>
-          {m["nav.premium"]()}
-        </a>
+        <!-- Primary Links -->
+        <div class="border-base-300 flex flex-col gap-3 border-b pb-2">
+          <a href="{localizeHref(PUBLIC_DashboardUrl)}/" class="nav-button" onclick={toggleMenu}>{m["nav.dashboard"]()}</a>
+          <a href={localizeHref("/premium")} class="nav-button nav-button-premium" onclick={toggleMenu}>{m["nav.premium"]()}</a>
+        </div>
 
-        <!-- Mobile Language Selector -->
+        <!-- Secondary Links -->
+        <div class="border-base-300 flex flex-col gap-3 border-b pb-2">
+          <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link" onclick={toggleMenu}>
+            {m["nav.docs"]()}
+          </a>
+          <a href={localizeHref("/venocix")} class="nav-link venocix-hover" onclick={toggleMenu}>
+            {m["nav.venocix"]()}
+          </a>
+          <a href={localizeHref("/about")} class="nav-link" onclick={toggleMenu}>
+            {m["nav.about"]()}
+          </a>
+        </div>
+
+        <!-- Language Selector -->
         <div class="flex justify-center">
           <button class="btn btn-dash btn-md w-fit gap-1 px-4" onclick={toggleLanguageModal}>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -131,8 +158,6 @@
             {m["nav.language"]()}
           </button>
         </div>
-
-        <a href="{localizeHref(PUBLIC_DashboardUrl)}/" class="nav-button">{m["nav.dashboard"]()}</a>
       </div>
     </div>
   {/if}
@@ -158,3 +183,10 @@
     <button id="close-language-dialog">X</button>
   </form>
 </dialog>
+
+<style>
+  .venocix-hover:hover {
+    /* Turn text green on hover */
+    color: #a3d133;
+  }
+</style>

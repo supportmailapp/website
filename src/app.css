@@ -99,6 +99,10 @@
 
   .nav-button {
     @apply btn btn-primary btn-soft btn-md rounded-3xl px-4 py-1 text-xl;
+
+    &.nav-button-premium {
+      @apply btn-warning;
+    }
   }
 
   .add-bot-btn {
