@@ -83,53 +83,32 @@
     });
   }
 
-  // Update your chartData to handle null values:
-  const chartData = {
-    tickets: (stats: IBotStats[]) => ({
+  function generateChartdata(stats: IBotStats[], bgColor: string, borderColor: string, label: string) {
+    return {
       datasets: [
         {
-          label: "Tickets",
+          label: label,
           data: stats.map((item) => ({
-            x: dayjs(item.createdAt).format("MM/DD/YY"),
+            x: dayjs(item.createdAt).toDate().toLocaleDateString(undefined, {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            }),
             y: item.tickets,
           })),
-          backgroundColor: "rgba(54, 162, 235, 0.2)",
-          borderColor: "rgba(54, 162, 235, 1)",
+          backgroundColor: bgColor,
+          borderColor: borderColor,
           borderWidth: 1,
           spanGaps: true, // This connects points across null values
         },
       ],
-    }),
-    servers: (stats: IBotStats[]) => ({
-      datasets: [
-        {
-          label: "Servers",
-          data: stats.map((item) => ({
-            x: dayjs(item.createdAt).format("MM/DD/YY"),
-            y: item.guilds,
-          })),
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 1,
-          spanGaps: true,
-        },
-      ],
-    }),
-    users: (stats: IBotStats[]) => ({
-      datasets: [
-        {
-          label: "Users",
-          data: stats.map((item) => ({
-            x: dayjs(item.createdAt).format("MM/DD/YY"),
-            y: item.users,
-          })),
-          backgroundColor: "rgba(255, 206, 86, 0.2)",
-          borderColor: "rgba(255, 206, 86, 1)",
-          borderWidth: 1,
-          spanGaps: true,
-        },
-      ],
-    }),
+    };
+  }
+
+  const chartData = {
+    tickets: (stats: IBotStats[]) => generateChartdata(stats, "rgba(54, 162, 235, 0.2)", "rgba(54, 162, 235, 1)", "Tickets"),
+    servers: (stats: IBotStats[]) => generateChartdata(stats, "rgba(255, 99, 132, 0.2)", "rgba(255, 99, 132, 1)", "Servers"),
+    users: (stats: IBotStats[]) => generateChartdata(stats, "rgba(255, 206, 86, 0.2)", "rgba(255, 206, 86, 1)", "Users"),
   };
 
   // Update chartOptions to handle time scale properly:
@@ -149,15 +128,6 @@
       },
     },
     scales: {
-      x: {
-        type: "time",
-        time: {
-          unit: "day",
-          displayFormats: {
-            day: "MM/DD/YY",
-          },
-        },
-      },
       y: {
         beginAtZero: false,
       },
@@ -190,12 +160,16 @@
       options: chartOptions,
     });
 
-    prepareDataForTimespan();
-
     // Cleanup function
     return () => {
       if (ticketsChart) {
         ticketsChart.destroy();
+      }
+      if (serversChart) {
+        serversChart.destroy();
+      }
+      if (usersChart) {
+        usersChart.destroy();
       }
     };
   });
