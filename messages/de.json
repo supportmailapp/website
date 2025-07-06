@@ -189,5 +189,26 @@
     "loginSuccess": "Login erfolgreich!",
     "loginSuccessDescription": "Du kannst jetzt diesen Tab schließen und zu Discord zurückkehren.",
     "stayLoggedIn": "Angemeldet bleiben"
+  },
+  "venocix": {
+    "title": "Venocix",
+    "description": "Our hosting provider, Venocix, is a reliable and affordable solution for hosting your Discord bot and other apps. They offer a wide range of plans to suit your needs, from small hobby projects to large-scale applications.",
+    "intro": "Based in Germany, Venocix is a hosting provider that you can trust.",
+    "features": {
+      "1": "High performance and reliability",
+      "2": "Pre-paid payment model",
+      "3": "No contracts or hidden fees",
+      "4": "24/7 support & amazing customer service",
+      "5": "Easy to use control panel",
+      "6": "Free SSL certificates (if you need them...)",
+      "7": "Free DDoS protection for up to 750 Gbit/s attacks",
+      "8": "Custom Regular Backups"
+    },
+    "specialOffer": "<TODO>",
+    "cta": {
+      "title": "Get started with Venocix today!",
+      "description": "If you're looking for a reliable and affordable hosting provider for your Discord bot, look no further than Venocix. They offer a wide range of plans to suit your needs, from small hobby projects to large-scale applications.",
+      "button": "Go to Venocix"
+    }
   }
 }
