@@ -38,7 +38,7 @@
     "activeServers": "Active Servers",
     "usersServed": "Users Served",
     "ticketsProcessed": "Tickets Processed",
-    "realTimeData": "Real-time data"
+    "gotoHistoricalData": "Go to Historical Data"
   },
   "featuresTitle": "Features",
   "featuresDescription": "SupportMail comes packed with tools designed to make the work of your server team effortless",

@@ -38,7 +38,7 @@
     "activeServers": "Aktive Server",
     "usersServed": "Nutzer bedient",
     "ticketsProcessed": "Bearbeitete Tickets",
-    "realTimeData": "Echtzeitdaten"
+    "gotoHistoricalData": "Gehe zu den historischen Daten"
   },
   "featuresTitle": "Funktionen",
   "featuresDescription": "SupportMail bietet Tools, die die Arbeit deines Serverteams um einiges erleichtern",
