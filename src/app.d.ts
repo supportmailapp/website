@@ -15,15 +15,19 @@ declare global {
     // interface Locals {}
 
     interface PageData {
-      stats: {
-        guilds: number;
-        users: number;
-        tickets: number;
-      };
+      stats: StatsResponse;
+      meta?: StatsMetadata;
     }
 
     // interface PageState {}
   }
+
+  type StatsResponse = { guilds: number; users: number; tickets: number; fallback?: true };
+
+  type StatsMetadata = {
+    status: number | "unknown" | "fallback";
+    message: string;
+  };
 }
 
 export {};
