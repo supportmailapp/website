@@ -4,16 +4,18 @@ declare type StatsResponse = { guilds: number; users: number; tickets: number; f
 
 const FALLBACK_STATS: StatsResponse = {
   guilds: 660,
-  users: 216_300,
-  tickets: 2_300,
+  users: 216_414,
+  tickets: 2_271,
   fallback: true,
 };
 
 export async function load({ platform }) {
+  const ClientAPIOrigin = platform?.env.ClientApiOrigin ?? "https://client-api.supportmail.dev";
+
   const result =
     building && platform?.env.SUPPORTMAIL_API_KEY
       ? FALLBACK_STATS
-      : await fetch("https://api.supportmail.dev/stats/current", {
+      : await fetch(ClientAPIOrigin + "/stats/current", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${platform?.env.SUPPORTMAIL_API_KEY}`,
