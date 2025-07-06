@@ -1,12 +1,11 @@
 <script lang="ts">
   import Head from "$lib/Head.svelte";
-  import { m } from "$lib/paraglide/messages";
 </script>
 
 <Head
   seo_config={{
     title: "Our Hosting Partner - Venocix",
-    description: "Get a ",
+    description: "Get a reliable and high-performance hosting solution with Venocix.",
   }}
 />
 
