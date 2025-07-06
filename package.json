@@ -39,7 +39,10 @@
     "wrangler": "^4.22.0"
   },
   "dependencies": {
-    "@inlang/paraglide-js": "^2.0.12"
+    "@inlang/paraglide-js": "^2.0.12",
+    "chart.js": "^4.5.0",
+    "chartjs-adapter-dayjs-4": "^1.0.4",
+    "dayjs": "^1.11.13"
   },
   "packageManager": "pnpm@10.12.1",
   "pnpm": {
