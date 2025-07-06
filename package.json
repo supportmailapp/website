@@ -26,6 +26,7 @@
     "cross-env": "^7.0.3",
     "daisyui": "^5.0.9",
     "globals": "^16.0.0",
+    "mdsvex": "^0.12.3",
     "prettier": "^3.4.2",
     "prettier-plugin-svelte": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
@@ -40,5 +41,10 @@
   "dependencies": {
     "@inlang/paraglide-js": "^2.0.12"
   },
-  "packageManager": "pnpm@10.12.1"
+  "packageManager": "pnpm@10.12.1",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
 }
