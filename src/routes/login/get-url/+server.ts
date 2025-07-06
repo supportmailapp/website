@@ -1,3 +1,4 @@
+import { env } from "$env/dynamic/private";
 import { PUBLIC_ClientId } from "$env/static/public";
 import { redirect } from "@sveltejs/kit";
 
@@ -8,7 +9,7 @@ function botAuth({ state }: { state: string }) {
     scope: "identify guilds guilds.members.read",
     response_type: "code",
     prompt: "true",
-    redirect_uri: "https://api.supportmail.dev/discord/callback",
+    redirect_uri: env.ClientApiOrigin + "/discord/callback",
   });
 
   if (state) searchP.set("state", state);
