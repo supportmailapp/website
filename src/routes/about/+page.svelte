@@ -11,7 +11,7 @@
   );
 </script>
 
-<div class="container">
+<div class="container sm-prose">
   <h1>{m["about.title"]()}</h1>
 
   <section class="about-section">
@@ -70,75 +70,5 @@
     margin-inline: auto;
     padding: 2rem 1rem;
     transition: all 100ms ease-in-out;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: var(--dc-blurple);
-    text-align: center;
-    font-weight: bold;
-  }
-
-  h2,
-  h3 {
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-    margin-top: 1.3rem;
-    font-weight: 500;
-  }
-
-  h2 {
-    font-size: 1.8rem;
-  }
-
-  h3 {
-    font-size: 1.5rem;
-  }
-
-  section {
-    margin-block: 3rem;
-  }
-
-  .contact-section {
-    gap: 5px;
-  }
-
-  p {
-    line-height: 1.6;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-  }
-
-  ul {
-    list-style-type: none;
-    margin-left: 2rem;
-
-    li::before {
-      content: "";
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      background-color: var(--color-secondary);
-      border-radius: 1rem;
-      margin-right: 10px;
-      left: -20px;
-      top: 6px;
-    }
-  }
-
-  li {
-    margin: 0.5rem 0;
-    line-height: 1.4;
-  }
-
-  @media (max-width: 600px) {
-    h1 {
-      font-size: 2rem;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-    }
   }
 </style>
