@@ -12,28 +12,48 @@ export async function load({ platform, cookies }) {
 
   const cookieStats = cookies.get("stats");
   let metadata: StatsMetadata = { message: "No metadata available", status: "unknown" };
-  if (cookieStats) {
+
+  function handleCookieStats(stats: string): { valid: boolean; stats?: StatsResponse } {
     try {
-      const parsedStats = JSON.parse(cookieStats) as StatsResponse;
+      const parsedStats = JSON.parse(stats) as StatsResponse & { timestamp: string };
+
+      // If older than 1 hour, we will fetch the stats from the API
+      if (new Date(parsedStats.timestamp) < new Date(Date.now() - 60 * 60 * 1000)) {
+        metadata = { message: "Stats cookie is older than 1 hour, fetching from API", status: "stale" };
+        console.warn(metadata);
+        return { valid: false };
+      }
+
       if (parsedStats.fallback) {
         metadata = { message: "Using fallback stats from cookie", status: "fallback" };
         console.warn(metadata);
         return {
           stats: FALLBACK_STATS,
-          meta: metadata,
+          valid: true,
         };
       }
       metadata = { message: "Using cached stats from cookie", status: 200 };
       console.log(metadata, parsedStats);
       return {
         stats: parsedStats,
-        meta: metadata,
+        valid: true,
       };
     } catch (err) {
       console.error("Failed to parse stats from cookie", err);
       metadata = { message: "Failed to parse stats from cookie, fetching from API", status: "unknown" };
       // If parsing fails, we will fetch the stats from the API
+      return { valid: false };
     }
+  }
+
+  const { valid, stats: cookieStatsParsed } = handleCookieStats(cookieStats ?? "");
+
+  if (valid && cookieStatsParsed) {
+    // If the cookie stats are valid, use them
+    return {
+      stats: cookieStatsParsed,
+      meta: metadata,
+    };
   }
 
   let result: StatsResponse;
@@ -50,10 +70,10 @@ export async function load({ platform, cookies }) {
       .then(async (res) => {
         if (!res.ok) {
           metadata = {
-            message: `Failed to fetch stats from SupportMail API: ${res.status} ${res.statusText}`,
+            message: `Failed to fetch stats from API: ${res.status} ${res.statusText}`,
             status: res.status,
           };
-          console.warn("Failed to fetch stats from SupportMail API", res);
+          console.warn("Failed to fetch stats from API", res);
 
           if (res.status === 404) {
             metadata = { message: "Stats not found (404)", status: 404 };
@@ -62,14 +82,14 @@ export async function load({ platform, cookies }) {
         }
 
         const _data = await res.json<StatsResponse>();
-        metadata = { message: "Fetched stats from SupportMail API successfully", status: 200 };
-        console.log("Fetched stats from SupportMail API", _data);
+        metadata = { message: "Fetched stats from API successfully", status: 200 };
+        console.log("Fetched stats from API", _data);
         return {
           ..._data,
         };
       })
       .catch((err) => {
-        metadata = { message: "Unknown Error fetching stats from SupportMail API", status: "unknown" };
+        metadata = { message: "Unknown Error fetching stats from API", status: "unknown" };
         console.warn(metadata, err);
         return { ...FALLBACK_STATS };
       });

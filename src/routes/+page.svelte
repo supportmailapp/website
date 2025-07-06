@@ -75,6 +75,11 @@
         </div>
       </div>
     </div>
+    <div>
+      <h1>Our Hosting Partner</h1>
+      <a href="https://venocix.de/" target="_blank">Visit Venocix</a>
+      <a href="/venocix" target="_self">Read more</a>
+    </div>
     <div class="mt-25 flex items-end justify-center">
       {#await new Promise((r) => setTimeout(() => r(true), 500))}
         <!-- Transparent placeholder -->
