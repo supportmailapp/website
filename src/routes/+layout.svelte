@@ -4,19 +4,19 @@
   import { page } from "$app/state";
   import Footer from "$lib/Footer.svelte";
   import Navigation from "$lib/Navigation.svelte";
-  import { m } from "$lib/paraglide/messages";
   import "../app.css";
-  import { locales, localizeHref } from "$lib/paraglide/runtime";
+  import { getLocale, locales, localizeHref } from "$lib/paraglide/runtime";
+  import Head from "$lib/Head.svelte";
 
   let { children } = $props();
 </script>
 
-<svelte:head>
-  <title>{m["app.title"]()}</title>
-  <meta name="description" content={m["app.description"]()} />
-  <meta name="twitter:title" content={m["app.title"]()} />
-  <meta name="twitter:description" content={m["app.description"]()} />
-</svelte:head>
+<Head
+  seo_config={{
+    url: new URL(page.url.pathname, page.url.origin).toString(),
+    language: getLocale(),
+  }}
+/>
 
 <div class="bg-base-100 flex min-h-screen flex-col">
   <Navigation />

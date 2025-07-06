@@ -3,8 +3,9 @@
   import { formatNumber } from "$lib";
   import ModMailIcon from "$lib/assets/ModMailIcon.svelte";
   import ReportsIcon from "$lib/assets/ReportsIcon.svelte";
+  import Head from "$lib/Head.svelte";
   import { m } from "$lib/paraglide/messages";
-  import { localizeHref } from "$lib/paraglide/runtime";
+  import { getLocale, localizeHref } from "$lib/paraglide/runtime";
   import { blur, slide } from "svelte/transition";
 
   let stats = $derived(page.data.stats);
@@ -54,9 +55,16 @@
   });
 </script>
 
+<Head
+  seo_config={{
+    title: m["app.title"](),
+    description: m["app.description"](),
+  }}
+/>
+
 <!-- Hero Section -->
 <section class="hero from-base-100/90 min-h-screen bg-linear-to-b from-10% via-indigo-500/60 via-38% to-indigo-600/10 to-95%">
-  <div class="hero-content flex-col text-center select-none">
+  <div class="hero-content flex-col gap-14 text-center select-none">
     <div class="max-w-lg">
       <h1 class="text-5xl font-bold">SupportMail</h1>
       <p class="py-6 text-lg">{m["hero.description"]()}</p>
@@ -75,10 +83,15 @@
         </div>
       </div>
     </div>
-    <div>
-      <h1>Our Hosting Partner</h1>
-      <a href="https://venocix.de/" target="_blank">Visit Venocix</a>
-      <a href="/venocix" target="_self">Read more</a>
+    <div class="soft-success-card grid w-fit max-w-lg grid-cols-1 sm:grid-cols-2">
+      <div class="flex flex-col items-center justify-center gap-3">
+        <h1 class="text-xl font-semibold">Our Hosting Partner</h1>
+        <img src="https://venocix.de/assets/img/logo-white.png" class="mx-auto w-44" alt="Venocix Logo" />
+      </div>
+      <div class="flex flex-col items-center justify-center gap-1">
+        <a href="https://venocix.de/" target="_blank" class="btn btn-outline btn-success">Visit Venocix</a>
+        <a href="/venocix" target="_self" class="btn btn-outline btn-success">Read more</a>
+      </div>
     </div>
     <div class="mt-25 flex items-end justify-center">
       {#await new Promise((r) => setTimeout(() => r(true), 500))}
@@ -164,7 +177,7 @@
     </div>
 
     <div class="mt-10 flex justify-center select-none">
-      <div class="badge badge-lg p-4">{m["stats.realTimeData"]()}</div>
+      <a href="/stats" class="btn btn-outline btn-secondary">{m["stats.gotoHistoricalData"]()}</a>
     </div>
   </div>
 </section>
