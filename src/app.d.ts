@@ -25,9 +25,20 @@ declare global {
   type StatsResponse = { guilds: number; users: number; tickets: number; fallback?: true };
 
   type StatsMetadata = {
-    status: number | "unknown" | "fallback";
+    status: number | "unknown" | "fallback" | "stale";
     message: string;
   };
+
+  /**
+   * Interface from mongodb
+   */
+  interface IBotStats {
+    guilds: number;
+    tickets: number;
+    users: number;
+    createdAt: Date; // MongoDB will automatically set this
+    updatedAt: Date; // MongoDB will automatically set this
+  }
 }
 
 export {};
