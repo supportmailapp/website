@@ -44,6 +44,14 @@
       });
     }
   };
+
+  $effect(() => {
+    if (page.data.meta) {
+      console.log("Page metadata:", page.data.meta);
+    } else {
+      console.warn("No metadata available in page data");
+    }
+  });
 </script>
 
 <!-- Hero Section -->
