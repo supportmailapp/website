@@ -23,7 +23,8 @@
     "status": "Status",
     "licenses": "Licenses",
     "about": "About",
-    "venocix": "Venocix"
+    "venocix": "Venocix",
+    "statistics": "Statistics"
   },
   "footer": {
     "rightsReserved": "SupportMail - All rights reserved.",
@@ -50,7 +51,14 @@
     "365d": "Last 365 Days",
     "tickets": "Tickets",
     "serverCount": "Servers",
-    "userCount": "Users"
+    "userCount": "Users",
+    "pageTitle": "SupportMail Statistics",
+    "pageTitle-7d": "SupportMail Statistics - Last 7 Days",
+    "pageTitle-30d": "SupportMail Statistics - Last 30 Days",
+    "pageTitle-90d": "SupportMail Statistics - Last 90 Days",
+    "pageTitle-180d": "SupportMail Statistics - Last 180 Days",
+    "pageTitle-365d": "SupportMail Statistics - Last 365 Days",
+    "pageDescription": "View the latest statistics about SupportMail, including the number of active servers, users served, and tickets processed."
   },
   "featuresTitle": "Features",
   "featuresDescription": "SupportMail comes packed with tools designed to make the work of your server team effortless",

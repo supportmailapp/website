@@ -23,7 +23,8 @@
     "status": "Statut",
     "licenses": "Licences",
     "about": "À propos",
-    "venocix": "Venocix"
+    "venocix": "Venocix",
+    "statistics": "Statistiques"
   },
   "footer": {
     "rightsReserved": "SupportMail - Tous droits réservés.",
@@ -50,7 +51,14 @@
     "365d": "365 Derniers Jours",
     "tickets": "Tickets",
     "serverCount": "Serveurs",
-    "userCount": "Utilisateurs"
+    "userCount": "Utilisateurs",
+    "pageTitle": "Statistiques de SupportMail",
+    "pageTitle-7d": "Statistiques de SupportMail - 7 Derniers Jours",
+    "pageTitle-30d": "Statistiques de SupportMail - 30 Derniers Jours",
+    "pageTitle-90d": "Statistiques de SupportMail - 90 Derniers Jours",
+    "pageTitle-180d": "Statistiques de SupportMail - 180 Derniers Jours",
+    "pageTitle-365d": "Statistiques de SupportMail - 365 Derniers Jours",
+    "pageDescription": "Consultez les dernières statistiques sur SupportMail, y compris le nombre de serveurs actifs, d'utilisateurs servis et de tickets traités."
   },
   "featuresTitle": "Fonctionnalités",
   "featuresDescription": "SupportMail est livré avec des outils conçus pour faciliter le travail de votre équipe de serveur",
