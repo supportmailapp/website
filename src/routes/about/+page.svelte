@@ -23,6 +23,11 @@
     <p>
       {@html howTheBotWorksContent}
     </p>
+
+    <h3>{m["about.howDidItGetItsName_Title"]()}</h3>
+    <p>
+      {@html markdownToHtml(m["about.howDidItGetItsName_Content"](), true)}
+    </p>
   </section>
 
   <section class="features-section">
