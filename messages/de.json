@@ -187,6 +187,7 @@
   },
   "about": {
     "title": "Über SupportMail",
+    "description": "Erfahre mehr über den Bot, wie er funktioniert und das \"Team\" dahinter.",
     "whatIs_Title": "Was ist SupportMail?",
     "whatIs_Content": "SupportMail ist ein Discord-Bot, der entwickelt wurde, um die Kommunikation zwischen Servermitgliedern und dem Team zu optimieren. Anstelle eines traditionellen Ticketsystems ermöglicht dieses System Servern, sauberer und organisierter auszusehen. Es ist eine einfache und effektive Lösung für die Verwaltung von Supportanfragen und -anliegen innerhalb deines Discord-Servers.",
     "howTheBotWorks": "Wie funktioniert der Bot?",
