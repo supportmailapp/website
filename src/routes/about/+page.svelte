@@ -11,7 +11,7 @@
   );
 </script>
 
-<div class="container sm-prose">
+<div class="sm-prose container">
   <h1>{m["about.title"]()}</h1>
 
   <section class="about-section">
