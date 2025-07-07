@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
+  import { browser, dev } from "$app/environment";
   import { goto } from "$app/navigation";
   import { page } from "$app/state";
   import { getMessage } from "$lib";
@@ -55,7 +55,11 @@
     if (!timeSpan) return [];
 
     const days = parseInt(timeSpan);
-    const startDate = dayjs().subtract(days, "day");
+    const startDate = dayjs().subtract(days, "day").startOf("day");
+    const endDate = dayjs().endOf("day");
+
+    console.log("Date range:", startDate.format(), "to", endDate.format());
+    console.log("Raw history data:", history);
 
     // Generate complete date range
     const dateRange: string[] = [];
@@ -66,14 +70,20 @@
     // Create map of existing data
     const dataMap = new Map<string, IBotStats>();
     history.forEach((item) => {
-      const dateKey = dayjs(item.createdAt).format("YYYY-MM-DD");
-      if (dayjs(item.createdAt).isAfter(startDate)) {
-        dataMap.set(dateKey, item);
+      const itemDate = dayjs(item.createdAt);
+      const dateKey = itemDate.format("YYYY-MM-DD");
+      // Use isAfter or isSame for start date, and isBefore or isSame for end date
+      if (itemDate.isAfter(startDate) || itemDate.isSame(startDate, "day")) {
+        if (itemDate.isBefore(endDate) || itemDate.isSame(endDate, "day")) {
+          dataMap.set(dateKey, item);
+        }
       }
     });
 
+    if (dev) console.log("Filtered data map:", dataMap);
+
     // Fill in missing dates with null/zero values
-    return dateRange.map((date) => {
+    const result = dateRange.map((date) => {
       const existing = dataMap.get(date);
       if (existing) {
         return existing;
@@ -82,11 +92,14 @@
       // Create empty data point for missing dates
       return {
         createdAt: dayjs(date).toISOString(),
-        tickets: null, // or 0 if you prefer
-        guilds: null, // or 0 if you prefer
-        users: null, // or 0 if you prefer
+        tickets: null,
+        guilds: null,
+        users: null,
       } as any;
     });
+
+    if (dev) console.log("Final prepared data:", result);
+    return result;
   }
 
   function formatLocaleDateString(date: Date): string {
