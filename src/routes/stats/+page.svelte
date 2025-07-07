@@ -1,14 +1,14 @@
 <script lang="ts">
-  import dayjs from "dayjs";
-  import Chart, { type ChartOptions } from "chart.js/auto";
-  import "chartjs-adapter-dayjs-4/dist/chartjs-adapter-dayjs-4.esm";
-  import { goto } from "$app/navigation";
   import { browser } from "$app/environment";
-  import { innerWidth } from "svelte/reactivity/window";
+  import { goto } from "$app/navigation";
   import { page } from "$app/state";
-  import { m } from "$lib/paraglide/messages.js";
   import { getMessage } from "$lib";
   import Head from "$lib/Head.svelte";
+  import { m } from "$lib/paraglide/messages.js";
+  import Chart, { type ChartOptions } from "chart.js/auto";
+  import "chartjs-adapter-dayjs-4/dist/chartjs-adapter-dayjs-4.esm";
+  import dayjs from "dayjs";
+  import { innerWidth } from "svelte/reactivity/window";
 
   type TimeSpan = "7d" | "30d" | "90d" | "180d" | "365d";
 
@@ -16,7 +16,10 @@
   let history = $derived<IBotStats[]>(data.history || []);
   let metadata = $derived<StatsMetadata>(data.meta ?? { message: "No metadata available", status: "unknown" });
 
-  $inspect(history);
+  $effect(() => {
+    console.log("history:", history);
+    console.log("metadata:", metadata);
+  });
 
   let ticketsCanvas = $state<any>();
   let serversCanvas = $state<any>();
@@ -94,14 +97,14 @@
     });
   }
 
-  function generateChartdata(stats: IBotStats[], bgColor: string, borderColor: string, label: string) {
+  function generateChartdata(stats: IBotStats[], bgColor: string, borderColor: string, label: string, dataKey: keyof IBotStats) {
     return {
       datasets: [
         {
           label: label,
           data: stats.map((item) => ({
             x: formatLocaleDateString(dayjs(item.createdAt).toDate()),
-            y: item.tickets,
+            y: item[dataKey],
           })),
           backgroundColor: bgColor,
           borderColor: borderColor,
@@ -114,11 +117,11 @@
 
   const chartData = {
     tickets: (stats: IBotStats[]) =>
-      generateChartdata(stats, "rgba(54, 162, 235, 0.2)", "rgba(54, 162, 235, 1)", m["stats.tickets"]()),
+      generateChartdata(stats, "rgba(54, 162, 235, 0.2)", "rgba(54, 162, 235, 1)", m["stats.tickets"](), "tickets"),
     servers: (stats: IBotStats[]) =>
-      generateChartdata(stats, "rgba(255, 99, 132, 0.2)", "rgba(255, 99, 132, 1)", m["stats.serverCount"]()),
+      generateChartdata(stats, "rgba(255, 99, 132, 0.2)", "rgba(255, 99, 132, 1)", m["stats.serverCount"](), "guilds"),
     users: (stats: IBotStats[]) =>
-      generateChartdata(stats, "rgba(255, 206, 86, 0.2)", "rgba(255, 206, 86, 1)", m["stats.userCount"]()),
+      generateChartdata(stats, "rgba(255, 206, 86, 0.2)", "rgba(255, 206, 86, 1)", m["stats.userCount"](), "users"),
   };
 
   // Update chartOptions to handle time scale properly:
