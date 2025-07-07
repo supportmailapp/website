@@ -8,6 +8,7 @@
   import { page } from "$app/state";
   import { m } from "$lib/paraglide/messages.js";
   import { getMessage } from "$lib";
+  import Head from "$lib/Head.svelte";
 
   type TimeSpan = "7d" | "30d" | "90d" | "180d" | "365d";
 
@@ -191,6 +192,13 @@
     }
   });
 </script>
+
+<Head
+  seo_config={{
+    title: getMessage(`stats.pageTitle-${timeSpan}`)(),
+    description: m["stats.pageDescription"](),
+  }}
+/>
 
 <div class="container-wrapper">
   <fieldset class="fieldset">
