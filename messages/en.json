@@ -41,7 +41,16 @@
     "activeServers": "Active Servers",
     "usersServed": "Users Served",
     "ticketsProcessed": "Tickets Processed",
-    "gotoHistoricalData": "Go to Historical Data"
+    "gotoHistoricalData": "Go to Historical Data",
+    "timeRange": "Time Range",
+    "7d": "Last 7 Days",
+    "30d": "Last 30 Days",
+    "90d": "Last 90 Days",
+    "180d": "Last 180 Days",
+    "365d": "Last 365 Days",
+    "tickets": "Tickets",
+    "serverCount": "Servers",
+    "users": "Users"
   },
   "featuresTitle": "Features",
   "featuresDescription": "SupportMail comes packed with tools designed to make the work of your server team effortless",

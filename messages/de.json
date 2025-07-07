@@ -41,7 +41,16 @@
     "activeServers": "Aktive Server",
     "usersServed": "Nutzer bedient",
     "ticketsProcessed": "Bearbeitete Tickets",
-    "gotoHistoricalData": "Gehe zu den historischen Daten"
+    "gotoHistoricalData": "Gehe zu den historischen Daten",
+    "timeRange": "Zeitraum",
+    "7d": "Letzte 7 Tage",
+    "30d": "Letzte 30 Tage",
+    "90d": "Letzte 90 Tage",
+    "180d": "Letzte 180 Tage",
+    "365d": "Letzte 365 Tage",
+    "tickets": "Tickets",
+    "serverCount": "Server",
+    "users": "Nutzer"
   },
   "featuresTitle": "Funktionen",
   "featuresDescription": "SupportMail bietet Tools, die die Arbeit deines Serverteams um einiges erleichtern",

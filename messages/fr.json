@@ -41,7 +41,16 @@
     "activeServers": "Serveurs Actifs",
     "usersServed": "Utilisateurs Servis",
     "ticketsProcessed": "Tickets Traités",
-    "gotoHistoricalData": "Accéder aux Données Historiques"
+    "gotoHistoricalData": "Accéder aux Données Historiques",
+    "timeRange": "Plage Temporelle",
+    "7d": "7 Derniers Jours",
+    "30d": "30 Derniers Jours",
+    "90d": "90 Derniers Jours",
+    "180d": "180 Derniers Jours",
+    "365d": "365 Derniers Jours",
+    "tickets": "Tickets",
+    "serverCount": "Serveurs",
+    "users": "Utilisateurs"
   },
   "featuresTitle": "Fonctionnalités",
   "featuresDescription": "SupportMail est livré avec des outils conçus pour faciliter le travail de votre équipe de serveur",
