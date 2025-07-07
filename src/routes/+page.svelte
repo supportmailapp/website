@@ -85,12 +85,12 @@
     </div>
     <div class="soft-success-card grid w-fit max-w-lg grid-cols-1 sm:grid-cols-2">
       <div class="flex flex-col items-center justify-center gap-3">
-        <h1 class="text-xl font-semibold">Our Hosting Partner</h1>
+        <h1 class="text-xl font-semibold">{m["hero.ourHostingPartner"]()}</h1>
         <img src="https://venocix.de/assets/img/logo-white.png" class="mx-auto w-44" alt="Venocix Logo" />
       </div>
       <div class="flex flex-col items-center justify-center gap-1">
-        <a href="https://venocix.de/" target="_blank" class="btn btn-outline btn-success">Visit Venocix</a>
-        <a href="/venocix" target="_self" class="btn btn-outline btn-success">Read more</a>
+        <a href="https://venocix.de/" target="_blank" class="btn btn-outline btn-success">{m["hero.visitVenocix"]()}</a>
+        <a href="/venocix" target="_self" class="btn btn-outline btn-success">{m["hero.readMore"]()}</a>
       </div>
     </div>
     <div class="mt-25 flex items-end justify-center">
