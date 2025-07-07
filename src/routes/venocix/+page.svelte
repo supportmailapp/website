@@ -1,11 +1,39 @@
 <script lang="ts">
+  import { markdownToHtml } from "$lib";
   import Head from "$lib/Head.svelte";
+  import { m } from "$lib/paraglide/messages";
+  import { text } from "stream/consumers";
+
+  function parseMultipleLinesToHtml(input: string): string {
+    return input
+      .split("\n")
+      .map((line) => `<p>${markdownToHtml(line, true)}</p>`)
+      .join("");
+  }
+
+  const texts = {
+    title: () => `<h2>${m["venocix.title"]()}</h2>`,
+    description: () => `<p>${m["venocix.description"]()}</p>`,
+    devOfSuppmail: () => `<p>${m["venocix.devOfSuppmail"]()}</p>`,
+    whatIsV: () => `<h2>${m["venocix.whatIsV"]()}</h2>`,
+    whatIsVContent: () => parseMultipleLinesToHtml(m["venocix.whatIsVContent"]()),
+    whyV: () => `<h2>${m["venocix.whyV"]()}</h2>`,
+    whyVContent: () => parseMultipleLinesToHtml(m["venocix.whyVContent"]()),
+    howAreTheyDifferent: () => `<h2>${m["venocix.howAreTheyDifferent"]()}</h2>`,
+    howAreTheyDifferentContent: () => parseMultipleLinesToHtml(m["venocix.howAreTheyDifferentContent"]()),
+    suppmailAndVenocix: () => `<h2>${m["venocix.suppmailAndVenocix"]()}</h2>`,
+    suppmailAndVenocixContent: () => parseMultipleLinesToHtml(m["venocix.suppmailAndVenocixContent"]()),
+    whereMore: () => `<h2>${m["venocix.whereMore"]()}</h2>`,
+    whereMoreContent: () => parseMultipleLinesToHtml(m["venocix.whereMoreContent"]()),
+    ctaTitle: () => m["venocix.cta-title"](),
+    ctaBtn: () => m["venocix.cta-btn"](),
+  };
 </script>
 
 <Head
   seo_config={{
-    title: "Our Hosting Partner - Venocix",
-    description: "Get a reliable and high-performance hosting solution with Venocix.",
+    title: texts.title(),
+    description: texts.description(),
   }}
 />
 
@@ -19,7 +47,7 @@
       </div>
       <div class="card-body">
         <h2 class="card-title">LukeZ</h2>
-        <p>Developer of SupportMail</p>
+        <p>{texts.devOfSuppmail()}</p>
       </div>
     </div>
     <div class="text-6xl">🤝</div>
@@ -28,53 +56,19 @@
     </div>
   </div>
   <div class="sm-prose">
-    <h2>What is Venocix?</h2>
-    <p>
-      Venocix is a powerful hosting provider, based in Germany, which offers a range of services including VPS hosting, dedicated
-      servers, domain registration, and more.
-    </p>
-    <h2>Why choose Venocix?</h2>
-    <p>
-      Venocix stands out due to its commitment to performance, reliability, and customer support. With data centers located in
-      Germany, they ensure low latency and high-speed connections for users in Europe and beyond, while also ensuring compliance
-      with strict EU data protection regulations.
-    </p>
-    <h2>How are they different?</h2>
-    <p>
-      Venocix differentiates itself by offering pre-paid hosting solutions, which means you can pay for your services upfront
-      without the need for a credit card. This is particularly beneficial for users who prefer not to use traditional payment
-      methods and want to maintain control over their expenses.
-    </p>
-    <p>
-      This approach not only enhances security but also simplifies budgeting for users, making it easier to manage hosting costs
-      without unexpected charges.
-    </p>
-    <h2>Where can I find out more?</h2>
-    <p>
-      You can learn more about Venocix and their services by visiting their official website at <a href="https://venocix.de"
-        >venocix.de</a
-      >.
-    </p>
-    <p>
-      If you have any questions or need assistance, you can also reach out to them on their Discord server at <a
-        href="https://discord.gg/Ca5qS5jbgV"
-        class="link-hover"
-      >
-        discord.gg/Ca5qS5jbgV
-      </a>
-    </p>
-    <h2>SupportMail and Venocix</h2>
-    <p>
-      SupportMail is proud to be hosted on Venocix, benefiting from their reliable infrastructure and excellent customer support.
-      This partnership allows us to provide a seamless experience for our users, ensuring that our services are always available
-      and performant.
-    </p>
+    {#each [texts.whatIsV(), texts.whatIsVContent(), texts.whyV(), texts.whyVContent(), texts.howAreTheyDifferent(), texts.howAreTheyDifferentContent(), texts.suppmailAndVenocix(), texts.suppmailAndVenocixContent(), texts.whereMore(), texts.whereMoreContent()] as text}
+      {@html text}
+    {/each}
   </div>
   <!-- CTA -->
   <div class="grid w-full place-items-center">
     <div class="alert alert-soft alert-success alert-vertical alert-xl w-fit px-10 shadow-xl">
-      <h2 class="text-2xl font-semibold">Interested in Venocix?</h2>
-      <a href="https://venocix.de" class="btn btn-outline btn-lg btn-success">Get Started!</a>
+      <h2 class="text-2xl font-semibold">{m["venocix.cta-title"]()}</h2>
+      <a href="https://venocix.de" class="btn btn-outline btn-lg btn-success">{m["venocix.cta-btn"]()}</a>
     </div>
   </div>
+</div>
+
+<div class="hidden">
+  <a href="/" class="link link-hover link-primary">X</a>
 </div>
