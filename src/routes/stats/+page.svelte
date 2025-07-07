@@ -80,7 +80,7 @@
       }
     });
 
-    if (dev) console.log("Filtered data map:", dataMap);
+    console.log("Filtered data map:", dataMap);
 
     // Fill in missing dates with null/zero values
     const result = dateRange.map((date) => {
@@ -98,7 +98,7 @@
       } as any;
     });
 
-    if (dev) console.log("Final prepared data:", result);
+    console.log("Final prepared data:", result);
     return result;
   }
 
