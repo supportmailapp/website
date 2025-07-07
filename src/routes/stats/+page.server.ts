@@ -1,4 +1,5 @@
-import { building } from "$app/environment";
+import { building, dev } from "$app/environment";
+import dummyData from "$lib/server/dummyData.js";
 import dayjs from "dayjs";
 
 type HistoryFetchResponse = {
@@ -25,8 +26,8 @@ export async function load({ platform, url }) {
 
   const requestedSpan = url.searchParams.get("span");
 
-  if (building || !platform?.env.SUPPORTMAIL_API_KEY) {
-    result = [];
+  if (dev || building || !platform?.env.SUPPORTMAIL_API_KEY) {
+    result = dev ? dummyData : [];
     metadata = { message: "App is building or no API key provided, using fallback stats history", status: "fallback" };
     return {
       history: result,
