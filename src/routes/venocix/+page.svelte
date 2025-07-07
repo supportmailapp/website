@@ -2,7 +2,6 @@
   import { markdownToHtml } from "$lib";
   import Head from "$lib/Head.svelte";
   import { m } from "$lib/paraglide/messages";
-  import { text } from "stream/consumers";
 
   function parseMultipleLinesToHtml(input: string): string {
     return input
@@ -12,8 +11,8 @@
   }
 
   const texts = {
-    title: () => `<h2>${m["venocix.title"]()}</h2>`,
-    description: () => `<p>${m["venocix.description"]()}</p>`,
+    title: () => m["venocix.title"](),
+    description: () => m["venocix.description"](),
     devOfSuppmail: () => `<p>${m["venocix.devOfSuppmail"]()}</p>`,
     whatIsV: () => `<h2>${m["venocix.whatIsV"]()}</h2>`,
     whatIsVContent: () => parseMultipleLinesToHtml(m["venocix.whatIsVContent"]()),
@@ -47,7 +46,7 @@
       </div>
       <div class="card-body">
         <h2 class="card-title">LukeZ</h2>
-        <p>{texts.devOfSuppmail()}</p>
+        {@html texts.devOfSuppmail()}
       </div>
     </div>
     <div class="text-6xl">🤝</div>
@@ -56,9 +55,16 @@
     </div>
   </div>
   <div class="sm-prose">
-    {#each [texts.whatIsV(), texts.whatIsVContent(), texts.whyV(), texts.whyVContent(), texts.howAreTheyDifferent(), texts.howAreTheyDifferentContent(), texts.suppmailAndVenocix(), texts.suppmailAndVenocixContent(), texts.whereMore(), texts.whereMoreContent()] as text}
-      {@html text}
-    {/each}
+    {@html texts.whatIsV()}
+    {@html texts.whatIsVContent()}
+    {@html texts.whyV()}
+    {@html texts.whyVContent()}
+    {@html texts.howAreTheyDifferent()}
+    {@html texts.howAreTheyDifferentContent()}
+    {@html texts.suppmailAndVenocix()}
+    {@html texts.suppmailAndVenocixContent()}
+    {@html texts.whereMore()}
+    {@html texts.whereMoreContent()}
   </div>
   <!-- CTA -->
   <div class="grid w-full place-items-center">
