@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { browser, dev } from "$app/environment";
+  import { browser } from "$app/environment";
   import { goto } from "$app/navigation";
   import { page } from "$app/state";
   import { getMessage } from "$lib";
@@ -13,7 +13,7 @@
   type TimeSpan = "7d" | "30d" | "90d" | "180d" | "365d";
 
   let { data } = $props();
-  let history = $derived<IBotStats[]>(data.history || []);
+  let history = $derived<IHistoryStats[]>(data.history || []);
   let metadata = $derived<StatsMetadata>(data.meta ?? { message: "No metadata available", status: "unknown" });
 
   $effect(() => {
@@ -51,7 +51,7 @@
     }
   });
 
-  function prepareDataForTimespan(): IBotStats[] {
+  function prepareDataForTimespan(): IHistoryStats[] {
     if (!timeSpan) return [];
 
     const days = parseInt(timeSpan);
@@ -68,19 +68,35 @@
     }
 
     // Create map of existing data
-    const dataMap = new Map<string, IBotStats>();
-    history.forEach((item) => {
-      const itemDate = dayjs(item.createdAt);
+    const dataMap = new Map<string, IHistoryStats>();
+    history.forEach((item, index) => {
+      const itemDate = dayjs(item.timestamp);
       const dateKey = itemDate.format("YYYY-MM-DD");
+
+      console.log(`Item ${index}:`, {
+        timestamp: item.timestamp,
+        itemDate: itemDate.format(),
+        dateKey: dateKey,
+        isAfterStart: itemDate.isAfter(startDate),
+        isSameStart: itemDate.isSame(startDate, "day"),
+        isBeforeEnd: itemDate.isBefore(endDate),
+        isSameEnd: itemDate.isSame(endDate, "day"),
+        passesFilter:
+          (itemDate.isAfter(startDate) || itemDate.isSame(startDate, "day")) &&
+          (itemDate.isBefore(endDate) || itemDate.isSame(endDate, "day")),
+      });
+
       // Use isAfter or isSame for start date, and isBefore or isSame for end date
       if (itemDate.isAfter(startDate) || itemDate.isSame(startDate, "day")) {
         if (itemDate.isBefore(endDate) || itemDate.isSame(endDate, "day")) {
+          console.log(`Adding item to map with key: ${dateKey}`);
           dataMap.set(dateKey, item);
         }
       }
     });
 
     console.log("Filtered data map:", dataMap);
+    console.log("Generated date range:", dateRange);
 
     // Fill in missing dates with null/zero values
     const result = dateRange.map((date) => {
@@ -91,7 +107,7 @@
 
       // Create empty data point for missing dates
       return {
-        createdAt: dayjs(date).toISOString(),
+        timestamp: dayjs(date).toISOString(),
         tickets: null,
         guilds: null,
         users: null,
@@ -110,13 +126,19 @@
     });
   }
 
-  function generateChartdata(stats: IBotStats[], bgColor: string, borderColor: string, label: string, dataKey: keyof IBotStats) {
+  function generateChartdata(
+    stats: IHistoryStats[],
+    bgColor: string,
+    borderColor: string,
+    label: string,
+    dataKey: keyof IHistoryStats,
+  ) {
     return {
       datasets: [
         {
           label: label,
           data: stats.map((item) => ({
-            x: formatLocaleDateString(dayjs(item.createdAt).toDate()),
+            x: formatLocaleDateString(dayjs(item.timestamp).toDate()),
             y: item[dataKey],
           })),
           backgroundColor: bgColor,
@@ -129,11 +151,11 @@
   }
 
   const chartData = {
-    tickets: (stats: IBotStats[]) =>
+    tickets: (stats: IHistoryStats[]) =>
       generateChartdata(stats, "rgba(54, 162, 235, 0.2)", "rgba(54, 162, 235, 1)", m["stats.tickets"](), "tickets"),
-    servers: (stats: IBotStats[]) =>
+    servers: (stats: IHistoryStats[]) =>
       generateChartdata(stats, "rgba(255, 99, 132, 0.2)", "rgba(255, 99, 132, 1)", m["stats.serverCount"](), "guilds"),
-    users: (stats: IBotStats[]) =>
+    users: (stats: IHistoryStats[]) =>
       generateChartdata(stats, "rgba(255, 206, 86, 0.2)", "rgba(255, 206, 86, 1)", m["stats.userCount"](), "users"),
   };
 

@@ -3,7 +3,7 @@ import dummyData from "$lib/server/dummyData.js";
 import dayjs from "dayjs";
 
 type HistoryFetchResponse = {
-  data: IBotStats[];
+  data: IHistoryStats[];
   pagination: {
     total: number;
     page: number;
@@ -22,18 +22,22 @@ type HistoryFetchResponse = {
 export async function load({ platform, url }) {
   const ClientAPIOrigin = platform?.env.ClientApiOrigin ?? "https://client-api.supportmail.dev";
   let metadata: StatsMetadata = { message: "No metadata available", status: "unknown" };
-  let result: IBotStats[];
+  let result: IHistoryStats[];
 
   const requestedSpan = url.searchParams.get("span");
 
   if (dev || building || !platform?.env.SUPPORTMAIL_API_KEY) {
     result = dev ? dummyData : [];
-    metadata = { message: "App is building or no API key provided, using fallback stats history", status: "fallback" };
+    metadata = {
+      message: "App is building, in dev mode or no API key provided, using fallback stats history",
+      status: "fallback",
+    };
     return {
       history: result,
       meta: metadata,
     };
   }
+
   const fetchUrl = new URL(ClientAPIOrigin + "/stats/history");
 
   if (requestedSpan) {
@@ -91,7 +95,8 @@ export async function load({ platform, url }) {
     result = _data.data;
   } catch (err) {
     metadata = { message: "Unknown Error fetching stats history from API", status: "unknown" };
-    console.warn(metadata, err);
+    console.warn(metadata);
+    console.error(err);
     result = [];
   }
 
