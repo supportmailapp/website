@@ -191,24 +191,20 @@
     "stayLoggedIn": "Stay logged in"
   },
   "venocix": {
-    "title": "Venocix",
-    "description": "Our hosting provider, Venocix, is a reliable and affordable solution for hosting your Discord bot and other apps. They offer a wide range of plans to suit your needs, from small hobby projects to large-scale applications.",
-    "intro": "Based in Germany, Venocix is a hosting provider that you can trust.",
-    "features": {
-      "1": "High performance and reliability",
-      "2": "Pre-paid payment model",
-      "3": "No contracts or hidden fees",
-      "4": "24/7 support & amazing customer service",
-      "5": "Easy to use control panel",
-      "6": "Free SSL certificates (if you need them...)",
-      "7": "Free DDoS protection for up to 750 Gbit/s attacks",
-      "8": "Custom Regular Backups"
-    },
-    "specialOffer": "<TODO>",
-    "cta": {
-      "title": "Get started with Venocix today!",
-      "description": "If you're looking for a reliable and affordable hosting provider for your Discord bot, look no further than Venocix. They offer a wide range of plans to suit your needs, from small hobby projects to large-scale applications.",
-      "button": "Go to Venocix"
-    }
+    "title": "Our Hosting Partner - Venocix",
+    "description": "SupportMail is hosted on Venocix. Get a reliable and high-performance hosting solution with Venocix.",
+    "devOfSuppmail": "Developer of SupportMail",
+    "whatIsV": "What is Venocix?",
+    "whatIsVContent": "Venocix is a powerful hosting provider, based in Germany, which offers a range of services including VPS hosting, dedicated servers, domain registration, and more.",
+    "whyV": "Why choose Venocix?",
+    "whyVContent": "Venocix stands out due to its commitment to performance, reliability, and customer support. With data centers located in Germany, they ensure low latency and high-speed connections for users in Europe and beyond, while also ensuring compliance with strict EU data protection regulations.",
+    "howAreTheyDifferent": "How are they different?",
+    "howAreTheyDifferentContent": "Venocix differentiates itself by offering pre-paid hosting solutions, which means you can pay for your services upfront without the need for a credit card. This is particularly beneficial for users who prefer not to use traditional payment methods and want to maintain control over their expenses.\nThis approach not only enhances security but also simplifies budgeting for users, making it easier to manage hosting costs without unexpected charges.",
+    "suppmailAndVenocix": "SupportMail and Venocix",
+    "suppmailAndVenocixContent": "SupportMail is proud to be hosted on Venocix, benefiting from their reliable infrastructure and excellent customer support. This partnership allows us to provide a seamless experience for our users, ensuring that our services are always available and performant.",
+    "whereMore": "Where can I find out more?",
+    "whereMoreContent": "You can learn more about Venocix and their services by visiting their official website at [venocix.de](https://venocix.de).\nIf you have any questions or need assistance, you can also reach out to them on their [Discord server](https://discord.gg/Ca5qS5jbgV) or via email at [support@venocix.de](mailto:support@venocix.de).",
+    "cta-title": "Interested in Venocix?",
+    "cta-btn": "Get Started!"
   }
 }

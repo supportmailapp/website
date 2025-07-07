@@ -191,24 +191,20 @@
     "stayLoggedIn": "Rester connecté"
   },
   "venocix": {
-    "title": "Venocix",
-    "description": "Our hosting provider, Venocix, is a reliable and affordable solution for hosting your Discord bot and other apps. They offer a wide range of plans to suit your needs, from small hobby projects to large-scale applications.",
-    "intro": "Based in Germany, Venocix is a hosting provider that you can trust.",
-    "features": {
-      "1": "High performance and reliability",
-      "2": "Pre-paid payment model",
-      "3": "No contracts or hidden fees",
-      "4": "24/7 support & amazing customer service",
-      "5": "Easy to use control panel",
-      "6": "Free SSL certificates (if you need them...)",
-      "7": "Free DDoS protection for up to 750 Gbit/s attacks",
-      "8": "Custom Regular Backups"
-    },
-    "specialOffer": "<TODO>",
-    "cta": {
-      "title": "Get started with Venocix today!",
-      "description": "If you're looking for a reliable and affordable hosting provider for your Discord bot, look no further than Venocix. They offer a wide range of plans to suit your needs, from small hobby projects to large-scale applications.",
-      "button": "Go to Venocix"
-    }
+    "title": "Notre partenaire d'hébergement - Venocix",
+    "description": "SupportMail est hébergé sur Venocix. Bénéficiez d'une solution d'hébergement fiable et performante avec Venocix.",
+    "devOfSuppmail": "Développeur de SupportMail",
+    "whatIsV": "Qu'est-ce que Venocix ?",
+    "whatIsVContent": "Venocix est un hébergeur puissant basé en Allemagne qui propose une gamme de services comprenant l'hébergement VPS, des serveurs dédiés, l'enregistrement de noms de domaine et bien plus encore.",
+    "whyV": "Pourquoi choisir Venocix ?",
+    "whyVContent": "Venocix se distingue par son engagement en matière de performances, de fiabilité et d'assistance à la clientèle. Grâce à ses centres de données situés en Allemagne, l'entreprise garantit une faible latence et des connexions haut débit aux utilisateurs en Europe et au-delà, tout en assurant le respect des réglementations strictes de l'UE en matière de protection des données.",
+    "howAreTheyDifferent": "En quoi sont-ils différents ?",
+    "howAreTheyDifferentContent": "Venocix se distingue en proposant des solutions d'hébergement prépayées, ce qui signifie que vous pouvez payer vos services à l'avance sans avoir besoin d'une carte de crédit. Cela est particulièrement avantageux pour les utilisateurs qui préfèrent ne pas utiliser les méthodes de paiement traditionnelles et souhaitent garder le contrôle de leurs dépenses.\nCette approche renforce non seulement la sécurité, mais simplifie également la gestion du budget des utilisateurs, leur permettant de gérer plus facilement leurs coûts d'hébergement sans frais imprévus.",
+    "suppmailAndVenocix": "SupportMail en Venocix",
+    "suppmailAndVenocixContent": "SupportMail est fier d'être hébergé sur Venocix, bénéficiant ainsi de leur infrastructure fiable et de leur excellent service client. Ce partenariat nous permet d'offrir une expérience fluide à nos utilisateurs, en garantissant que nos services sont toujours disponibles et performants.",
+    "whereMore": "Où puis-je trouver plus d'informations ?",
+    "whereMoreContent": "Pour en savoir plus sur Venocix et ses services, rendez-vous sur son site officiel à l'adresse [venocix.de](https://venocix.de).\nSi vous avez des questions ou besoin d'aide, vous pouvez également les contacter sur leur [serveur Discord](https://discord.gg/Ca5qS5jbgV) ou par e-mail à l'adresse [support@venocix.de](mailto:support@venocix.de).",
+    "cta-title": "Intéressé par Venocix ?",
+    "cta-btn": "Commencer !"
   }
 }
