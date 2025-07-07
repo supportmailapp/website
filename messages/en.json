@@ -31,7 +31,10 @@
     "legal": "Legal"
   },
   "hero": {
-    "description": "Effortlessly manage user tickets and reports with SupportMail"
+    "description": "Effortlessly manage user tickets and reports with SupportMail",
+    "ourHostingPartner": "Our Hosting Partner",
+    "visitvenocix": "Visit Venocix",
+    "readMore": "Read More"
   },
   "stats": {
     "title": "Statistics",

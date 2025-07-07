@@ -31,7 +31,10 @@
     "legal": "Rechtliches"
   },
   "hero": {
-    "description": "Verwalte Tickets und Meldungen mühelos mit SupportMail"
+    "description": "Verwalte Tickets und Meldungen mühelos mit SupportMail",
+    "ourHostingPartner": "Unser Hosting-Partner",
+    "visitvenocix": "Besuche Venocix",
+    "readMore": "Mehr erfahren"
   },
   "stats": {
     "title": "Statistiken",
