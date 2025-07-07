@@ -30,14 +30,27 @@ declare global {
   };
 
   /**
-   * Interface from mongodb
+   * Returned by the `/stats/history` endpoint
+   */
+  interface IHistoryStats {
+    guilds: number;
+    users: number;
+    tickets: number;
+    /**
+     * ISO 8601 date string
+     */
+    timestamp: string;
+  }
+
+  /**
+   * Returned by the `/stats/current` endpoint
    */
   interface IBotStats {
     guilds: number;
-    tickets: number;
     users: number;
-    createdAt: Date; // MongoDB will automatically set this
-    updatedAt: Date; // MongoDB will automatically set this
+    tickets: number;
+    createdAt: string; // ISO 8601 date string
+    updatedAt: string; // ISO 8601 date string
   }
 }
 
