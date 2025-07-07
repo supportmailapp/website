@@ -2,6 +2,7 @@
   import { PUBLIC_DashboardUrl } from "$env/static/public";
   import { getMessage, markdownToHtml } from "$lib";
   import GreenCheckPlain from "$lib/assets/GreenCheckPlain.svelte";
+  import Head from "$lib/Head.svelte";
   import { m } from "$lib/paraglide/messages";
   import { fade } from "svelte/transition";
 
@@ -32,6 +33,13 @@
     window.location.href = PUBLIC_DashboardUrl + "?redirect=premium?plan=" + BillingState.toLowerCase();
   }
 </script>
+
+<Head
+  seo_config={{
+    title: m["premium.title"](),
+    description: m["premium.description"](),
+  }}
+/>
 
 <div class="via-primary/50 to-primary/90 min-h-screen bg-gradient-to-br from-transparent to-90% px-4 py-12 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-7xl">

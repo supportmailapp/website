@@ -1,6 +1,8 @@
 <script lang="ts">
   import { page } from "$app/state";
   import { goto } from "$app/navigation";
+  import Head from "$lib/Head.svelte";
+  import { m } from "$lib/paraglide/messages";
 
   let { children } = $props();
   let error = $state<string | null>(null);
@@ -13,6 +15,13 @@
     }
   });
 </script>
+
+<Head
+  seo_config={{
+    title: m["login.title"](),
+    description: m["login.description"](),
+  }}
+/>
 
 <div id="bg" style="background-image: url(https://picsum.photos/1920/1080.webp);"></div>
 <a

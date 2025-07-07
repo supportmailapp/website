@@ -138,9 +138,10 @@
     "answer": "It depends on your plan. The Gold plan does not support custom bots, while the Diamond plan does. If you want to use a custom bot with SupportMail Premium, you will need to purchase the Diamond plan."
   },
   "premium": {
+    "title": "SupportMail Premium - Plans & Pricing",
+    "description": "Select the perfect plan for your Discord server. All plans are billed per server, not per user.",
     "warning": "Please note that Premium is still being worked on and is not yet available. This page currently only serves the purpose of showcasing the plans. Rest assured, the information on this page is 100% accurate.",
     "choosePlan": "Choose Your Plan",
-    "description": "Select the perfect plan for your Discord server. All plans are billed per server, not per user.",
     "monthly": "Monthly",
     "yearly": "Yearly",
     "month": "month",
@@ -206,6 +207,8 @@
     "contactMe_2": "Urgent **(not general)** requests should be directed to [contact@supportmail.dev](mailto:contact@supportmail.dev). I'm usually responding within 24 hours during business hours."
   },
   "login": {
+    "title": "Login for SupportMail",
+    "description": "To use SupportMail as a normal user, you need to log in with your Discord account. This is not for a dashboard, but so that the mutual servers between you and the bot can be determined, which is essential for use.",
     "loginWithDiscord": "Login with Discord",
     "loginDescription": "This is not for a dashboard, but so that the mutual servers between you and the bot can be determined, which is essential for use.",
     "loginSuccess": "Login successful!",
