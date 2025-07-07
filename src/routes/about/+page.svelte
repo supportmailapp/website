@@ -1,5 +1,6 @@
 <script lang="ts">
   import { getMessage, markdownToHtml } from "$lib";
+  import Head from "$lib/Head.svelte";
   import { m } from "$lib/paraglide/messages";
 
   const features = $state([1, 2, 3, 4, 5, 6].map((i) => getMessage(`about.features-${i}`)()));
@@ -10,6 +11,13 @@
       .map((s) => markdownToHtml(s, true)),
   );
 </script>
+
+<Head
+  seo_config={{
+    title: m["about.title"](),
+    description: m["about.description"](),
+  }}
+/>
 
 <div class="sm-prose container">
   <h1>{m["about.title"]()}</h1>
