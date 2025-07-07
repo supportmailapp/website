@@ -6,6 +6,8 @@
   import { browser } from "$app/environment";
   import { innerWidth } from "svelte/reactivity/window";
   import { page } from "$app/state";
+  import { m } from "$lib/paraglide/messages.js";
+  import { getMessage } from "$lib";
 
   type TimeSpan = "7d" | "30d" | "90d" | "180d" | "365d";
 
@@ -83,17 +85,21 @@
     });
   }
 
+  function formatLocaleDateString(date: Date): string {
+    return date.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+  }
+
   function generateChartdata(stats: IBotStats[], bgColor: string, borderColor: string, label: string) {
     return {
       datasets: [
         {
           label: label,
           data: stats.map((item) => ({
-            x: dayjs(item.createdAt).toDate().toLocaleDateString(undefined, {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-            }),
+            x: formatLocaleDateString(dayjs(item.createdAt).toDate()),
             y: item.tickets,
           })),
           backgroundColor: bgColor,
@@ -106,9 +112,12 @@
   }
 
   const chartData = {
-    tickets: (stats: IBotStats[]) => generateChartdata(stats, "rgba(54, 162, 235, 0.2)", "rgba(54, 162, 235, 1)", "Tickets"),
-    servers: (stats: IBotStats[]) => generateChartdata(stats, "rgba(255, 99, 132, 0.2)", "rgba(255, 99, 132, 1)", "Servers"),
-    users: (stats: IBotStats[]) => generateChartdata(stats, "rgba(255, 206, 86, 0.2)", "rgba(255, 206, 86, 1)", "Users"),
+    tickets: (stats: IBotStats[]) =>
+      generateChartdata(stats, "rgba(54, 162, 235, 0.2)", "rgba(54, 162, 235, 1)", m["stats.tickets"]()),
+    servers: (stats: IBotStats[]) =>
+      generateChartdata(stats, "rgba(255, 99, 132, 0.2)", "rgba(255, 99, 132, 1)", m["stats.serverCount"]()),
+    users: (stats: IBotStats[]) =>
+      generateChartdata(stats, "rgba(255, 206, 86, 0.2)", "rgba(255, 206, 86, 1)", m["stats.userCount"]()),
   };
 
   // Update chartOptions to handle time scale properly:
@@ -185,7 +194,7 @@
 
 <div class="container-wrapper">
   <fieldset class="fieldset">
-    <legend class="fieldset-legend">Time Range</legend>
+    <legend class="fieldset-legend">{m["stats.timeRange"]()}</legend>
     <select
       class="select"
       onchange={(e) => {
@@ -196,11 +205,11 @@
       <!-- On mobile, it gets too big -->
       {#if innerWidth?.current && innerWidth.current < 640}
         {#each ["7d", "30d", "90d"] as span}
-          <option value={span} selected={timeSpan === span}>{span}</option>
+          <option value={span} selected={timeSpan === span}>{getMessage(`stats.${span}`)()}</option>
         {/each}
       {:else}
         {#each ["7d", "30d", "90d", "180d", "365d"] as span}
-          <option value={span} selected={timeSpan === span}>{span}</option>
+          <option value={span} selected={timeSpan === span}>{getMessage(`stats.${span}`)()}</option>
         {/each}
       {/if}
     </select>
