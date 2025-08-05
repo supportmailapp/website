@@ -22,6 +22,7 @@
     "@sveltejs/kit": "^2.20.2",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@tailwindcss/vite": "^4.0.14",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.0.6",
     "cross-env": "^7.0.3",
     "daisyui": "^5.0.9",
@@ -43,12 +44,23 @@
     "@inlang/paraglide-js": "^2.0.12",
     "chart.js": "^4.5.0",
     "chartjs-adapter-dayjs-4": "^1.0.4",
-    "dayjs": "^1.11.13"
+    "dayjs": "^1.11.13",
+    "discord-api-types": "^0.38.18",
+    "discord.js": "^14.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.17.0",
+    "node-cache": "^5.1.2",
+    "supportmail-types": "github:supportmailapp/global-types",
+    "zod": "^4.0.14",
+    "zod-validation-error": "^4.0.1"
   },
   "packageManager": "pnpm@10.12.1",
   "pnpm": {
     "onlyBuiltDependencies": [
-      "esbuild"
+      "esbuild",
+      "sharp",
+      "supportmail-types",
+      "workerd"
     ]
   }
 }
