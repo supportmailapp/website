@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { mongoUri, NODE_ENV } from "$env/static/private";
 
 /**
  * Connection ready state
@@ -14,7 +13,7 @@ const mongoConnection = {
   isConnected: 0,
 };
 
-export async function dbConnect() {
+export async function dbConnect(uri: string) {
   if (mongoConnection.isConnected === 1) {
     console.log("already connected");
     return;
@@ -30,13 +29,12 @@ export async function dbConnect() {
     await mongoose.disconnect();
   }
   mongoConnection.isConnected = 2;
-  await mongoose.connect(mongoUri);
+  await mongoose.connect(uri);
   mongoConnection.isConnected = 1;
   console.log("Connected to MongoDB");
 }
 
 export async function dbDisconnect() {
-  if (NODE_ENV === "development") return;
   if (mongoConnection.isConnected === 0) return;
 
   mongoConnection.isConnected = 3;

@@ -6,14 +6,21 @@ import { dbConnect, DBUser, hasUserRole } from "$lib/server/db";
 import { DiscordBotAPI, DiscordUserAPI } from "$lib/server/discord";
 import { error, type Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
-import dayjs from "dayjs";
 import { UserRole } from "supportmail-types";
 
-export async function init() {
-  await dbConnect();
-  console.log("Environment:", env.NODE_ENV);
-  console.log("Server started at", dayjs().toString());
-}
+const dbHandle: Handle = async ({ event, resolve }) => {
+  const uri = event.platform?.env.mongoUri;
+  if (!uri) {
+    console.error("Missing mongoUri in environment variables");
+    error(500, {
+      message: "Configuration error. Please try again later.",
+      status: 500,
+      route: event.url.pathname,
+    });
+  }
+  await dbConnect(uri);
+  return resolve(event);
+};
 
 const paraglideHandle: Handle = async ({ event, resolve }) =>
   paraglideMiddleware(event.request, function resolveLocalized({ request: localizedRequest, locale }) {
@@ -176,7 +183,7 @@ const moderationHandle: Handle = async ({ event, resolve }) => {
   return resolve(event);
 };
 
-export const handle = sequence(paraglideHandle, devToolsHandle, baseAuth, moderationHandle);
+export const handle = sequence(dbHandle, paraglideHandle, devToolsHandle, baseAuth, moderationHandle);
 
 export async function handleError({ error, status, event, message }) {
   if (status !== 404) console.error(`Error ${status}: ${message}`, error);
