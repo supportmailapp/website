@@ -37,10 +37,13 @@ importers:
         version: 5.1.2
       supportmail-types:
         specifier: github:supportmailapp/global-types
-        version: https://codeload.github.com/supportmailapp/global-types/tar.gz/499f19185ef7e03c7443ec76fb23b5f6b55b02df
+        version: https://codeload.github.com/supportmailapp/global-types/tar.gz/290c214b8ea31a08e5e8fed672ccb832bc070b1a
       tsc:
         specifier: ^2.0.4
         version: 2.0.4
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.2
       zod:
         specifier: ^4.0.14
         version: 4.0.14
@@ -95,13 +98,10 @@ importers:
         version: 5.25.2
       svelte-check:
         specifier: ^4.0.0
-        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.2)(typescript@5.8.2)
+        version: 4.1.5(picomatch@4.0.2)(svelte@5.25.2)(typescript@5.9.2)
       tailwindcss:
         specifier: ^4.0.15
         version: 4.0.15
-      typescript:
-        specifier: ^5.0.0
-        version: 5.8.2
       vite:
         specifier: ^6.2.2
         version: 6.2.2(@types/node@24.0.6)(jiti@2.4.2)(lightningcss@1.29.2)
@@ -1557,9 +1557,9 @@ packages:
     resolution: {integrity: sha512-KXDYZ9dszj6bzvnEMRYvxgeTHU74QBFL54XKtP3nyMuJ81CFYtABZ3bAzL2EdFUaEwJOBOgENyFj3R7oTzDyyw==}
     engines: {node: '>=4', npm: '>=6'}
 
-  supportmail-types@https://codeload.github.com/supportmailapp/global-types/tar.gz/499f19185ef7e03c7443ec76fb23b5f6b55b02df:
-    resolution: {tarball: https://codeload.github.com/supportmailapp/global-types/tar.gz/499f19185ef7e03c7443ec76fb23b5f6b55b02df}
-    version: 2.1.4
+  supportmail-types@https://codeload.github.com/supportmailapp/global-types/tar.gz/290c214b8ea31a08e5e8fed672ccb832bc070b1a:
+    resolution: {tarball: https://codeload.github.com/supportmailapp/global-types/tar.gz/290c214b8ea31a08e5e8fed672ccb832bc070b1a}
+    version: 2.1.6
 
   svelte-check@4.1.5:
     resolution: {integrity: sha512-Gb0T2IqBNe1tLB9EB1Qh+LOe+JB8wt2/rNBDGvkxQVvk8vNeAoG+vZgFB/3P5+zC7RWlyBlzm9dVjZFph/maIg==}
@@ -1601,8 +1601,8 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
-  typescript@5.8.2:
-    resolution: {integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==}
+  typescript@5.9.2:
+    resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -2945,13 +2945,13 @@ snapshots:
 
   stoppable@1.1.0: {}
 
-  supportmail-types@https://codeload.github.com/supportmailapp/global-types/tar.gz/499f19185ef7e03c7443ec76fb23b5f6b55b02df:
+  supportmail-types@https://codeload.github.com/supportmailapp/global-types/tar.gz/290c214b8ea31a08e5e8fed672ccb832bc070b1a:
     dependencies:
       discord-api-types: 0.38.18
       zod: 4.0.14
       zod-validation-error: 4.0.1(zod@4.0.14)
 
-  svelte-check@4.1.5(picomatch@4.0.2)(svelte@5.25.2)(typescript@5.8.2):
+  svelte-check@4.1.5(picomatch@4.0.2)(svelte@5.25.2)(typescript@5.9.2):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       chokidar: 4.0.3
@@ -2959,7 +2959,7 @@ snapshots:
       picocolors: 1.1.1
       sade: 1.8.1
       svelte: 5.25.2
-      typescript: 5.8.2
+      typescript: 5.9.2
     transitivePeerDependencies:
       - picomatch
 
@@ -2998,7 +2998,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  typescript@5.8.2: {}
+  typescript@5.9.2: {}
 
   ufo@1.6.1: {}
 

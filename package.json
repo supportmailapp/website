@@ -35,7 +35,6 @@
     "svelte": "^5.25.2",
     "svelte-check": "^4.0.0",
     "tailwindcss": "^4.0.15",
-    "typescript": "^5.0.0",
     "vite": "^6.2.2",
     "vite-plugin-devtools-json": "^0.2.0",
     "wrangler": "^4.22.0"
@@ -52,6 +51,7 @@
     "node-cache": "^5.1.2",
     "supportmail-types": "github:supportmailapp/global-types",
     "tsc": "^2.0.4",
+    "typescript": "^5.9.2",
     "zod": "^4.0.14",
     "zod-validation-error": "^4.0.1"
   },
