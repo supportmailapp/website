@@ -1,36 +1,45 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
+  import { goto } from "$app/navigation";
+  import { page } from "$app/state";
   import { m } from "$lib/paraglide/messages";
+  import { onMount } from "svelte";
 
   let showLoading = $state(false);
-  let keepRefresh = $state(false);
 
-  async function handleLogin() {
-    showLoading = true;
-
-    try {
-      const search = new URLSearchParams({
-        keeprefresh: keepRefresh ? "1" : "0",
-        fromlogin: "1", // Indicate that this is from the login page
-      });
-      const response = await fetch("/login/get-url?" + search.toString());
-
-      if (response.ok) {
-        const data = await response.json<any>();
-        console.log("Login data", data);
-        window.open(data.url || "/login?error=Something+went+wrong", "_self");
-      } else {
-        console.error("Response not ok:", response.status);
-      }
-    } catch (error) {
-      console.error("Fetch error:", error);
-    } finally {
-      showLoading = false;
+  onMount(() => {
+    const nextPath = page.url.searchParams.get("next");
+    if (nextPath?.startsWith("/m/")) {
+      goto(nextPath, { replaceState: true });
     }
-  }
+  });
 </script>
 
-<div class="grid place-items-center gap-5">
-  <button type="button" class="btn btn-primary btn-soft w-full max-w-xs" disabled={showLoading} onclick={handleLogin}>
+<form
+  class="grid place-items-center gap-5"
+  action="?/login"
+  method="POST"
+  use:enhance={() => {
+    const nextHref = page.url.searchParams.get("next");
+    if (nextHref?.startsWith("/m/")) {
+      localStorage.setItem("urlAfterLogin", nextHref);
+    }
+
+    showLoading = true;
+
+    return async ({ update, result }) => {
+      console.log("Form submitted", result);
+      await update();
+      if (result.type === "success" && result.data) {
+        open(result.data.url as string, "_self");
+      } else {
+        console.error("Error during login");
+      }
+      showLoading = false;
+    };
+  }}
+>
+  <button type="submit" class="btn btn-primary btn-soft w-full max-w-xs" disabled={showLoading}>
     {#if showLoading}
       <div class="loading-spinner loading size-8"></div>
     {:else}
@@ -39,18 +48,5 @@
 
     <span class="text-lg text-white">{showLoading ? "" : m["login.loginWithDiscord"]()}</span>
   </button>
-  <!--
-  ? Why did I even add this???
-  <label class="label text-white">
-    <input
-      type="checkbox"
-      class="checkbox checkbox-primary checkbox-sm"
-      id="keeprefresh"
-      name="keeprefresh"
-      bind:checked={keepRefresh}
-    />
-    {m["login.stayLoggedIn"]()}
-  </label>
-  -->
   <p class="text-xs text-white">{m["login.loginDescription"]()}</p>
-</div>
+</form>

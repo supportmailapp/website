@@ -39,7 +39,6 @@ export async function load({ platform, cookies }) {
         valid: true,
       };
     } catch (err) {
-      console.error("Failed to parse stats from cookie", err);
       metadata = { message: "Failed to parse stats from cookie, fetching from API", status: "unknown" };
       // If parsing fails, we will fetch the stats from the API
       return { valid: false };

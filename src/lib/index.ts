@@ -1,3 +1,4 @@
+import { redirect as svRedirect } from "@sveltejs/kit";
 import { m } from "./paraglide/messages";
 
 export function markdownToHtml(markdown: string, infoLink = false): string {
@@ -19,7 +20,7 @@ export function markdownToHtml(markdown: string, infoLink = false): string {
   // and will not work for all edge cases. Use with caution.
   html = html.replace(
     /\[([^\]]+)\]\(([^) ]+)\)/gi,
-    `<a href="$2" class="link link-${infoLink ? "info" : "primary"} link-hover" target="_blank" rel="noopener noreferrer">$1</a>`,
+    `<a href="$2" class="link link-${infoLink ? "info" : "primary"} link-hover" target="_blank">$1</a>`,
   );
 
   // Line break: \n
@@ -48,3 +49,13 @@ export function formatNumber(num: number, step = 100) {
 export const getMessage = (key: string) => {
   return ((m as unknown as Record<string, Function>)[key] || (() => key)) as () => string;
 };
+
+export function redirectToLoginWithError(errStr: string, status: number = 302): never {
+  return svRedirect(status, "/login?error=" + encodeURIComponent(errStr));
+}
+
+type CachingType = "sessiontoken" | "userroles";
+
+export function makeCacheKey(type: CachingType, ...args: string[]): string {
+  return [type, ...args].join(":");
+}
