@@ -51,6 +51,7 @@
     "mongoose": "^8.17.0",
     "node-cache": "^5.1.2",
     "supportmail-types": "github:supportmailapp/global-types",
+    "tsc": "^2.0.4",
     "zod": "^4.0.14",
     "zod-validation-error": "^4.0.1"
   },
