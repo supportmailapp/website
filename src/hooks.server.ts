@@ -103,7 +103,13 @@ const baseAuth: Handle = async function ({ event, resolve }) {
 
   if (!event.url.pathname.startsWith("/m") && !event.url.pathname.startsWith("/login")) return resolve(event); // Skip for non-moderation and login routes
 
-  event.locals.discordRest = new DiscordBotAPI();
+  const botToken = event.platform?.env.BOT_TOKEN;
+  if (!botToken) {
+    console.error("Missing BOT_TOKEN in environment variables");
+    return redirectToLoginWithError("Configuration error. Please try again later.");
+  }
+
+  event.locals.discordRest = new DiscordBotAPI(botToken);
 
   event.locals.isAuthenticated = () => Boolean(event.locals.user && event.locals.token);
 

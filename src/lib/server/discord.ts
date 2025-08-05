@@ -1,6 +1,5 @@
 // Server Discord API integration
 
-import { BOT_TOKEN } from "$env/static/private";
 import {
   Routes,
   type APIChannel,
@@ -109,8 +108,8 @@ abstract class BaseDiscordAPI {
  * This class provides methods to interact with the Discord API using the bot token.
  */
 class DiscordBotAPI extends BaseDiscordAPI {
-  constructor() {
-    super(BOT_TOKEN, "Bot");
+  constructor(token: string) {
+    super(token, "Bot");
   }
 
   public async getGuildChannel<T extends APIChannel>(channelId: string): Promise<SafeResponse<T>> {
