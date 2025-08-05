@@ -1,4 +1,3 @@
-import { env } from "$env/dynamic/private";
 import { makeCacheKey, redirectToLoginWithError } from "$lib";
 import { paraglideMiddleware } from "$lib/paraglide/server";
 import { SessionManager } from "$lib/server/auth";
