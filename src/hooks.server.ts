@@ -55,9 +55,17 @@ const baseAuth: Handle = async function ({ event, resolve }) {
       return cached;
     }
 
+    const key = event.platform?.env.DB_ENCRYPTION_KEY;
+    const iv = event.platform?.env.DB_ENCRYPTION_IV;
+
+    if (!key || !iv) {
+      console.error("Missing DB encryption key or IV in environment variables");
+      return { user: null, token: null, error: "config" };
+    }
+
     try {
       // Find session in database
-      const tokenResult = await SessionManager.getUserTokenBySession(sessionToken);
+      const tokenResult = await SessionManager.getUserTokenBySession(sessionToken, key, iv);
 
       if (tokenResult.isExpired()) {
         const result: SafeSessionResult = { error: "expired", token: tokenResult.token, user: null };

@@ -1,9 +1,42 @@
 // Helper functions for session management
 import { env } from "$env/dynamic/private";
-import jwt from "jsonwebtoken";
-import { UserToken } from "./db/models/src/userTokens";
 import { urls } from "$lib/constants";
+import { createCipheriv, createDecipheriv } from "crypto";
+import jwt from "jsonwebtoken";
 import { discord } from "./constants";
+import { UserToken } from "./db/models/src/userTokens";
+
+const algorithm = "aes-256-cbc";
+
+export function encrypt(text: string, key: string, iv: string): string {
+  try {
+    const encKey = Buffer.from(key, "utf-8");
+    const encIV = Buffer.from(iv, "utf-8");
+    const cipher = createCipheriv(algorithm, encKey, encIV);
+    let encrypted = cipher.update(text, "utf-8", "hex");
+    encrypted += cipher.final("hex");
+    console.log("Encrypted:", encrypted);
+    return encrypted;
+  } catch (error) {
+    console.error("Encryption error:", error);
+    throw new Error("Failed to encrypt token");
+  }
+}
+
+export function decrypt(encryptedText: string, key: string, iv: string): string {
+  try {
+    const encKey = Buffer.from(key, "utf-8");
+    const encIV = Buffer.from(iv, "utf-8");
+    const decipher = createDecipheriv(algorithm, encKey, encIV);
+    let decrypted = decipher.update(encryptedText, "hex", "utf-8");
+    decrypted += decipher.final("utf-8");
+    console.log("Decrypted:", decrypted);
+    return decrypted;
+  } catch (error) {
+    console.error("Decryption error:", error);
+    throw new Error("Failed to decrypt token");
+  }
+}
 
 type CreateSessionOps = {
   userId: string;
@@ -36,18 +69,22 @@ class GetTokensResult {
 }
 
 class SessionManager {
-  static async createSession(data: CreateSessionOps): Promise<string> {
+  static async createSession(data: CreateSessionOps, key: string, iv: string): Promise<string> {
     const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
 
-    // Encrpytion happens automatically in the UserToken model
+    const encryptedAccessToken = encrypt(data.tokens.accessToken, key, iv);
+    const encryptedRefreshToken = data.tokens.refreshToken
+      ? encrypt(data.tokens.refreshToken, key, iv)
+      : null;
+
     const exists = await UserToken.exists({ userId: data.userId });
     if (exists) {
       await UserToken.findOneAndUpdate(
         { userId: data.userId },
         {
           expiresAt: expiresAt,
-          accessToken: data.tokens.accessToken,
-          refreshToken: data.tokens.refreshToken ?? null,
+          accessToken: encryptedAccessToken,
+          refreshToken: encryptedRefreshToken,
         },
         { new: true },
       );
@@ -55,8 +92,8 @@ class SessionManager {
       await UserToken.create({
         userId: data.userId,
         expiresAt: expiresAt,
-        accessToken: data.tokens.accessToken,
-        refreshToken: data.tokens.refreshToken ?? null,
+        accessToken: encryptedAccessToken,
+        refreshToken: encryptedRefreshToken,
       });
     }
 
@@ -105,7 +142,7 @@ class SessionManager {
     }
   }
 
-  static async getUserTokenBySession(jwtToken: string): Promise<GetTokensResult> {
+  static async getUserTokenBySession(jwtToken: string, key: string, iv: string): Promise<GetTokensResult> {
     const tokenRes = SessionManager.decodeToken(jwtToken);
     console.debug("Decoded JWT token:", tokenRes);
     if (!tokenRes.valid || tokenRes.error === "other" || !tokenRes.id) {
@@ -114,13 +151,29 @@ class SessionManager {
 
     const uToken = await UserToken.findOne({ userId: tokenRes.id }!);
 
-    return new GetTokensResult(uToken?.toJSON() || null, tokenRes.error === "expired");
+    if (uToken) {
+      const decryptedToken = {
+        ...uToken.toJSON(),
+        accessToken: decrypt(uToken.accessToken, key, iv),
+        refreshToken: uToken.refreshToken ? decrypt(uToken.refreshToken, key, iv) : null,
+      };
+      return new GetTokensResult(decryptedToken, tokenRes.error === "expired");
+    }
+
+    return new GetTokensResult(null, tokenRes.error === "expired");
   }
 
-  static async getAndDeleteToken(id: string): Promise<FlatUserToken | null> {
+  static async getAndDeleteToken(id: string, key: string, iv: string): Promise<FlatUserToken | null> {
     const token = await UserToken.findOneAndDelete({ userId: id });
     if (!token) return null;
-    return token.toObject({ flattenMaps: true, flattenObjectIds: true });
+
+    const decryptedToken = {
+      ...token.toObject({ flattenMaps: true, flattenObjectIds: true }),
+      accessToken: decrypt(token.accessToken, key, iv),
+      refreshToken: token.refreshToken ? decrypt(token.refreshToken, key, iv) : null,
+    };
+
+    return decryptedToken;
   }
 
   static async cleanupExpiredTokens(): Promise<void> {

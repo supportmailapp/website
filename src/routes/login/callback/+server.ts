@@ -6,7 +6,7 @@ import { DiscordUserAPI } from "$lib/server/discord";
 import { redirect } from "@sveltejs/kit";
 import type { RESTPostOAuth2AccessTokenResult } from "discord.js";
 
-export async function GET({ url, cookies }) {
+export async function GET({ url, cookies, platform }) {
   const code = url.searchParams.get("code");
   const error = url.searchParams.get("error");
   const urlState = url.searchParams.get("state");
@@ -71,15 +71,27 @@ export async function GET({ url, cookies }) {
 
   const user = userRes.data!;
 
+  const key = platform?.env.DB_ENCRYPTION_KEY;
+  const iv = platform?.env.DB_ENCRYPTION_IV;
+
+  if (!key || !iv) {
+    console.error("Missing DB encryption key or IV in environment variables");
+    return redirectToLoginWithError("Configuration error. Please try again later.");
+  }
+
   // Create JWT session cookie
-  const sessionToken = await SessionManager.createSession({
-    tokens: {
-      accessToken: access_token,
-      refreshToken: refresh_token,
-      expiresIn: expires_in,
+  const sessionToken = await SessionManager.createSession(
+    {
+      tokens: {
+        accessToken: access_token,
+        refreshToken: refresh_token,
+        expiresIn: expires_in,
+      },
+      userId: user.id,
     },
-    userId: user.id,
-  });
+    key,
+    iv,
+  );
 
   // Set session cookie
   cookies.set("session", sessionToken, {

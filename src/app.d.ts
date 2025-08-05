@@ -74,7 +74,7 @@ declare global {
   type SafeSessionResult =
     | { user: APIUser; token: FlatUserToken; error?: never }
     | { user: null; token: FlatUserToken; error: "expired" }
-    | { user: null; token: null; error: "other" | "notfound" | "network" };
+    | { user: null; token: null; error: "other" | "notfound" | "network" | "config" };
 
   type StatsResponse = { guilds: number; users: number; tickets: number; fallback?: true };
 
