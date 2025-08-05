@@ -1,5 +1,4 @@
 import { env } from "$env/dynamic/private";
-import { OWNER_ID } from "$env/static/private";
 import { makeCacheKey, redirectToLoginWithError } from "$lib";
 import { paraglideMiddleware } from "$lib/paraglide/server";
 import { SessionManager } from "$lib/server/auth";
@@ -128,8 +127,15 @@ const moderationHandle: Handle = async ({ event, resolve }) => {
     return redirectToLoginWithError("You must be logged in to access this page.");
   }
 
+  const ownerId = event.platform?.env.OWNER_ID;
+
+  if (!ownerId) {
+    console.error("Missing OWNER_ID in environment variables");
+    return redirectToLoginWithError("Configuration error. Please try again later.");
+  }
+
   // Ensure user is not the owner, as they have special permissions
-  if (event.locals.user.id === OWNER_ID) {
+  if (event.locals.user.id === ownerId) {
     event.locals.userRoles = [UserRole.Admin];
     return resolve(event);
   }
