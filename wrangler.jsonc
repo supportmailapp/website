@@ -14,6 +14,12 @@
   "observability": {
     "enabled": true
   },
+  "kv_namespaces": [
+    {
+      "id": "4f76903e4aee4f959763fa286b58c194",
+      "binding": "sm-website-cache",
+    }
+  ],
   "placement": { "mode": "smart" },
   "compatibility_flags": [ "nodejs_compat" ],
   "vars": {
@@ -33,7 +39,13 @@
         "PUBLIC_DashboardUrl": "/coming-soon",
         "PUBLIC_githubOrga": "https://github.com/supportmailapp",
         "PUBLIC_legalHost": "https://legal.supportmail.dev"
-      }
+      },
+      "kv_namespaces": [
+        {
+          "id": "4f76903e4aee4f959763fa286b58c194",
+          "binding": "sm-website-cache",
+        }
+      ],
     }
   }
 }
