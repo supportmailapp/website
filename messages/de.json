@@ -209,7 +209,7 @@
   },
   "login": {
     "title": "Login für SupportMail",
-    "description": "Um SupportMail als normaler Nutzer zu nutzen, musst du dich mit Discord anmelden. Dies dient nicht einem Dashboard, sondern dazu, die gemeinsamen Server zwischen dir und dem Bot zu bestimmen, was für die Nutzung erforderlich ist.",
+    "description": "Melde dich an, um den Bot nutzen zu können und um Reports und Anträge auf dieser Website einzureichen.",
     "loginWithDiscord": "Mit Discord anmelden",
     "loginDescription": "Das ist nicht für ein Dashboard, sondern damit die gemeinsamen Server zwischen dir und dem Bot bestimmt werden können, was notwendig für die Nutzung ist.",
     "loginSuccess": "Login erfolgreich!",

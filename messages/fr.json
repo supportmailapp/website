@@ -209,9 +209,9 @@
   },
   "login": {
     "title": "Connexion à SupportMail",
-    "description": "Pour utiliser SupportMail en tant qu'utilisateur normal, tu dois te connecter avec Discord. Cela ne sert pas à accéder à un tableau de bord, mais à déterminer les serveurs communs entre toi et le bot, ce qui est nécessaire pour l'utilisation.",
+    "description": "Connectez-vous pour utiliser le bot et soumettre des signalements et des recours sur ce site Web.",
     "loginWithDiscord": "Se connecter avec Discord",
-    "loginDescription": "Ce n'est pas pour un tableau de bord, mais pour que les serveurs mutuels entre vous et le bot puissent être déterminés, ce qui est essentiel pour l'utilisation.",
+    "loginDescription": "Cette connexion sert à déterminer les serveurs que vous partagez avec le bot, afin que vous puissiez utiliser ce dernier. Elle vous permet également de soumettre des rapports et des recours sur ce site web.",
     "loginSuccess": "Connexion réussie !",
     "loginSuccessDescription": "Vous pouvez maintenant fermer cet onglet et retourner sur Discord.",
     "stayLoggedIn": "Rester connecté"

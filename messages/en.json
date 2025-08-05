@@ -209,9 +209,9 @@
   },
   "login": {
     "title": "Login for SupportMail",
-    "description": "To use SupportMail as a normal user, you need to log in with your Discord account. This is not for a dashboard, but so that the mutual servers between you and the bot can be determined, which is essential for use.",
+    "description": "Log in to use the bot and submit reports and appeals on this website.",
     "loginWithDiscord": "Login with Discord",
-    "loginDescription": "This is not for a dashboard, but so that the mutual servers between you and the bot can be determined, which is essential for use.",
+    "loginDescription": "This login is used to determine which servers you share with the bot, so that you can use the bot. Additionally, it allows you to submit reports and appeals on this website.",
     "loginSuccess": "Login successful!",
     "loginSuccessDescription": "You can now close this tab and return to Discord.",
     "stayLoggedIn": "Stay logged in"
