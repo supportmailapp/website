@@ -9,7 +9,7 @@ import { sequence } from "@sveltejs/kit/hooks";
 import { UserRole } from "supportmail-types";
 
 const dbHandle: Handle = async ({ event, resolve }) => {
-  const uri = event.platform?.env.mongoUri;
+  const uri = env.mongoUri;
   if (!uri) {
     console.error("Missing mongoUri in environment variables");
     error(500, {
@@ -61,8 +61,8 @@ const baseAuth: Handle = async function ({ event, resolve }) {
       return cached;
     }
 
-    const key = event.platform?.env.DB_ENCRYPTION_KEY;
-    const iv = event.platform?.env.DB_ENCRYPTION_IV;
+    const key = env.DB_ENCRYPTION_KEY;
+    const iv = env.DB_ENCRYPTION_IV;
 
     if (!key || !iv) {
       console.error("Missing DB encryption key or IV in environment variables");
@@ -109,7 +109,7 @@ const baseAuth: Handle = async function ({ event, resolve }) {
 
   if (!event.url.pathname.startsWith("/m") && !event.url.pathname.startsWith("/login")) return resolve(event); // Skip for non-moderation and login routes
 
-  const botToken = event.platform?.env.BOT_TOKEN;
+  const botToken = env.BOT_TOKEN;
   if (!botToken) {
     console.error("Missing BOT_TOKEN in environment variables");
     return redirectToLoginWithError("Configuration error. Please try again later.");
