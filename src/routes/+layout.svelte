@@ -7,11 +7,8 @@
   import "../app.css";
   import { getLocale, locales, localizeHref } from "$lib/paraglide/runtime";
   import Head from "$lib/Head.svelte";
-  import { m } from "$lib/paraglide/messages";
 
   let { children } = $props();
-
-  let alertModalClosed = $state(false);
 </script>
 
 <Head
@@ -54,21 +51,3 @@
   <!-- svelte-ignore a11y_missing_attribute -->
   <a class="link link-info">text</a>
 </div>
-
-<!-- You can open the modal using ID.showModal() method -->
-{#if !alertModalClosed}
-  <dialog id="my_modal_3" class="modal modal-open" transition:fade={{ duration: 200 }}>
-    <div class="modal-box bg-error-content text-error">
-      <form method="dialog">
-        <button class="btn btn-sm btn-circle btn-ghost absolute top-2 right-2" onclick={() => (alertModalClosed = true)}
-          >✕</button
-        >
-      </form>
-      <h3 class="text-lg font-bold">{m["alertTechnicalIssues.title"]()}</h3>
-      <p class="py-4">{m["alertTechnicalIssues.description"]()}</p>
-    </div>
-    <form method="dialog" class="modal-backdrop backdrop-blur-md" onsubmit={() => (alertModalClosed = true)}>
-      <button>close</button>
-    </form>
-  </dialog>
-{/if}
