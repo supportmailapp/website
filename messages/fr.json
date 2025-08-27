@@ -235,5 +235,9 @@
     "whereMoreContent": "Pour en savoir plus sur Venocix et ses services, rendez-vous sur son site officiel à l'adresse [venocix.de](https://venocix.de).\nSi vous avez des questions ou besoin d'aide, vous pouvez également les contacter sur leur [serveur Discord](https://discord.gg/Ca5qS5jbgV) ou par e-mail à l'adresse [support@venocix.de](mailto:support@venocix.de).",
     "cta-title": "Intéressé par Venocix ?",
     "cta-btn": "Commencer !"
+  },
+  "alertTechnicalIssues": {
+    "title": "Problèmes techniques",
+    "description": "Nous rencontrons actuellement des problèmes techniques. Veuillez noter que la connexion et les statistiques peuvent être affectées."
   }
 }
