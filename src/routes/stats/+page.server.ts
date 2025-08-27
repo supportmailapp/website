@@ -1,6 +1,7 @@
 import { building, dev } from "$app/environment";
 import dummyData from "$lib/server/dummyData.js";
 import dayjs from "dayjs";
+import ky, { TimeoutError } from "ky";
 
 type HistoryFetchResponse = {
   data: IHistoryStats[];
@@ -69,11 +70,11 @@ export async function load({ platform, url }) {
   }
 
   try {
-    const fetchRes = await fetch(fetchUrl, {
-      method: "GET",
+    const fetchRes = await ky.get<HistoryFetchResponse>(fetchUrl, {
       headers: {
         Authorization: `Bearer ${platform.env.SUPPORTMAIL_API_KEY}`,
       },
+      timeout: 7000,
     });
 
     if (!fetchRes.ok) {
@@ -94,10 +95,16 @@ export async function load({ platform, url }) {
     console.log("Fetched stats history from API", _data);
     result = _data.data;
   } catch (err) {
-    metadata = { message: "Unknown Error fetching stats history from API", status: "unknown" };
-    console.warn(metadata);
-    console.error(err);
-    result = [];
+    if (err instanceof TimeoutError) {
+      metadata = { message: "Request timed out", status: "timeout" };
+      console.warn(metadata);
+      result = [];
+    } else {
+      metadata = { message: "Unknown Error fetching stats history from API", status: "unknown" };
+      console.warn(metadata);
+      console.error(err);
+      result = [];
+    }
   }
 
   return {

@@ -7,12 +7,12 @@
 
   let showLoading = $state(false);
 
-  onMount(() => {
-    const nextPath = page.url.searchParams.get("next");
-    if (nextPath?.startsWith("/m/")) {
-      goto(nextPath, { replaceState: true });
-    }
-  });
+  // onMount(() => {
+  //   const nextPath = page.url.searchParams.get("next");
+  //   if (nextPath?.startsWith("/app/")) {
+  //     goto(nextPath, { replaceState: true });
+  //   }
+  // });
 </script>
 
 <form
@@ -21,7 +21,7 @@
   method="POST"
   use:enhance={() => {
     const nextHref = page.url.searchParams.get("next");
-    if (nextHref?.startsWith("/m/")) {
+    if (nextHref?.startsWith("/app/")) {
       localStorage.setItem("urlAfterLogin", nextHref);
     }
 

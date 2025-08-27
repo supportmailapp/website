@@ -73,9 +73,7 @@ class SessionManager {
     const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
 
     const encryptedAccessToken = encrypt(data.tokens.accessToken, key, iv);
-    const encryptedRefreshToken = data.tokens.refreshToken
-      ? encrypt(data.tokens.refreshToken, key, iv)
-      : null;
+    const encryptedRefreshToken = data.tokens.refreshToken ? encrypt(data.tokens.refreshToken, key, iv) : null;
 
     const exists = await UserToken.exists({ userId: data.userId });
     if (exists) {

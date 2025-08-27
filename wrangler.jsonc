@@ -6,7 +6,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "supportmail-homepage",
   "main": ".svelte-kit/cloudflare/_worker.js",
-  "compatibility_date": "2025-06-27",
+  "compatibility_date": "2025-06-17",
   "assets": {
     "binding": "ASSETS",
     "directory": ".svelte-kit/cloudflare"
@@ -28,24 +28,12 @@
     "PUBLIC_botPermissions": "1635040881911",
     "PUBLIC_DashboardUrl": "/coming-soon",
     "PUBLIC_githubOrga": "https://github.com/supportmailapp",
-    "PUBLIC_legalHost": "https://legal.supportmail.dev"
+    "PUBLIC_legalHost": "https://legal.supportmail.dev",
   },
-  "env": {
-    "dev": {
-      "vars": {
-        "ClientApiOrigin": "https://client-api-dev.supportmail.dev",
-        "PUBLIC_ClientId": "1082707872565182614",
-        "PUBLIC_botPermissions": "1635040881911",
-        "PUBLIC_DashboardUrl": "/coming-soon",
-        "PUBLIC_githubOrga": "https://github.com/supportmailapp",
-        "PUBLIC_legalHost": "https://legal.supportmail.dev"
-      },
-      "kv_namespaces": [
-        {
-          "id": "4f76903e4aee4f959763fa286b58c194",
-          "binding": "sm-website-cache",
-        }
-      ],
-    }
-  }
+  "dev": {
+    "port": 6060,
+    "host": "localhost",
+    "local_protocol": "http",
+  },
+  "keep_vars": true,
 }

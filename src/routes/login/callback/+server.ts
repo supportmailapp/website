@@ -1,3 +1,4 @@
+import { DB_ENCRYPTION_IV, DB_ENCRYPTION_KEY } from "$env/static/private";
 import { redirectToLoginWithError } from "$lib";
 import { urls } from "$lib/constants.js";
 import { SessionManager } from "$lib/server/auth";
@@ -71,13 +72,8 @@ export async function GET({ url, cookies, platform }) {
 
   const user = userRes.data!;
 
-  const key = platform?.env.DB_ENCRYPTION_KEY;
-  const iv = platform?.env.DB_ENCRYPTION_IV;
-
-  if (!key || !iv) {
-    console.error("Missing DB encryption key or IV in environment variables");
-    return redirectToLoginWithError("Configuration error. Please try again later.");
-  }
+  const key = DB_ENCRYPTION_KEY;
+  const iv = DB_ENCRYPTION_IV;
 
   // Create JWT session cookie
   const sessionToken = await SessionManager.createSession(

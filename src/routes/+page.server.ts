@@ -1,8 +1,9 @@
 import { building } from "$app/environment";
+import ky, { TimeoutError } from "ky";
 
 const FALLBACK_STATS: StatsResponse = {
-  guilds: 660,
-  users: 216_414,
+  guilds: 725,
+  users: 226_414,
   tickets: 2_271,
   fallback: true,
 };
@@ -60,12 +61,13 @@ export async function load({ platform, cookies }) {
     result = FALLBACK_STATS;
     metadata = { message: "App is building or no API key provided, using fallback stats", status: "fallback" };
   } else {
-    result = await fetch(ClientAPIOrigin + "/stats/current", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${platform.env.SUPPORTMAIL_API_KEY}`,
-      },
-    })
+    result = await ky
+      .get<StatsResponse>(ClientAPIOrigin + "/stats/current", {
+        headers: {
+          Authorization: `Bearer ${platform.env.SUPPORTMAIL_API_KEY}`,
+        },
+        timeout: 7000,
+      })
       .then(async (res) => {
         if (!res.ok) {
           metadata = {
@@ -88,6 +90,11 @@ export async function load({ platform, cookies }) {
         };
       })
       .catch((err) => {
+        if (err instanceof TimeoutError) {
+          metadata = { message: "Request timed out", status: "timeout" };
+          console.warn(metadata);
+          return { ...FALLBACK_STATS };
+        }
         metadata = { message: "Unknown Error fetching stats from API", status: "unknown" };
         console.warn(metadata, err);
         return { ...FALLBACK_STATS };

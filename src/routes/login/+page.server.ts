@@ -1,19 +1,23 @@
-import { env } from "$env/dynamic/private";
 import { urls } from "$lib/constants.js";
 import { redirect } from "@sveltejs/kit";
 
-export async function load({ locals }) {
-  const { user } = await locals.getSafeSession();
-  if (user) {
-    return redirect(302, "/");
-  }
-}
+// export async function load({ locals, url }) {
+//   const { user } = await locals.getSafeSession();
+//   if (user) {
+//     const nextUrl = url.searchParams.get("next");
+//     if (nextUrl && nextUrl.startsWith("/")) {
+//       return redirect(302, nextUrl);
+//     }
+//     return redirect(302, "/login/success");
+//   }
+//   return {};
+// }
 
 export const actions = {
-  login: async ({ cookies, url }) => {
+  login: async ({ cookies, platform }) => {
     const state = crypto.randomUUID();
 
-    const loginUrl = urls.botAuth(url.origin, { state });
+    const loginUrl = urls.botAuth("https://client-api.supportmail.dev", { state });
 
     cookies.set("oauth_state", state, {
       path: "/",

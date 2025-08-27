@@ -1,3 +1,4 @@
+import { BOT_TOKEN, DB_ENCRYPTION_IV, DB_ENCRYPTION_KEY, mongoUri, OWNER_ID } from "$env/static/private";
 import { makeCacheKey, redirectToLoginWithError } from "$lib";
 import { paraglideMiddleware } from "$lib/paraglide/server";
 import { SessionManager } from "$lib/server/auth";
@@ -7,19 +8,9 @@ import { error, type Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 import { UserRole } from "supportmail-types";
 
-const dbHandle: Handle = async ({ event, resolve }) => {
-  const uri = event.platform?.env.mongoUri;
-  if (!uri) {
-    console.error("Missing mongoUri in environment variables");
-    error(500, {
-      message: "Configuration error. Please try again later.",
-      status: 500,
-      route: event.url.pathname,
-    });
-  }
-  await dbConnect(uri);
-  return resolve(event);
-};
+export async function init() {
+  await dbConnect(mongoUri);
+}
 
 const paraglideHandle: Handle = async ({ event, resolve }) =>
   paraglideMiddleware(event.request, function resolveLocalized({ request: localizedRequest, locale }) {
@@ -39,150 +30,134 @@ const devToolsHandle: Handle = async ({ event, resolve }) => {
   return resolve(event);
 };
 
-const baseAuth: Handle = async function ({ event, resolve }) {
-  event.locals.getSafeSession = async () => {
-    // Get session token from cookie or Authorization header
-    const cookieToken = event.cookies.get("session");
-    const authHeader = event.request.headers.get("Authorization");
-    const headerToken = authHeader?.startsWith("Bearer ") ? authHeader.slice(7) : null;
+// const baseAuth: Handle = async function ({ event, resolve }) {
+//   event.locals.getSafeSession = async () => {
+//     // Get session token from cookie or Authorization header
+//     const cookieToken = event.cookies.get("session");
+//     const authHeader = event.request.headers.get("Authorization");
+//     const headerToken = authHeader?.startsWith("Bearer ") ? authHeader.slice(7) : null;
 
-    const sessionToken = cookieToken || headerToken;
-    if (!sessionToken) {
-      return { user: null, token: null, error: "notfound" };
-    }
+//     const sessionToken = cookieToken || headerToken;
+//     if (!sessionToken) {
+//       return { user: null, token: null, error: "notfound" };
+//     }
 
-    // Check cache first
-    const cached = await event.platform?.env["sm-website-cache"].get<SafeSessionResult>(
-      makeCacheKey("sessiontoken", sessionToken),
-      "json",
-    );
-    if (cached) {
-      return cached;
-    }
+//     // Check cache first
+//     const cached = await event.platform?.env["sm-website-cache"].get<SafeSessionResult>(
+//       makeCacheKey("sessiontoken", sessionToken),
+//       "json",
+//     );
+//     if (cached) {
+//       return cached;
+//     }
 
-    const key = event.platform?.env.DB_ENCRYPTION_KEY;
-    const iv = event.platform?.env.DB_ENCRYPTION_IV;
+//     const key = DB_ENCRYPTION_KEY;
+//     const iv = DB_ENCRYPTION_IV;
 
-    if (!key || !iv) {
-      console.error("Missing DB encryption key or IV in environment variables");
-      return { user: null, token: null, error: "config" };
-    }
+//     try {
+//       // Find session in database
+//       const tokenResult = await SessionManager.getUserTokenBySession(sessionToken, key, iv);
 
-    try {
-      // Find session in database
-      const tokenResult = await SessionManager.getUserTokenBySession(sessionToken, key, iv);
+//       if (tokenResult.isExpired()) {
+//         const result: SafeSessionResult = { error: "expired", token: tokenResult.token, user: null };
+//         await event.platform?.env["sm-website-cache"].put(makeCacheKey("sessiontoken", sessionToken), JSON.stringify(result), {
+//           expirationTtl: 300,
+//         });
+//         return result;
+//       } else if (!tokenResult.isFound()) {
+//         return { user: null, token: null, error: "notfound" };
+//       }
 
-      if (tokenResult.isExpired()) {
-        const result: SafeSessionResult = { error: "expired", token: tokenResult.token, user: null };
-        await event.platform?.env["sm-website-cache"].put(makeCacheKey("sessiontoken", sessionToken), JSON.stringify(result), {
-          expirationTtl: 300,
-        });
-        return result;
-      } else if (!tokenResult.isFound()) {
-        return { user: null, token: null, error: "notfound" };
-      }
+//       const { token } = tokenResult;
 
-      const { token } = tokenResult;
+//       // Find user by session's userId
+//       const userRes = await new DiscordUserAPI(token.accessToken).getCurrentUser();
+//       if (!userRes.isSuccess()) {
+//         console.log(userRes);
+//         if (userRes.status === null && (userRes.error as any).code === "ENOTFOUND") {
+//           return { user: null, token: null, error: "network" };
+//         }
+//         return { user: null, token: null, error: "other" };
+//       }
 
-      // Find user by session's userId
-      const userRes = await new DiscordUserAPI(token.accessToken).getCurrentUser();
-      if (!userRes.isSuccess()) {
-        console.log(userRes);
-        if (userRes.status === null && (userRes.error as any).code === "ENOTFOUND") {
-          return { user: null, token: null, error: "network" };
-        }
-        return { user: null, token: null, error: "other" };
-      }
+//       const result: SafeSessionResult = { user: userRes.data, token: tokenResult.token };
+//       // Cache successful results
+//       await event.platform?.env["sm-website-cache"].put(makeCacheKey("sessiontoken", sessionToken), JSON.stringify(result), {
+//         expirationTtl: 300,
+//       });
+//       return result;
+//     } catch (error) {
+//       console.error("Session validation error:", error);
+//       return { user: null, token: null, error: "other" };
+//     }
+//   };
 
-      const result: SafeSessionResult = { user: userRes.data, token: tokenResult.token };
-      // Cache successful results
-      await event.platform?.env["sm-website-cache"].put(makeCacheKey("sessiontoken", sessionToken), JSON.stringify(result), {
-        expirationTtl: 300,
-      });
-      return result;
-    } catch (error) {
-      console.error("Session validation error:", error);
-      return { user: null, token: null, error: "other" };
-    }
-  };
+//   if (!event.url.pathname.startsWith("/app") && !event.url.pathname.startsWith("/login")) return resolve(event); // Skip for non-moderation and login routes
 
-  if (!event.url.pathname.startsWith("/m") && !event.url.pathname.startsWith("/login")) return resolve(event); // Skip for non-moderation and login routes
+//   event.locals.discordRest = new DiscordBotAPI(BOT_TOKEN);
 
-  const botToken = event.platform?.env.BOT_TOKEN;
-  if (!botToken) {
-    console.error("Missing BOT_TOKEN in environment variables");
-    return redirectToLoginWithError("Configuration error. Please try again later.");
-  }
+//   event.locals.isAuthenticated = () => Boolean(event.locals.user && event.locals.token);
 
-  event.locals.discordRest = new DiscordBotAPI(botToken);
+//   // Consolidate: Get session data immediately instead of in separate handler
+//   const sessionData = await event.locals.getSafeSession();
+//   event.locals.user = sessionData.user;
+//   event.locals.token = sessionData.token;
 
-  event.locals.isAuthenticated = () => Boolean(event.locals.user && event.locals.token);
+//   return resolve(event);
+// };
 
-  // Consolidate: Get session data immediately instead of in separate handler
-  const sessionData = await event.locals.getSafeSession();
-  event.locals.user = sessionData.user;
-  event.locals.token = sessionData.token;
+// const moderationHandle: Handle = async ({ event, resolve }) => {
+//   if (!event.url.pathname.startsWith("/app")) return resolve(event); // Skip for non-moderation routes
 
-  return resolve(event);
-};
+//   if (!event.locals.isAuthenticated() || !event.locals.user || !event.locals.token) {
+//     return redirectToLoginWithError("You must be logged in to access this page.");
+//   }
 
-const moderationHandle: Handle = async ({ event, resolve }) => {
-  if (!event.url.pathname.startsWith("/m")) return resolve(event); // Skip for non-moderation routes
+//   const ownerId = OWNER_ID;
 
-  if (!event.locals.isAuthenticated() || !event.locals.user || !event.locals.token) {
-    return redirectToLoginWithError("You must be logged in to access this page.");
-  }
+//   // Ensure user is not the owner, as they have special permissions
+//   if (event.locals.user.id === ownerId) {
+//     event.locals.userRoles = [UserRole.Admin];
+//     return resolve(event);
+//   }
 
-  const ownerId = event.platform?.env.OWNER_ID;
+//   const userRolesStr = await event.platform?.env["sm-website-cache"].get(
+//     makeCacheKey("userroles", event.locals.user.id),
+//     "text",
+//   );
+//   if (!userRolesStr) {
+//     const userRoles = ((await DBUser.findOne({ id: event.locals.user.id }, "roles").lean()) ??
+//       []) as CachedUserRolesStringResult;
+//     await event.platform?.env["sm-website-cache"].put(
+//       makeCacheKey("userroles", event.locals.user.id),
+//       JSON.stringify(userRoles),
+//       { expirationTtl: 900 }, // Cache for 15 minutes
+//     );
 
-  if (!ownerId) {
-    console.error("Missing OWNER_ID in environment variables");
-    return redirectToLoginWithError("Configuration error. Please try again later.");
-  }
+//     event.locals.userRoles = userRoles;
+//   } else {
+//     event.locals.userRoles = JSON.parse(userRolesStr) as CachedUserRolesStringResult;
+//   }
 
-  // Ensure user is not the owner, as they have special permissions
-  if (event.locals.user.id === ownerId) {
-    event.locals.userRoles = [UserRole.Admin];
-    return resolve(event);
-  }
+//   event.locals.userRoles = event.locals.userRoles || [];
 
-  const userRolesStr = await event.platform?.env["sm-website-cache"].get(
-    makeCacheKey("userroles", event.locals.user.id),
-    "text",
-  );
-  if (!userRolesStr) {
-    const userRoles = ((await DBUser.findOne({ id: event.locals.user.id }, "roles").lean()) ??
-      []) as CachedUserRolesStringResult;
-    await event.platform?.env["sm-website-cache"].put(
-      makeCacheKey("userroles", event.locals.user.id),
-      JSON.stringify(userRoles),
-      { expirationTtl: 900 }, // Cache for 15 minutes
-    );
+//   // check routes for permissions
+//   const route = event.url.pathname;
+//   if (
+//     (route.startsWith("/app/admin") && !hasUserRole(event.locals.userRoles, UserRole.Admin)) ||
+//     (route.startsWith("/app/appod") && !hasUserRole(event.locals.userRoles, UserRole.Moderator))
+//   ) {
+//     error(403, {
+//       message: "You do not have permission to access this page.",
+//       status: 403,
+//       route,
+//     });
+//   }
 
-    event.locals.userRoles = userRoles;
-  } else {
-    event.locals.userRoles = JSON.parse(userRolesStr) as CachedUserRolesStringResult;
-  }
+//   return resolve(event);
+// };
 
-  event.locals.userRoles = event.locals.userRoles || [];
-
-  // check routes for permissions
-  const route = event.url.pathname;
-  if (
-    (route.startsWith("/m/admin") && !hasUserRole(event.locals.userRoles, UserRole.Admin)) ||
-    (route.startsWith("/m/mod") && !hasUserRole(event.locals.userRoles, UserRole.Moderator))
-  ) {
-    error(403, {
-      message: "You do not have permission to access this page.",
-      status: 403,
-      route,
-    });
-  }
-
-  return resolve(event);
-};
-
-export const handle = sequence(dbHandle, paraglideHandle, devToolsHandle, baseAuth, moderationHandle);
+export const handle = sequence(paraglideHandle, devToolsHandle);
 
 export async function handleError({ error, status, event, message }) {
   if (status !== 404) console.error(`Error ${status}: ${message}`, error);

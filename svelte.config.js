@@ -10,10 +10,10 @@ const config = {
       config: undefined,
       fallback: "plaintext",
       routes: { include: ["/*"], exclude: ["<all>"] },
-      platformProxy: { environment: "dev" }
-    })
+      platformProxy: { environment: "dev" },
+    }),
   },
-  extensions: [".svelte", ".svx"]
+  extensions: [".svelte", ".svx"],
 };
 
 export default config;

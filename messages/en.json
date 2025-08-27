@@ -24,7 +24,10 @@
     "licenses": "Licenses",
     "about": "About",
     "venocix": "Venocix",
-    "statistics": "Statistics"
+    "statistics": "Statistics",
+    "appeal": "Appeal",
+    "report": "Report",
+    "logout": "Logout"
   },
   "footer": {
     "rightsReserved": "SupportMail - All rights reserved.",
