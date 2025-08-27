@@ -8,9 +8,9 @@ import { error, type Handle } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 import { UserRole } from "supportmail-types";
 
-export async function init() {
-  await dbConnect(mongoUri);
-}
+// export async function init() {
+//   await dbConnect(mongoUri);
+// }
 
 const paraglideHandle: Handle = async ({ event, resolve }) =>
   paraglideMiddleware(event.request, function resolveLocalized({ request: localizedRequest, locale }) {
