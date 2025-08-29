@@ -28,7 +28,7 @@ export const urls = {
     } else {
       searchP.set("scope", "identify guilds guilds.members.read");
       searchP.set("response_type", "code");
-      searchP.set("redirect_uri", origin + "/login/callback");
+      searchP.set("redirect_uri", origin + "/discord/callback");
       searchP.set("prompt", "true");
     }
     if (state) searchP.set("state", state);
