@@ -4,9 +4,9 @@ export const actions = {
   login: async ({ cookies }) => {
     const state = crypto.randomUUID();
 
-    const loginUrl = urls.botAuth("https://client-api.supportmail.dev");
+    const loginUrl = urls.botAuth("https://client-api.supportmail.dev", { state });
 
-    cookies.set("oauth_state", state, {
+    cookies.set("state", state, {
       path: "/",
       sameSite: "lax",
     });
