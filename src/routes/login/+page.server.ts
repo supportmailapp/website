@@ -1,8 +1,7 @@
 import { urls } from "$lib/constants.js";
-import { redirect } from "@sveltejs/kit";
 
 export const actions = {
-  login: async ({ cookies, platform }) => {
+  login: async ({ cookies }) => {
     const state = crypto.randomUUID();
 
     const loginUrl = urls.botAuth("https://client-api.supportmail.dev", { state });
