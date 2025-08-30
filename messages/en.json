@@ -217,7 +217,7 @@
     "loginDescription": "This login is used to determine which servers you share with the bot, so that you can use the bot. Additionally, it allows you to submit reports and appeals on this website.",
     "loginSuccess": "Login successful!",
     "loginSuccessDescription": "You can now close this tab and return to Discord.",
-    "stayLoggedIn": "Stay logged in"
+    "autoLoginNextTime": "Automatically log in next time"
   },
   "venocix": {
     "title": "Our Hosting Partner - Venocix",

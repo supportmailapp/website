@@ -217,7 +217,7 @@
     "loginDescription": "Das ist nicht für ein Dashboard, sondern damit die gemeinsamen Server zwischen dir und dem Bot bestimmt werden können, was notwendig für die Nutzung ist.",
     "loginSuccess": "Login erfolgreich!",
     "loginSuccessDescription": "Du kannst jetzt diesen Tab schließen und zu Discord zurückkehren.",
-    "stayLoggedIn": "Angemeldet bleiben"
+    "autoLoginNextTime": "Automatisch beim nächsten Mal anmelden"
   },
   "venocix": {
     "title": "Unser Hosting-Partner - Venocix",

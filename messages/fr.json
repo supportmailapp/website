@@ -217,7 +217,7 @@
     "loginDescription": "Cette connexion sert à déterminer les serveurs que vous partagez avec le bot, afin que vous puissiez utiliser ce dernier. Elle vous permet également de soumettre des rapports et des recours sur ce site web.",
     "loginSuccess": "Connexion réussie !",
     "loginSuccessDescription": "Vous pouvez maintenant fermer cet onglet et retourner sur Discord.",
-    "stayLoggedIn": "Rester connecté"
+    "autoLoginNextTime": "Se connecter automatiquement la prochaine fois"
   },
   "venocix": {
     "title": "Notre partenaire d'hébergement - Venocix",
