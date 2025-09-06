@@ -1,9 +1,9 @@
 <script lang="ts">
   import { PUBLIC_ClientId, PUBLIC_DashboardUrl, PUBLIC_githubOrga } from "$env/static/public";
-  import LinkArrow from "./assets/LinkArrow.svelte";
-  import { legalLinks } from "./constants";
-  import { m } from "./paraglide/messages";
-  import { localizeHref } from "./paraglide/runtime";
+  import LinkArrow from "../assets/LinkArrow.svelte";
+  import { legalLinks } from "../constants";
+  import { m } from "../paraglide/messages";
+  import { localizeHref } from "../paraglide/runtime";
 
   const footerContent = $state<{ title: string; links: string[][] }[]>([
     {

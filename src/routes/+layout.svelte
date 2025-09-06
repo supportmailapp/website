@@ -2,11 +2,11 @@
   import { fade } from "svelte/transition";
   import { expoIn, expoOut } from "svelte/easing";
   import { page } from "$app/state";
-  import Footer from "$lib/Footer.svelte";
-  import Navigation from "$lib/Navigation.svelte";
+  import Footer from "$lib/components/Footer.svelte";
+  import Navigation from "$lib/components/Navigation.svelte";
   import "../app.css";
-  import { getLocale, locales, localizeHref } from "$lib/paraglide/runtime";
-  import Head from "$lib/Head.svelte";
+  import { deLocalizeHref, getLocale, locales, localizeHref } from "$lib/paraglide/runtime";
+  import Head from "$lib/components/Head.svelte";
 
   let { children } = $props();
 </script>
@@ -19,15 +19,13 @@
 />
 
 <div class="bg-base-100 flex min-h-screen flex-col">
-  <Navigation />
+  <Navigation mode={deLocalizeHref(page.url.pathname).startsWith("/app") ? "appNavigation" : "default"} />
 
   {#key page.url.pathname}
     <div class="relative flex-grow">
       <!-- Background grid pattern -->
       <div class="pointer-events-none absolute inset-0 opacity-70">
-        <div
-          class="h-full w-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0iY3VycmVudENvbG9yIj48Y2lyY2xlIGN4PSIxIiBjeT0iMSIgcj0iMSIvPjwvZz48L3N2Zz4=')] bg-repeat"
-        ></div>
+        <div class="via-primary/20 to-accent/20 h-full w-full bg-gradient-to-br from-gray-950/20 bg-repeat"></div>
       </div>
 
       <main

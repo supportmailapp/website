@@ -2,41 +2,33 @@
   import { enhance } from "$app/forms";
   import { goto } from "$app/navigation";
   import { page } from "$app/state";
+  import { urls } from "$lib/constants";
   import { m } from "$lib/paraglide/messages";
   import { onMount } from "svelte";
 
   let showLoading = $state(false);
 
-  // onMount(() => {
-  //   const nextPath = page.url.searchParams.get("next");
-  //   if (nextPath?.startsWith("/app/")) {
-  //     goto(nextPath, { replaceState: true });
-  //   }
-  // });
+  onMount(() => {
+    const nextPath = page.url.searchParams.get("next");
+    if (nextPath?.startsWith("/app/")) {
+      goto(nextPath, { replaceState: true });
+    }
+  });
 </script>
 
 <form
   class="grid place-items-center gap-5"
   action="?/login"
   method="POST"
-  use:enhance={() => {
+  onsubmit={(e) => {
+    e.preventDefault();
     const nextHref = page.url.searchParams.get("next");
     if (nextHref?.startsWith("/app/")) {
       localStorage.setItem("urlAfterLogin", nextHref);
     }
 
     showLoading = true;
-
-    return async ({ update, result }) => {
-      console.log("Form submitted", result);
-      await update();
-      if (result.type === "success" && result.data) {
-        open(result.data.url as string, "_self");
-      } else {
-        console.error("Error during login");
-      }
-      showLoading = false;
-    };
+    window.open(urls.login(), "_self");
   }}
 >
   <button type="submit" class="btn btn-primary btn-soft w-full max-w-xs" disabled={showLoading}>

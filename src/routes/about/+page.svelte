@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getMessage, markdownToHtml } from "$lib";
-  import Head from "$lib/Head.svelte";
+  import Head from "$lib/components/Head.svelte";
   import { m } from "$lib/paraglide/messages";
 
   const features = $state([1, 2, 3, 4, 5, 6].map((i) => getMessage(`about.features-${i}`)()));

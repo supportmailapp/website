@@ -1,6 +1,6 @@
 <script lang="ts">
   import { markdownToHtml } from "$lib";
-  import Head from "$lib/Head.svelte";
+  import Head from "$lib/components/Head.svelte";
   import { m } from "$lib/paraglide/messages";
 
   function parseMultipleLinesToHtml(input: string): string {

@@ -18,23 +18,22 @@ declare global {
     }
 
     interface Locals {
-      // getSafeSession: () => Promise<SafeSessionResult>;
+      getSafeSession: () => Promise<SafeSessionResult>;
       /**
        * @returns Whether the user is authenticated.
        */
-      // isAuthenticated: () => boolean;
+      isAuthenticated: () => boolean;
       /**
        * @returns Whether the user is an admin.
        */
-      // isAdmin?: () => Promise<boolean>;
-      // user: APIUser | null;
-      // token: FlatUserToken | null;
-      // discordRest: DiscordBotAPI;
+      isAdmin?: () => Promise<boolean>;
+      user: APIUser | null;
+      token: FlatUserToken | null;
+      discordRest: DiscordBotAPI;
       /**
        * User API Client. Given always, if `locals.user` and `locals.token` is set.
        */
-      // discordUserRest: DiscordUserAPI | null;
-      // userRoles: UserRole[] | null;
+      discordUserRest: DiscordUserAPI | null;
     }
 
     interface PageData {

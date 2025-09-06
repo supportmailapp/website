@@ -3,7 +3,7 @@
   import { formatNumber } from "$lib";
   import ModMailIcon from "$lib/assets/ModMailIcon.svelte";
   import ReportsIcon from "$lib/assets/ReportsIcon.svelte";
-  import Head from "$lib/Head.svelte";
+  import Head from "$lib/components/Head.svelte";
   import { m } from "$lib/paraglide/messages";
   import { getLocale, localizeHref } from "$lib/paraglide/runtime";
   import { blur, slide } from "svelte/transition";

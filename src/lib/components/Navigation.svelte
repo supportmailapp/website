@@ -1,8 +1,7 @@
 <script lang="ts">
-  import { page } from "$app/state";
   import { PUBLIC_DashboardUrl } from "$env/static/public";
   import { m } from "$lib/paraglide/messages";
-  import { deLocalizeHref, getLocale, locales, localizeHref, setLocale } from "$lib/paraglide/runtime";
+  import { getLocale, locales, localizeHref, setLocale } from "$lib/paraglide/runtime";
   import { slide } from "svelte/transition";
 
   let isMenuOpen = $state(false);
@@ -11,9 +10,6 @@
     de: "Deutsch",
     fr: "Français",
   };
-  let isApp = $derived(deLocalizeHref(page.url.pathname).startsWith("/app"));
-
-  $inspect("isApp", isApp);
 
   // Toggle mobile menu
   const toggleMenu = () => {
@@ -44,6 +40,34 @@
     )
       toggleMenu();
   };
+
+  interface Props {
+    mode?: "default" | "appNavigation";
+  }
+  let { mode = "default" }: Props = $props();
+
+  // Define nav items based on mode
+  let primaryNav = $derived(
+    mode === "default"
+      ? [
+          { href: localizeHref(PUBLIC_DashboardUrl), label: m["nav.dashboard"](), class: "nav-button" },
+          { href: localizeHref("/premium"), label: m["nav.premium"](), class: "nav-button nav-button-premium" },
+        ]
+      : [
+          { href: localizeHref("/mod/appeals"), label: "Appeal", class: "nav-button" },
+          { href: localizeHref("/mod/reports"), label: "Report", class: "nav-button" },
+        ],
+  );
+
+  let secondaryNav = $derived(
+    mode === "default"
+      ? [
+          { href: "https://docs.supportmail.dev/", label: m["nav.docs"](), target: "_blank", class: "nav-link" },
+          { href: localizeHref("/venocix"), label: m["nav.venocix"](), class: "nav-link venocix-hover" },
+          { href: localizeHref("/about"), label: m["nav.about"](), class: "nav-link" },
+        ]
+      : [{ href: localizeHref("/logout"), label: m["nav.logout"](), class: "nav-link" }],
+  );
 </script>
 
 <svelte:document onclick={handleClickOutside} />
@@ -55,76 +79,66 @@
       <!-- Logo -->
       <div class="flex items-center transition-opacity duration-100 hover:opacity-70">
         <a href={localizeHref("/")} class="flex items-center gap-2 transition-colors duration-150 hover:text-white">
-          <div class="avatar size-14">
+          <div class="avatar size-12">
             <img src="/assets/logo.png" alt="SupportMail Logo" class="mask mask-circle" />
           </div>
-          <span class="text-3xl font-semibold" class:hidden={isApp}>SupportMail</span>
+          <span class="text-2xl font-semibold">SupportMail</span>
         </a>
       </div>
 
       <!-- Desktop Navigation -->
-      {#if !isApp}
-        <nav class="hidden items-center gap-6 backdrop-blur-md lg:flex">
-          <!-- Primary Links (Buttons) -->
-          <div class="flex items-center gap-3">
-            <a href="{localizeHref(PUBLIC_DashboardUrl)}/" class="nav-button">{m["nav.dashboard"]()}</a>
-            <a href={localizeHref("/premium")} class="nav-button nav-button-premium">{m["nav.premium"]()}</a>
-          </div>
+      <nav class="hidden items-center gap-6 backdrop-blur-md lg:flex">
+        <!-- Primary Links (Buttons) -->
+        <div class="flex items-center gap-3">
+          {#each primaryNav as item}
+            <a href={item.href} class={item.class}>{item.label}</a>
+          {/each}
+        </div>
 
-          <!-- Separator -->
-          <div class="bg-secondary/40 h-6 w-px"></div>
+        <!-- Separator -->
+        <div class="bg-secondary/40 h-6 w-px"></div>
 
-          <!-- Secondary Links (Text Links) -->
-          <div class="flex items-center gap-4">
-            <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link">{m["nav.docs"]()}</a>
-            <a href={localizeHref("/venocix")} class="nav-link venocix-hover">{m["nav.venocix"]()}</a>
-            <a href={localizeHref("/about")} class="nav-link">{m["nav.about"]()}</a>
-          </div>
+        <!-- Secondary Links (Text Links) -->
+        <div class="flex items-center gap-4">
+          {#each secondaryNav as item}
+            <a href={item.href} target={item.target || ""} class={item.class}>{item.label}</a>
+          {/each}
+        </div>
 
-          <!-- Separator -->
-          <div class="bg-base-300 h-6 w-px"></div>
+        <!-- Separator -->
+        <div class="bg-base-300 h-6 w-px"></div>
 
-          <!-- Language Selector Dropdown -->
-          <div class="dropdown dropdown-end dropdown-bottom">
-            <div tabindex="0" role="button" class="btn btn-dash btn-sm gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-                />
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-            <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 mt-2 w-40 gap-1 p-2 shadow-sm">
-              {#each locales as locale}
-                <li>
-                  <button
-                    type="submit"
-                    class="btn btn-sm btn-soft justify-center {getLocale() == locale ? 'btn-secondary btn-disabled' : ''}"
-                    onclick={() => setLocale(locale)}
-                  >
-                    {languages[locale]}
-                  </button>
-                </li>
-              {/each}
-            </ul>
+        <!-- Language Selector Dropdown -->
+        <div class="dropdown dropdown-end dropdown-bottom">
+          <div tabindex="0" role="button" class="btn btn-dash btn-sm gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+              />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
           </div>
-        </nav>
-      {:else}
-        <!-- App Navigation (Appeal, Report, Logout) -->
-        <nav class="hidden items-center gap-6 backdrop-blur-md lg:flex">
-          <div class="flex items-center gap-3">
-            <a href={localizeHref("/app/appeal")} class="nav-button">{m["nav.appeal"]()}</a>
-            <a href={localizeHref("/app/report")} class="nav-button">{m["nav.report"]()}</a>
-            <a href={localizeHref("/app/logout")} class="nav-button">{m["nav.logout"]()}</a>
-          </div>
-        </nav>
-      {/if}
+          <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 mt-2 w-40 gap-1 p-2 shadow-sm">
+            {#each locales as locale}
+              <li>
+                <button
+                  type="submit"
+                  class="btn btn-sm btn-soft justify-center {getLocale() == locale ? 'btn-secondary btn-disabled' : ''}"
+                  onclick={() => setLocale(locale)}
+                >
+                  {languages[locale]}
+                </button>
+              </li>
+            {/each}
+          </ul>
+        </div>
+      </nav>
 
       <!-- Mobile Menu Button -->
       <!-- svelte-ignore a11y_consider_explicit_label -->
@@ -142,21 +156,16 @@
       <div class="container mx-auto flex flex-col gap-4 px-4 py-4 text-center">
         <!-- Primary Links -->
         <div class="border-base-300 flex flex-col gap-3 border-b pb-2">
-          <a href="{localizeHref(PUBLIC_DashboardUrl)}/" class="nav-button" onclick={toggleMenu}>{m["nav.dashboard"]()}</a>
-          <a href={localizeHref("/premium")} class="nav-button nav-button-premium" onclick={toggleMenu}>{m["nav.premium"]()}</a>
+          {#each primaryNav as item}
+            <a href={item.href} class={item.class} onclick={toggleMenu}>{item.label}</a>
+          {/each}
         </div>
 
         <!-- Secondary Links -->
         <div class="border-base-300 flex flex-col gap-3 border-b pb-2">
-          <a href="https://docs.supportmail.dev/" target="_blank" class="nav-link" onclick={toggleMenu}>
-            {m["nav.docs"]()}
-          </a>
-          <a href={localizeHref("/venocix")} class="nav-link venocix-hover" onclick={toggleMenu}>
-            {m["nav.venocix"]()}
-          </a>
-          <a href={localizeHref("/about")} class="nav-link" onclick={toggleMenu}>
-            {m["nav.about"]()}
-          </a>
+          {#each secondaryNav as item}
+            <a href={item.href} target={item.target || ""} class={item.class} onclick={toggleMenu}>{item.label}</a>
+          {/each}
         </div>
 
         <!-- Language Selector -->

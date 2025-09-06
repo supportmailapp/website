@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from "$app/state";
   import { goto } from "$app/navigation";
-  import Head from "$lib/Head.svelte";
+  import Head from "$lib/components/Head.svelte";
   import { m } from "$lib/paraglide/messages";
 
   let { children } = $props();

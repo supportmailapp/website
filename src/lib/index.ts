@@ -1,5 +1,6 @@
 import { redirect as svRedirect } from "@sveltejs/kit";
 import { m } from "./paraglide/messages";
+import z from "zod";
 
 export function markdownToHtml(markdown: string, infoLink = false): string {
   if (typeof markdown !== "string") return "";
@@ -59,3 +60,17 @@ type CachingType = "sessiontoken" | "userroles";
 export function makeCacheKey(type: CachingType, ...args: string[]): string {
   return [type, ...args].join(":");
 }
+
+// Schema for appealing bans
+const appeal = z.object({
+  name: z
+    .string()
+    .min(3, { message: "Name must be at least 3 characters long." })
+    .max(100, { message: "Name must be at most 100 characters long." }),
+  description: z
+    .string()
+    .min(10, { message: "Description must be at least 10 characters long." })
+    .max(1000, { message: "Description must be at most 1000 characters long." }),
+  messageLink: z.url({ message: "Message link must be a valid URL." }).optional(),
+  captchaToken: z.string().min(1, { message: "Captcha token is required." }),
+});

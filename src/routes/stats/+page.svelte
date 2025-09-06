@@ -3,7 +3,7 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/state";
   import { getMessage } from "$lib";
-  import Head from "$lib/Head.svelte";
+  import Head from "$lib/components/Head.svelte";
   import { m } from "$lib/paraglide/messages.js";
   import Chart, { type ChartOptions } from "chart.js/auto";
   import "chartjs-adapter-dayjs-4/dist/chartjs-adapter-dayjs-4.esm";

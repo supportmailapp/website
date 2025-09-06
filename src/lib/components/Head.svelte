@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { getLocale } from "$lib/paraglide/runtime";
+
   /**
    * SEO configuration options for a web page.
    * Covers basic SEO, Open Graph, and Twitter Cards requirements.
@@ -85,7 +87,7 @@
     open_graph_image_alt?: string;
   }
 
-  const { seo_config }: { seo_config: SeoConfig } = $props();
+  let { seo_config }: { seo_config: SeoConfig } = $props();
 </script>
 
 <svelte:head>
@@ -143,5 +145,5 @@
   {/if}
 
   <!-- Language -->
-  <meta property="og:locale" content={seo_config.language ?? "en"} />
+  <meta property="og:locale" content={seo_config.language ?? getLocale()} />
 </svelte:head>

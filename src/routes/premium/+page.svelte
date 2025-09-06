@@ -2,7 +2,7 @@
   import { PUBLIC_DashboardUrl } from "$env/static/public";
   import { getMessage, markdownToHtml } from "$lib";
   import GreenCheckPlain from "$lib/assets/GreenCheckPlain.svelte";
-  import Head from "$lib/Head.svelte";
+  import Head from "$lib/components/Head.svelte";
   import { m } from "$lib/paraglide/messages";
   import { fade } from "svelte/transition";
 

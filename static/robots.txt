@@ -18,6 +18,8 @@
 
 User-agent: *
 Disallow: /api/
+Disallow: /app/
+Disallow: /report
 Allow: /
 
 Sitemap: https://supportmail.dev/sitemap.xml
