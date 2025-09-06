@@ -12,7 +12,8 @@
   }: { data: AppealData; show?: boolean; inputsComplete?: boolean } = $props();
 
   $effect(() => {
-    inputsComplete = !!data.banDate && dayjs(data.banDate).isBefore(dayjs()) && data.receivedErrorMsgs.size > 0;
+    inputsComplete =
+      !!data.banDate && dayjs(data.banDate).isBefore(dayjs()) && data.receivedErrorMsgs.size > 0 && !!data.featureUsed;
   });
 </script>
 
@@ -45,5 +46,7 @@
   <TextArea
     label="Which bot commands or features were you trying to using when banned?"
     bind:value={data.featureUsed}
+    resize="vertical"
+    class="max-h-60"
   />
 {/if}
