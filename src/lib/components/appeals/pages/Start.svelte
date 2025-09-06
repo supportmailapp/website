@@ -47,6 +47,17 @@
 
   {#if data.mode === "server"}
     <Input bind:value={data.serverName} label="Server Name" />
-    <Input bind:value={data.serverId} label="Server ID" />
+    <Input
+      bind:value={data.serverId}
+      label="Server ID"
+      validation={(v) => ({ valid: v.length === 0 || /^\d{15,23}$/.test(v), message: "Invalid Server ID" })}
+      required
+    />
+    <a
+      href="https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID#h_01HRSTXPS5FSFA0VWMY2CKGZXA"
+      class="link link-info px-4"
+    >
+      How to get your user ID
+    </a>
   {/if}
 {/if}
