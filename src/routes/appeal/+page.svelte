@@ -19,6 +19,10 @@
   }
 </script>
 
+<div class="sm-prose">
+  <h1>SupportMail Appeals</h1>
+</div>
+
 <div class="mx-auto max-w-3xl">
   <Start data={appealData} show={pageIndex === 0} bind:inputsComplete={pageCompletions[pageIndex]} />
 </div>

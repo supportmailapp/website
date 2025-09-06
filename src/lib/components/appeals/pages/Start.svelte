@@ -25,18 +25,21 @@
   const values = new SvelteSet<string>();
 
   const textContent = [
-    "# SupportMail Appeals",
-    "",
-    "Welcome to SupportMail Appeals. Here you can try to get your or your server's access to the bot back.",
+    "Welcome to SupportMail Appeals.<br>Here you can try to get your or your server's access to the bot back.",
     "All submitted data is handled according to our [Terms of Service](https://legal.supportmail.dev/terms) and [Privacy Policy](https://legal.supportmail.dev/privacy).",
   ].join("\n");
 
   function isServerIdValid(id: string) {
-    return /^\d{15,23}$/.test(id);
+    return /^\d{17,23}$/.test(id);
   }
 
   $effect(() => {
-    inputsComplete = data.mode === "user" || (data.mode === "server" && isServerIdValid(data.serverId));
+    inputsComplete =
+      data.mode === "user" ||
+      (data.mode === "server" &&
+        isServerIdValid(data.serverId) &&
+        data.serverName.length >= 2 &&
+        data.serverName.length <= 100);
   });
 </script>
 
@@ -58,15 +61,18 @@
   />
 
   {#if data.mode === "server"}
-    <Input bind:value={data.serverName} label="Server Name" />
+    <Input bind:value={data.serverName} label="Server Name" minlength={2} maxlength={100} />
     <Input
       bind:value={data.serverId}
       label="Server ID"
       validation={(v) => ({ valid: v.length === 0 || isServerIdValid(v), message: "Invalid Server ID" })}
+      minlength={17}
+      maxlength={23}
       required
     />
     <a
       href="https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID#h_01HRSTXPS5FSFA0VWMY2CKGZXA"
+      target="_blank"
       class="link link-info px-4"
     >
       How to get your user ID
