@@ -17,6 +17,9 @@ importers:
       chartjs-adapter-dayjs-4:
         specifier: ^1.0.4
         version: 1.0.4(chart.js@4.5.0)(dayjs@1.11.18)
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       dayjs:
         specifier: ^1.11.18
         version: 1.11.18
@@ -41,6 +44,9 @@ importers:
       supportmail-types:
         specifier: github:supportmailapp/global-types
         version: https://codeload.github.com/supportmailapp/global-types/tar.gz/837733087ac96112974a727a175e314aec0eb9c5
+      tailwind-merge:
+        specifier: ^3.3.1
+        version: 3.3.1
       tsc:
         specifier: ^2.0.4
         version: 2.0.4
@@ -1630,6 +1636,9 @@ packages:
     resolution: {integrity: sha512-1ld9TPZSdUS3EtYGQzisU2nhwXoIzNQcZ71IOU9fEmltaUofQnVfW5CQuhgM/zFsZ43arZXS1BRKi0MYgUV91w==}
     engines: {node: '>=18'}
 
+  tailwind-merge@3.3.1:
+    resolution: {integrity: sha512-gBXpgUm/3rp1lMZZrM/w7D8GKqshif0zAymAhbCyIt8KMe+0v9DQ7cdYLR4FHH/cKpdTXb+A/tKKU3eolfsI+g==}
+
   tailwindcss@4.1.13:
     resolution: {integrity: sha512-i+zidfmTqtwquj4hMEwdjshYYgMbOrPzb9a0M3ZgNa0JMoZeFC6bxZvO8yr8ozS6ix2SDz0+mvryPeBs2TFE+w==}
 
@@ -3092,6 +3101,8 @@ snapshots:
       locate-character: 3.0.0
       magic-string: 0.30.18
       zimmerframe: 1.1.2
+
+  tailwind-merge@3.3.1: {}
 
   tailwindcss@4.1.13: {}
 

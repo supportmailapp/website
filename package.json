@@ -43,6 +43,7 @@
     "@inlang/paraglide-js": "^2.2.0",
     "chart.js": "^4.5.0",
     "chartjs-adapter-dayjs-4": "^1.0.4",
+    "clsx": "^2.1.1",
     "dayjs": "^1.11.18",
     "discord-api-types": "^0.38.23",
     "discord.js": "^14.22.1",
@@ -51,6 +52,7 @@
     "mongoose": "^8.18.0",
     "node-cache": "^5.1.2",
     "supportmail-types": "github:supportmailapp/global-types",
+    "tailwind-merge": "^3.3.1",
     "tsc": "^2.0.4",
     "typescript": "^5.9.2",
     "zod-validation-error": "^4.0.1"
@@ -58,9 +60,9 @@
   "packageManager": "pnpm@10.15.0",
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
       "esbuild",
       "sharp",
-      "supportmail-types",
       "workerd"
     ]
   }

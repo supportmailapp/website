@@ -1,6 +1,8 @@
 import { redirect as svRedirect } from "@sveltejs/kit";
 import { m } from "./paraglide/messages";
 import z from "zod";
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function markdownToHtml(markdown: string, infoLink = false): string {
   if (typeof markdown !== "string") return "";
@@ -74,3 +76,7 @@ const appeal = z.object({
   messageLink: z.url({ message: "Message link must be a valid URL." }).optional(),
   captchaToken: z.string().min(1, { message: "Captcha token is required." }),
 });
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
