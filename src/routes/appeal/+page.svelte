@@ -18,6 +18,11 @@
   }
 </script>
 
-{#if pageIndex === 0}
-  <Start data={appealData} />
-{/if}
+<div class="mx-auto max-w-3xl">
+  <Start data={appealData} show={pageIndex === 0} />
+</div>
+
+<div class="mt-4 flex justify-center gap-4 p-4">
+  <button class="btn btn-primary" onclick={previousPage} disabled={pageIndex === 0}>Back</button>
+  <button class="btn btn-primary" onclick={nextPage} disabled={pageIndex === pageCount - 1}>Next</button>
+</div>
