@@ -44,7 +44,7 @@
 </script>
 
 {#if show}
-  <div class="sm-prose p-4">
+  <div class="sm-prose px-4">
     {@html markdownToHtml(textContent, true)}
   </div>
 
@@ -54,7 +54,6 @@
     min={1}
     max={1}
     {values}
-    showError={false}
     onValueChange={(vals) => {
       data.mode = vals.includes("user") ? "user" : "server";
     }}
