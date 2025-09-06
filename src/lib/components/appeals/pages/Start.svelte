@@ -5,7 +5,11 @@
   import Input from "../Input.svelte";
   import { markdownToHtml } from "$lib";
 
-  let { data, show = false }: { data: AppealData; show?: boolean } = $props();
+  let {
+    data,
+    show = false,
+    inputsComplete = $bindable(false),
+  }: { data: AppealData; show?: boolean; inputsComplete?: boolean } = $props();
 
   const modes = [
     {
@@ -26,6 +30,14 @@
     "Welcome to SupportMail Appeals. Here you can try to get your or your server's access to the bot back.",
     "All submitted data is handled according to our [Terms of Service](https://legal.supportmail.dev/terms) and [Privacy Policy](https://legal.supportmail.dev/privacy).",
   ].join("\n");
+
+  function isServerIdValid(id: string) {
+    return /^\d{15,23}$/.test(id);
+  }
+
+  $effect(() => {
+    inputsComplete = data.mode === "user" || (data.mode === "server" && isServerIdValid(data.serverId));
+  });
 </script>
 
 {#if show}
@@ -50,7 +62,7 @@
     <Input
       bind:value={data.serverId}
       label="Server ID"
-      validation={(v) => ({ valid: v.length === 0 || /^\d{15,23}$/.test(v), message: "Invalid Server ID" })}
+      validation={(v) => ({ valid: v.length === 0 || isServerIdValid(v), message: "Invalid Server ID" })}
       required
     />
     <a
