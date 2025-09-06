@@ -5,6 +5,7 @@
   const appealData = new AppealData();
   const pageCount = 8;
   let pageIndex = $state<number>(0);
+  const pageCompletions = $state<boolean[]>(Array(pageCount).fill(false));
 
   function nextPage() {
     if (pageIndex < pageCount - 1) {
@@ -19,10 +20,16 @@
 </script>
 
 <div class="mx-auto max-w-3xl">
-  <Start data={appealData} show={pageIndex === 0} />
+  <Start data={appealData} show={pageIndex === 0} bind:inputsComplete={pageCompletions[pageIndex]} />
 </div>
 
 <div class="mt-4 flex justify-center gap-4 p-4">
   <button class="btn btn-primary" onclick={previousPage} disabled={pageIndex === 0}>Back</button>
-  <button class="btn btn-primary" onclick={nextPage} disabled={pageIndex === pageCount - 1}>Next</button>
+  <button
+    class="btn btn-primary"
+    onclick={nextPage}
+    disabled={pageIndex === pageCount - 1 || !pageCompletions[pageIndex]}
+  >
+    Next
+  </button>
 </div>
