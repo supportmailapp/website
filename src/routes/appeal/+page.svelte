@@ -19,7 +19,7 @@
   }
 </script>
 
-<div class="sm-prose">
+<div class="sm-prose p-4">
   <h1>SupportMail Appeals</h1>
 </div>
 
