@@ -121,16 +121,12 @@
 
   .soft-success-card {
     @apply gap-2 rounded-xl p-4;
-    color: var(--color-success, var(--color-base-content)
-        /* var(--color-base-content) */
-      );
-    background-color: color-mix(in oklab,
-        var(--color-success, var(--color-base-content)
-          /* var(--color-base-content) */
-        ) 8%,
-        var(--color-base-100)
-        /* var(--color-base-100) */
-      );
+    color: var(--color-success, var(--color-base-content) /* var(--color-base-content) */);
+    background-color: color-mix(
+      in oklab,
+      var(--color-success, var(--color-base-content) /* var(--color-base-content) */) 8%,
+      var(--color-base-100) /* var(--color-base-100) */
+    );
   }
 }
 

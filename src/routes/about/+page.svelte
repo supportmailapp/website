@@ -50,7 +50,9 @@
   <section class="team-section">
     <h2>{m["about.theTeam_Title"]()}</h2>
     <div class="gap-4" style="display: grid; grid-template-columns: auto 1fr;">
-      <div class="avatar size-16 overflow-hidden rounded-full shadow-md shadow-slate-700 select-none motion-safe:animate-pulse">
+      <div
+        class="avatar size-16 overflow-hidden rounded-full shadow-md shadow-slate-700 select-none motion-safe:animate-pulse"
+      >
         <img
           src="https://cdn.discordapp.com/avatars/506893652266844162/3a65019030780dd4e610dda1f0973ffc.webp?size=512"
           alt="LukeZ Avatar"

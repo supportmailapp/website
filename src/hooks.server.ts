@@ -60,9 +60,13 @@ const baseAuth: Handle = async function ({ event, resolve }) {
 
       if (tokenResult.isExpired()) {
         const result: SafeSessionResult = { error: "expired", token: tokenResult.token, user: null };
-        await event.platform?.env["sm-website-cache"].put(makeCacheKey("sessiontoken", sessionToken), JSON.stringify(result), {
-          expirationTtl: 300,
-        });
+        await event.platform?.env["sm-website-cache"].put(
+          makeCacheKey("sessiontoken", sessionToken),
+          JSON.stringify(result),
+          {
+            expirationTtl: 300,
+          },
+        );
         return result;
       } else if (!tokenResult.isFound()) {
         return { user: null, token: null, error: "notfound" };
@@ -82,9 +86,13 @@ const baseAuth: Handle = async function ({ event, resolve }) {
 
       const result: SafeSessionResult = { user: userRes.data, token: tokenResult.token };
       // Cache successful results
-      await event.platform?.env["sm-website-cache"].put(makeCacheKey("sessiontoken", sessionToken), JSON.stringify(result), {
-        expirationTtl: 300,
-      });
+      await event.platform?.env["sm-website-cache"].put(
+        makeCacheKey("sessiontoken", sessionToken),
+        JSON.stringify(result),
+        {
+          expirationTtl: 300,
+        },
+      );
       return result;
     } catch (error) {
       console.error("Session validation error:", error);

@@ -16,7 +16,8 @@
 
   <p>
     You should only report a DM to the SupportMail team if it contains content that violates our
-    <a href="/terms" class="link link-hover">Terms of Service</a> or <a href="/privacy" class="link">Privacy Policy</a>.<br />
+    <a href="/terms" class="link link-hover">Terms of Service</a> or
+    <a href="/privacy" class="link">Privacy Policy</a>.<br />
     Examples of reportable content include:
   </p>
   <ul>
@@ -47,12 +48,12 @@
   <span class="divider divider-neutral my-2"></span>
   <h2>Why a User App?</h2>
   <p>
-    This is the easiest way for you and the team, because it's integrated directly into your Discord and we can verify the report
-    details more easily.
+    This is the easiest way for you and the team, because it's integrated directly into your Discord and we can verify
+    the report details more easily.
   </p>
   <p>
-    If you have any questions or need further assistance, please contact us on our <a href="https://server.supportmail.dev"
-      >Discord Server</a
+    If you have any questions or need further assistance, please contact us on our <a
+      href="https://server.supportmail.dev">Discord Server</a
     >.
   </p>
 </div>

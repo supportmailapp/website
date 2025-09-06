@@ -63,7 +63,9 @@
 />
 
 <!-- Hero Section -->
-<section class="hero from-base-100/90 min-h-screen bg-linear-to-b from-10% via-indigo-500/60 via-38% to-indigo-600/10 to-95%">
+<section
+  class="hero from-base-100/90 min-h-screen bg-linear-to-b from-10% via-indigo-500/60 via-38% to-indigo-600/10 to-95%"
+>
   <div class="hero-content flex-col gap-14 text-center select-none">
     <div class="max-w-lg">
       <h1 class="text-5xl font-bold">SupportMail</h1>
@@ -132,7 +134,13 @@
     <div class="stats stats-vertical md:stats-horizontal bg-base-200 w-full shadow">
       <div class="stat">
         <div class="stat-figure text-primary">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-10 w-10"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -147,7 +155,13 @@
 
       <div class="stat">
         <div class="stat-figure text-secondary">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-10 w-10"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -162,7 +176,13 @@
 
       <div class="stat">
         <div class="stat-figure text-accent">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-10 w-10"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -209,7 +229,12 @@
             <ul class="mt-4 space-y-2">
               {#each feature.benefits as benefit}
                 <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="text-success h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="text-success h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
                     <path
                       fill-rule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"

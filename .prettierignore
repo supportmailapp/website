@@ -13,3 +13,7 @@ LICENSE
 # Paraglide
 src/lib/paraglide/**
 project.inlang/**
+
+# Cloudflare
+src/worker-configuration.d.ts
+.prettierrc

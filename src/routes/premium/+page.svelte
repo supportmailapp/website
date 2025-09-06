@@ -41,7 +41,9 @@
   }}
 />
 
-<div class="via-primary/50 to-primary/90 min-h-screen bg-gradient-to-br from-transparent to-90% px-4 py-12 sm:px-6 lg:px-8">
+<div
+  class="via-primary/50 to-primary/90 min-h-screen bg-gradient-to-br from-transparent to-90% px-4 py-12 sm:px-6 lg:px-8"
+>
   <div class="mx-auto max-w-7xl">
     <div class="mb-5 flex w-full justify-center">
       <div role="alert" class="alert alert-warning alert-vertical max-w-7xl">
@@ -78,7 +80,10 @@
       <!-- Options -->
       <div class="grid w-full max-w-xs grid-cols-2 place-items-center justify-center gap-2 sm:grid-cols-3">
         <div class="flex w-full justify-end">
-          <button class="btn animate-none {isMonthly ? 'btn-primary' : ''}" onclick={() => (BillingState = BillingOptions[0])}>
+          <button
+            class="btn animate-none {isMonthly ? 'btn-primary' : ''}"
+            onclick={() => (BillingState = BillingOptions[0])}
+          >
             {m["premium.monthly"]()}
           </button>
         </div>
@@ -89,7 +94,10 @@
           onchange={() => (BillingState = BillingState === BillingOptions[0] ? BillingOptions[1] : BillingOptions[0])}
         />
         <div class="flex w-full justify-start">
-          <button class="btn animate-none {!isMonthly ? 'btn-primary' : ''}" onclick={() => (BillingState = BillingOptions[1])}>
+          <button
+            class="btn animate-none {!isMonthly ? 'btn-primary' : ''}"
+            onclick={() => (BillingState = BillingOptions[1])}
+          >
             {m["premium.yearly"]()}
           </button>
         </div>
