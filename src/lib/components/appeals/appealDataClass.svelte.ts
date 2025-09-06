@@ -4,7 +4,7 @@ export class AppealData {
   mode = $state<"user" | "server" | null>(null);
   serverName = $state<string>("");
   serverId = $state<string>("");
-  approxTime = $state<string>("");
+  banDate = $state<string>("");
   receivedErrorMsgs = new SvelteSet<string>();
   featureUsed = $state<string>("");
   /**
