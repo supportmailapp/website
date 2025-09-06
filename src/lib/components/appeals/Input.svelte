@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { ClassValue } from "clsx";
   import Fieldset from "./Fieldset.svelte";
 
   type Props = {
@@ -10,6 +9,12 @@
     value?: string;
     placeholder?: string;
     required?: boolean;
+    minlength?: number;
+    maxlength?: number;
+    validation?: (v: string) => {
+      valid: boolean;
+      message?: string;
+    };
   };
 
   let {
@@ -20,9 +25,17 @@
     value = $bindable(""),
     placeholder = "",
     required = false,
+    minlength = 0,
+    maxlength,
+    validation = () => ({ valid: true }),
   }: Props = $props();
+
+  let error = $derived(validation(value));
 </script>
 
 <Fieldset legend={label} labelAbove={descriptionAbove} labelBelow={descriptionBelow}>
-  <input {type} class="input" bind:value {placeholder} {required} />
+  <input {type} class="input" bind:value {placeholder} {required} {minlength} {maxlength} />
+  {#if !error.valid}
+    <p class="text-error text-sm">{error.message}</p>
+  {/if}
 </Fieldset>
