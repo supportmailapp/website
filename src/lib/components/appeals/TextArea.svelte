@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { ClassValue } from "clsx";
   import Fieldset from "./Fieldset.svelte";
   import { cn } from "$lib";
+  import type { ClassValue } from "clsx";
 
   type Props = {
     label?: string;
@@ -9,14 +9,25 @@
     value?: string;
     placeholder?: string;
     required?: boolean;
+    class?: ClassValue;
+    resize?: "none" | "both" | "vertical" | "horizontal";
   };
 
-  let { label, description, value = $bindable(""), placeholder = "", required = false }: Props = $props();
+  let {
+    label,
+    description,
+    value = $bindable(""),
+    placeholder = "",
+    required = false,
+    class: className,
+    resize = "vertical",
+  }: Props = $props();
 </script>
 
 <Fieldset legend={label} labelAbove={description}>
   <textarea
-    class={cn("textarea field-sizing-content min-h-[6rem] w-full resize-y rounded-xl")}
+    class={cn("textarea field-sizing-content min-h-[6rem] w-full resize-y rounded-xl", className)}
+    style:resize
     bind:value
     {placeholder}
     {required}
