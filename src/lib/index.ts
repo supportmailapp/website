@@ -29,6 +29,22 @@ export function markdownToHtml(markdown: string, infoLink = false): string {
   // Line break: \n
   html = html.replace(/\\n/g, "<br />");
 
+  // Headings: #, ##, ###
+  html = html.replace(/^### (.*)$/gm, "<h3>$1</h3>");
+  html = html.replace(/^## (.*)$/gm, "<h2>$1</h2>");
+  html = html.replace(/^# (.*)$/gm, "<h1>$1</h1>");
+
+  // Unordered lists: - item or * item
+  html = html.replace(/^\s*[-*] (.*)$/gm, "<li>$1</li>");
+  html = html.replace(/(<li>.*<\/li>)/gs, "<ul>$1</ul>");
+
+  // Ordered lists: 1. item
+  html = html.replace(/^\s*\d+\. (.*)$/gm, "<li>$1</li>");
+  html = html.replace(/(<li>.*<\/li>)/g, "<ol>$1</ol>");
+
+  // Paragraphs: wrap lines that are not already in a block element with <p> tags
+  html = html.replace(/^(?!<(h[1-6]|ul|ol|li|p|blockquote|pre|code|img|a|strong|em|u)>)(.+)$/gm, "<p>$2</p>");
+
   return html;
 }
 
