@@ -70,7 +70,7 @@
   {#each options as option}
     <button
       class={cn(
-        "btn btn-neutral min-h-11 w-fit justify-start rounded-lg text-start",
+        "btn btn-neutral h-auto min-h-9.5 w-fit justify-start rounded-lg py-1 text-start",
         values?.has(option.value) && "btn-primary",
       )}
       type="button"
