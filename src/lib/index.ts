@@ -36,7 +36,7 @@ export function markdownToHtml(markdown: string, infoLink = false): string {
 
   // Unordered lists: - item or * item
   html = html.replace(/^\s*[-*] (.*)$/gm, "<li>$1</li>");
-  html = html.replace(/(<li>.*<\/li>)/gs, "<ul>$1</ul>");
+  html = html.replace(/(<li>.*<\/li>)/g, "<ul>$1</ul>");
 
   // Ordered lists: 1. item
   html = html.replace(/^\s*\d+\. (.*)$/gm, "<li>$1</li>");
