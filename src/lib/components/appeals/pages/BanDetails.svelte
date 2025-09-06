@@ -3,6 +3,7 @@
   import type { AppealData } from "../appealDataClass.svelte";
   import DatePicker from "../DatePicker.svelte";
   import SelectGroup from "../SelectGroup.svelte";
+  import TextArea from "../TextArea.svelte";
 
   let {
     data,
@@ -39,5 +40,10 @@
     min={1}
     ordination="letter"
     values={data.receivedErrorMsgs}
+  />
+
+  <TextArea
+    label="Which bot commands or features were you trying to using when banned?"
+    bind:value={data.featureUsed}
   />
 {/if}
