@@ -49,7 +49,7 @@
       // Only add if we won't exceed maximum
       if (values.size < max) {
         values.add(option);
-      } else if (max === 1) {
+      } else if (max === 1 || values.size === 1) {
         values.clear();
         values.add(option);
       } else {
@@ -61,25 +61,32 @@
     onValueChange?.(Array.from(values.keys()));
   }
 
+  let shouldShowError = $derived(showError && !(min === 1 && max === 1));
+
   let error = $state<string>("");
 </script>
 
 <Fieldset legend={label} labelAbove={description}>
   {#each options as option}
     <button
-      class={cn("btn btn-neutral w-fit", values?.has(option.value) && "btn-primary")}
+      class={cn(
+        "btn btn-neutral min-h-11 w-fit justify-start rounded-lg text-start",
+        values?.has(option.value) && "btn-primary",
+      )}
       type="button"
       onclick={() => toggleValue(option.value)}
     >
       {#if ordination === "number"}
-        <span class="badge badge-outline mr-2 aspect-square">{options.indexOf(option) + 1}</span>
+        <span class="badge badge-outline mr-2 aspect-square rounded">{options.indexOf(option) + 1}</span>
       {:else if ordination === "letter"}
-        <span class="badge badge-outline mr-2 aspect-square">{String.fromCharCode(65 + options.indexOf(option))}</span>
+        <span class="badge badge-outline mr-2 aspect-square rounded"
+          >{String.fromCharCode(65 + options.indexOf(option))}</span
+        >
       {/if}
       {option.label}
     </button>
   {/each}
-  {#if error && showError}
+  {#if error && shouldShowError}
     <p class="text-error text-sm">{error}</p>
   {/if}
 </Fieldset>
