@@ -71,7 +71,7 @@
       <h1 class="text-5xl font-bold">SupportMail</h1>
       <p class="py-6 text-lg">{m["hero.description"]()}</p>
       <div class="flex flex-row justify-center gap-3">
-        <a href={localizeHref("/add")} class="add-bot-btn">{m["nav.addBot"]()}</a>
+        <a href={"/invite"} class="add-bot-btn">{m["nav.addBot"]()}</a>
         <div class="dropdown dropdown-bottom dropdown-end">
           <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
           <div tabindex="0" class="btn btn-soft btn-success btn-lg rounded-3xl">
@@ -261,7 +261,7 @@
         {m["cta.description"]({ count: formatNumber(stats.guilds) })}
       </p>
       <div class="flex flex-col justify-center gap-4 sm:flex-row">
-        <a href={localizeHref("/add")} class="add-bot-btn">{m["cta.addBot"]()}</a>
+        <a href={"/invite"} class="add-bot-btn">{m["cta.addBot"]()}</a>
         <a href="https://docs.supportmail.dev/" target="_blank" class="btn btn-success btn-soft btn-lg"
           >{m["cta.readDocumentation"]()}</a
         >
