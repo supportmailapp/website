@@ -20,7 +20,7 @@
     {
       title: "SupportMail",
       links: [
-        [m["nav.inviteBot"](), localizeHref("/add")],
+        [m["nav.inviteBot"](), "/invite"],
         [m["nav.support"](), "https://help.supportmail.dev/"],
         [m["nav.topgg"](), "https://top.gg/bot/" + PUBLIC_ClientId],
         ["GitHub", PUBLIC_githubOrga],
