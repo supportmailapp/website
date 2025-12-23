@@ -14,12 +14,6 @@
   "observability": {
     "enabled": true
   },
-  "kv_namespaces": [
-    {
-      "id": "4f76903e4aee4f959763fa286b58c194",
-      "binding": "sm-website-cache",
-    }
-  ],
   "placement": { "mode": "smart" },
   "compatibility_flags": [ "nodejs_compat" ],
   "vars": {
