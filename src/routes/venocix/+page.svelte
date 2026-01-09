@@ -41,7 +41,7 @@
     <div class="card flex-row">
       <div class="avatar rounded-full drop-shadow-md">
         <div class="size-24">
-          <img src="https://lukez.sherpa.software/LukeZ.webp" alt="LukeZ Avatar" />
+          <img src="https://thelukez.com/LukeZ.webp" alt="LukeZ Avatar" />
         </div>
       </div>
       <div class="card-body">
