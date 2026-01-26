@@ -14,8 +14,12 @@
   "observability": {
     "enabled": true
   },
-  "placement": { "mode": "smart" },
-  "compatibility_flags": [ "nodejs_compat" ],
+  "placement": {
+    "mode": "smart"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "vars": {
     "ClientApiOrigin": "https://client-api.supportmail.dev",
     "PUBLIC_ClientId": "1082707872565182614",
@@ -30,4 +34,11 @@
     "local_protocol": "http",
   },
   "keep_vars": true,
+  "routes": [
+    {
+      "custom_domain": true,
+      "pattern": "supportmail.dev",
+    }
+  ],
+  "workers_dev": true
 }
