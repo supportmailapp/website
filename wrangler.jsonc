@@ -6,7 +6,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "supportmail-homepage",
   "main": ".svelte-kit/cloudflare/_worker.js",
-  "compatibility_date": "2025-06-17",
+  "compatibility_date": "2026-01-26",
   "assets": {
     "binding": "ASSETS",
     "directory": ".svelte-kit/cloudflare"
