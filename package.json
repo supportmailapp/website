@@ -2,7 +2,7 @@
   "name": "supportmail-website",
   "description": "SupportMail Website built with SvelteKit & Paraglide-JS",
   "private": true,
-  "version": "1.6.2",
+  "version": "1.7.0",
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
