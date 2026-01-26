@@ -3,23 +3,19 @@
 import { dev } from "$app/environment";
 import { PUBLIC_botPermissions, PUBLIC_ClientId, PUBLIC_legalHost } from "$env/static/public";
 
-export const AUTH_REDIRECT_URI = dev
-  ? "http://localhost:3000/discord/callback"
-  : "https://client-api.supportmail.dev/discord/callback";
+export const AUTH_REDIRECT_URI = dev ? "http://localhost:3000/discord/callback" : "https://dash.supportmail.dev/login/callback";
 
-export const urls = {
-  // We will add the redirect uri when the dashboard is ready
-  botAdd: function (guildId: string | null = null): string {
-    const params = new URLSearchParams({
-      client_id: PUBLIC_ClientId,
-      permissions: PUBLIC_botPermissions,
-      scope: "bot applications.commands identify guilds guilds.members.read",
-      redirect_uri: AUTH_REDIRECT_URI,
-    });
-    if (guildId) params.append("guild_id", guildId);
-    return "https://discord.com/oauth2/authorize?" + params.toString();
-  },
-};
+// We will add the redirect uri when the dashboard is ready
+export function botAddUrl(guildId: string | null = null): string {
+  const params = new URLSearchParams({
+    client_id: PUBLIC_ClientId,
+    permissions: PUBLIC_botPermissions,
+    scope: "bot applications.commands identify guilds guilds.members.read",
+    redirect_uri: AUTH_REDIRECT_URI,
+  });
+  if (guildId) params.append("guild_id", guildId);
+  return "https://discord.com/oauth2/authorize?" + params.toString();
+}
 
 export const legalLinks = {
   base: PUBLIC_legalHost,
