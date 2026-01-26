@@ -67,7 +67,7 @@
         <nav class="hidden items-center gap-6 backdrop-blur-md lg:flex">
           <!-- Primary Links (Buttons) -->
           <div class="flex items-center gap-3">
-            <a href="{localizeHref(PUBLIC_DashboardUrl)}/" class="nav-button">{m["nav.dashboard"]()}</a>
+            <a href={PUBLIC_DashboardUrl} class="nav-button">{m["nav.dashboard"]()}</a>
             <a href={localizeHref("/premium")} class="nav-button nav-button-premium">{m["nav.premium"]()}</a>
           </div>
 
