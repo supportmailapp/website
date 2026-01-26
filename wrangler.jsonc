@@ -20,7 +20,7 @@
     "ClientApiOrigin": "https://client-api.supportmail.dev",
     "PUBLIC_ClientId": "1082707872565182614",
     "PUBLIC_botPermissions": "1635040881911",
-    "PUBLIC_DashboardUrl": "/coming-soon",
+    "PUBLIC_DashboardUrl": "https://dash.supportmail.dev/",
     "PUBLIC_githubOrga": "https://github.com/supportmailapp",
     "PUBLIC_legalHost": "https://legal.supportmail.dev",
   },
