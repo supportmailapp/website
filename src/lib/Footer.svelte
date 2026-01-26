@@ -41,9 +41,9 @@
 
 <div
   id="footer"
-  class="bg-base-300 text-base-content flex justify-center bg-gradient-to-b to-transparent p-10 shadow-2xl shadow-slate-400"
+  class="bg-base-300 text-base-content flex justify-center bg-linear-to-b to-transparent p-10 shadow-2xl shadow-slate-400"
 >
-  <footer class="footer sm:footer-horizontal w-full max-w-[1200px]">
+  <footer class="footer sm:footer-horizontal w-full max-w-300">
     <aside style="user-select: none;">
       <div class="avatar">
         <div class="size-12 rounded">
