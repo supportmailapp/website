@@ -3,42 +3,71 @@
 
   let { invites }: { invites: MyInvite[] } = $props();
 
+  function durstenfeldShuffle<T>(array: T[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
   let guilds = $derived(
-    invites.map((i) => ({
+    durstenfeldShuffle(invites).map((i) => ({
       guildName: i.guild.name,
       guildIconUrl: `https://cdn.discordapp.com/icons/${i.guild.id}/${i.guild.icon}.webp?size=256`,
-      inviteUrl: `https://discord.gg/${i.code}`,
+      inviteUrl: `https://discord.com/invite/${i.code}`,
       memberCount: i.approximate_member_count,
     })),
   );
 
-  // Duplicate guilds for infinite scroll effect
-  let duplicatedGuilds = $derived([...guilds, ...guilds, ...guilds]);
-
   let trackElement: HTMLDivElement;
   let isPaused = $state(false);
+  let currentIndex = $state(0);
+  let offset = $state(0);
+
+  const CARD_WIDTH = 270; // 250px + 20px gap
+  const SPEED = 0.5;
+
+  // Show enough items to fill the screen plus buffers on both sides
+  let visibleGuilds = $derived.by(() => {
+    const bufferSize = 10;
+    let items = [];
+    for (let i = 0; i < bufferSize; i++) {
+      const index = (currentIndex + i) % guilds.length;
+      // Add a unique iteration ID to ensure keys are stable but unique across duplicates
+      items.push({ ...guilds[index], iterationId: currentIndex + i });
+    }
+    return items;
+  });
 
   onMount(() => {
-    const track = trackElement;
-    let scrollAmount = 0;
-    const speed = 0.5; // pixels per frame
+    let animationFrameId: number;
+    let isMounted = true;
 
     function animate() {
-      if (!isPaused && track) {
-        scrollAmount += speed;
+      if (!isMounted) return;
 
-        // Reset when we've scrolled through one full set
-        const singleSetWidth = track.scrollWidth / 3;
-        if (scrollAmount >= singleSetWidth) {
-          scrollAmount = 0;
+      if (!isPaused) {
+        offset += SPEED;
+
+        // When we've scrolled past one card width, shift the array
+        if (offset >= CARD_WIDTH) {
+          offset = 0;
+          currentIndex = (currentIndex + 1) % guilds.length;
         }
-
-        track.style.transform = `translateX(-${scrollAmount}px)`;
       }
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     }
 
-    animate();
+    animationFrameId = requestAnimationFrame(animate);
+
+    // Cleanup function
+    return () => {
+      isMounted = false;
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   });
 </script>
 
@@ -63,12 +92,16 @@
 <div class="wrapper">
   <div class="carousel-container">
     <div
+      role="list"
       class="carousel-track"
       bind:this={trackElement}
       onmouseenter={() => (isPaused = true)}
       onmouseleave={() => (isPaused = false)}
+      onfocusin={() => (isPaused = true)}
+      onfocusout={() => (isPaused = false)}
+      style="transform: translateX(-{offset}px)"
     >
-      {#each duplicatedGuilds as guild, i}
+      {#each visibleGuilds as guild (guild.inviteUrl + guild.iterationId)}
         <a class="guild-card" href={guild.inviteUrl} target="_blank" rel="noopener noreferrer">
           <img class="guild-icon" src={guild.guildIconUrl} alt={`${guild.guildName} Icon`} loading="lazy" />
           <div class="guild-info">

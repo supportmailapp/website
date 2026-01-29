@@ -119,7 +119,7 @@
   </div>
 </section>
 
-<section id="servers" class="to-base-100/50 h-50 bg-linear-to-b from-indigo-600/10 py-12 md:py-16">
+<section id="servers" class="to-base-100/50 bg-linear-to-b from-indigo-600/10 py-12 md:py-16">
   <div class="container mx-auto max-w-(--max-w) px-4">
     <div class="mb-10 text-center">
       <h2 class="mb-4 text-3xl font-bold md:text-4xl">In {formatNumber(stats.guilds, 100)} servers</h2>

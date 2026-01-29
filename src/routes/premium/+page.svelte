@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { PUBLIC_DashboardUrl } from "$env/static/public";
   import { getMessage, markdownToHtml } from "$lib";
   import GreenCheckPlain from "$lib/assets/GreenCheckPlain.svelte";
   import Head from "$lib/Head.svelte";
