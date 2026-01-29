@@ -22,7 +22,7 @@
   <Navigation />
 
   {#key page.url.pathname}
-    <div class="relative flex-grow">
+    <div class="relative grow">
       <!-- Background grid pattern -->
       <div class="pointer-events-none absolute inset-0 opacity-70">
         <div
@@ -31,7 +31,7 @@
       </div>
 
       <main
-        class="relative z-10 flex-grow"
+        class="relative z-10 grow"
         in:fade={{ duration: 150, delay: 100, easing: expoIn }}
         out:fade={{ duration: 150, easing: expoOut }}
       >

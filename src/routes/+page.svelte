@@ -5,9 +5,13 @@
   import ReportsIcon from "$lib/assets/ReportsIcon.svelte";
   import Head from "$lib/Head.svelte";
   import { m } from "$lib/paraglide/messages";
+  import ServerCarousel from "$lib/ServerCarousel.svelte";
   import { blur, slide } from "svelte/transition";
 
-  let stats = $derived(page.data.stats);
+  let { data } = $props();
+
+  let stats = $derived(data.stats);
+  let invites = $derived(data.invites);
 
   const features = $state(
     Array.from({
@@ -33,10 +37,10 @@
     }),
   );
 
-  const scrollToStatistics = () => {
-    const statisticsSection = document.getElementById("statistics");
-    if (statisticsSection) {
-      const rect = statisticsSection.getBoundingClientRect();
+  const scrollDown = () => {
+    const section = document.getElementById("servers");
+    if (section) {
+      const rect = section.getBoundingClientRect();
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       window.scrollTo({
         top: scrollTop + rect.top - 64,
@@ -62,7 +66,7 @@
 />
 
 <!-- Hero Section -->
-<section class="hero from-base-100/90 min-h-screen bg-linear-to-b from-10% via-indigo-500/60 via-38% to-indigo-600/10 to-95%">
+<section class="hero from-base-100/90 min-h-screen bg-linear-to-b from-10% via-indigo-500/60 via-38% to-indigo-600/10">
   <div class="hero-content flex-col gap-14 text-center select-none">
     <div class="max-w-lg">
       <h1 class="text-5xl font-bold">SupportMail</h1>
@@ -97,12 +101,7 @@
         <!-- Transparent placeholder -->
         <div class="size-10"></div>
       {:then}
-        <button
-          class="btn btn-square btn-outline"
-          aria-label="Go down"
-          onclick={scrollToStatistics}
-          transition:blur={{ duration: 300 }}
-        >
+        <button class="btn btn-square btn-outline" aria-label="Go down" onclick={scrollDown} transition:blur={{ duration: 300 }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -120,9 +119,20 @@
   </div>
 </section>
 
+<section id="servers" class="to-base-100/50 h-50 bg-linear-to-b from-indigo-600/10 py-12 md:py-16">
+  <div class="container mx-auto max-w-(--max-w) px-4">
+    <div class="mb-10 text-center">
+      <h2 class="mb-4 text-3xl font-bold md:text-4xl">In {formatNumber(stats.guilds, 100)} servers</h2>
+    </div>
+
+    <!-- Carousel -->
+    <ServerCarousel {invites} />
+  </div>
+</section>
+
 <!-- Statistics Section -->
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-<section tabindex="0" id="statistics" class="to-base-200/70 bg-linear-to-b from-indigo-600/10 from-20% py-12 md:py-16">
+<section tabindex="0" id="statistics" class="from-base-100/50 bg-linear-to-b from-10% to-sky-800/40 to-70% md:py-16">
   <div class="container mx-auto max-w-(--max-w) px-4">
     <div class="mb-10 text-center">
       <h2 class="mb-4 text-3xl font-bold md:text-4xl">{m["stats.title"]()}</h2>
@@ -183,7 +193,7 @@
 
 <!-- Features Section -->
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-<section tabindex="0" id="features" class="from-base-200/70 bg-linear-to-b from-10% to-blue-400/40 to-70% py-16">
+<section tabindex="0" id="features" class="bg-linear-to-b from-sky-800/40 from-10% to-indigo-600/40 to-70% py-16">
   <div class="max-w-(900px) container mx-auto px-4">
     <div class="mb-16 text-center">
       <h2 class="mb-4 text-3xl font-bold md:text-4xl">{m.featuresTitle()}</h2>
@@ -227,7 +237,7 @@
 </section>
 
 <!-- CTA Section -->
-<section class="bg-linear-to-b from-blue-400/40 to-indigo-500/40 to-60% py-16">
+<section class="bg-linear-to-b from-indigo-600/40 to-blue-400/40 to-60% py-16">
   <div class="container mx-auto px-4 text-center">
     <div class="mx-auto max-w-3xl">
       <h2 class="mb-6 text-3xl font-bold md:text-4xl">{m["cta.title"]()}</h2>

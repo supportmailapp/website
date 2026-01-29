@@ -37,12 +37,12 @@ export function markdownToHtml(markdown: string, infoLink = false): string {
  * @param step - The step to round down to. Default is 100.
  * @returns The formatted number as a string.
  */
-export function formatNumber(num: number, step = 100) {
+export function formatNumber(num: number, step = 100, withPlus = true): string {
   // Round down to nearest step
   const roundedNum = Math.floor(num / step) * step;
 
   // Format with commas + '+'
-  return roundedNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "+";
+  return roundedNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (withPlus ? "+" : "");
 }
 
 // Helper function to safely access dynamic message keys - utility function first

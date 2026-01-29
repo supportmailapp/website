@@ -1,4 +1,4 @@
-import type { APIUser } from "discord-api-types/v10";
+import type { APIInvite, APIInviteGuild, APIUser } from "discord-api-types/v10";
 import type { FlattenMaps } from "mongoose";
 
 declare global {
@@ -18,10 +18,13 @@ declare global {
     interface Locals {}
 
     interface PageData {
+      invites: MyInvite[];
       stats: StatsResponse;
       meta?: StatsMetadata;
     }
   }
+
+  type MyInvite = APIInvite & { guild: APIInviteGuild; approximate_member_count: number };
 
   type StatsResponse = { guilds: number; users: number; tickets: number; fallback?: true };
 

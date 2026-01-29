@@ -1,4 +1,5 @@
 import { building } from "$app/environment";
+import type { APIInvite } from "discord-api-types/v10";
 import ky, { TimeoutError } from "ky";
 
 const FALLBACK_STATS: StatsResponse = {
@@ -8,7 +9,10 @@ const FALLBACK_STATS: StatsResponse = {
   fallback: true,
 };
 
-export async function load({ platform, cookies }) {
+export async function load({ platform, cookies, fetch }) {
+  const res = await fetch("/get-guilds");
+  const invites = (await res.json()) as MyInvite[];
+
   const cookieStats = cookies.get("stats");
   let metadata: StatsMetadata = { message: "No metadata available", status: "unknown" };
 
@@ -49,6 +53,7 @@ export async function load({ platform, cookies }) {
   if (valid && cookieStatsParsed) {
     // If the cookie stats are valid, use them
     return {
+      invites,
       stats: cookieStatsParsed,
       meta: metadata,
     };
@@ -106,6 +111,7 @@ export async function load({ platform, cookies }) {
   }
 
   return {
+    invites,
     stats: result,
     meta: metadata,
   };

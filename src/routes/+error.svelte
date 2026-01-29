@@ -7,7 +7,7 @@
 <div class="error-container">
   <h1 class="text-xl font-semibold">{m["error.title"]()}</h1>
   <p class="text-sm">{m["error.description"]()}</p>
-  <div class="mockup-code skeleton w-full max-w-[900px] text-start text-lg text-white">
+  <div class="mockup-code skeleton w-full max-w-225 text-start text-lg text-white">
     <pre data-prefix=">" class="text-warning text-base"><code>{page.error!.message}: {page.error!.status}</code></pre>
     <pre data-prefix=">" class="text-primary text-base"><code>{page.error!.route}</code></pre>
   </div>
