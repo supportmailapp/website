@@ -51,7 +51,7 @@
         </div>
       </div>
       <p style="user-select: text;">
-        &copy; 2023 - 2025
+        &copy; 2023 - 2026
         <br />
         {m["footer.rightsReserved"]()}
       </p>
