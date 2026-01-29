@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PUBLIC_ClientId, PUBLIC_DashboardUrl, PUBLIC_githubOrga } from "$env/static/public";
+  import { PUBLIC_CLIENT_ID } from "$env/static/public";
   import LinkArrow from "./assets/LinkArrow.svelte";
   import { legalLinks } from "./constants";
   import { m } from "./paraglide/messages";
@@ -14,7 +14,7 @@
         [m["nav.premium"](), localizeHref("/premium")],
         [m["nav.docs"](), "https://docs.supportmail.dev/"],
         [m["nav.statistics"](), localizeHref("/stats")],
-        [m["nav.dashboard"](), PUBLIC_DashboardUrl],
+        [m["nav.dashboard"](), "https://dash.supportmail.dev/"],
       ],
     },
     {
@@ -22,8 +22,8 @@
       links: [
         [m["nav.inviteBot"](), "/invite"],
         [m["nav.support"](), "https://help.supportmail.dev/"],
-        [m["nav.topgg"](), "https://top.gg/bot/" + PUBLIC_ClientId],
-        ["GitHub", PUBLIC_githubOrga],
+        [m["nav.topgg"](), "https://top.gg/bot/" + PUBLIC_CLIENT_ID],
+        ["GitHub", "https://github.com/orgs/supportmailapp"],
       ],
     },
     {

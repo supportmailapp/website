@@ -9,8 +9,6 @@ const FALLBACK_STATS: StatsResponse = {
 };
 
 export async function load({ platform, cookies }) {
-  const ClientAPIOrigin = platform?.env.ClientApiOrigin ?? "https://client-api.supportmail.dev";
-
   const cookieStats = cookies.get("stats");
   let metadata: StatsMetadata = { message: "No metadata available", status: "unknown" };
 
@@ -62,7 +60,7 @@ export async function load({ platform, cookies }) {
     metadata = { message: "App is building or no API key provided, using fallback stats", status: "fallback" };
   } else {
     result = await ky
-      .get<StatsResponse>(ClientAPIOrigin + "/stats/current", {
+      .get<StatsResponse>("https://client-api.supportmail.dev/stats/current", {
         headers: {
           Authorization: `Bearer ${platform.env.SUPPORTMAIL_API_KEY}`,
         },

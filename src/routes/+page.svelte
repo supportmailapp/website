@@ -183,7 +183,7 @@
 
 <!-- Features Section -->
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-<section tabindex="0" id="features" class="from-base-200/70 bg-gradient-to-b from-10% to-blue-400/40 to-70% py-16">
+<section tabindex="0" id="features" class="from-base-200/70 bg-linear-to-b from-10% to-blue-400/40 to-70% py-16">
   <div class="max-w-(900px) container mx-auto px-4">
     <div class="mb-16 text-center">
       <h2 class="mb-4 text-3xl font-bold md:text-4xl">{m.featuresTitle()}</h2>
@@ -227,7 +227,7 @@
 </section>
 
 <!-- CTA Section -->
-<section class="bg-gradient-to-b from-blue-400/40 to-indigo-500/40 to-60% py-16">
+<section class="bg-linear-to-b from-blue-400/40 to-indigo-500/40 to-60% py-16">
   <div class="container mx-auto px-4 text-center">
     <div class="mx-auto max-w-3xl">
       <h2 class="mb-6 text-3xl font-bold md:text-4xl">{m["cta.title"]()}</h2>

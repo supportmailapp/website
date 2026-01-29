@@ -30,7 +30,7 @@
 
   // Action function
   function redirectToDashboard() {
-    window.location.href = PUBLIC_DashboardUrl + "?redirect=premium?plan=" + BillingState.toLowerCase();
+    window.location.href = "https://dash.supportmail.dev/" + "?redirect=premium?plan=" + BillingState.toLowerCase();
   }
 </script>
 
@@ -41,7 +41,7 @@
   }}
 />
 
-<div class="via-primary/50 to-primary/90 min-h-screen bg-gradient-to-br from-transparent to-90% px-4 py-12 sm:px-6 lg:px-8">
+<div class="via-primary/50 to-primary/90 min-h-screen bg-linear-to-br from-transparent to-90% px-4 py-12 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-7xl">
     <div class="mb-5 flex w-full justify-center">
       <div role="alert" class="alert alert-warning alert-vertical max-w-7xl">
@@ -108,7 +108,7 @@
         {/if}
         <div class="card-body">
           <h2
-            class="card-title bg-gradient-to-r from-amber-400 to-yellow-800 to-60% bg-clip-text text-center text-3xl font-bold text-transparent"
+            class="card-title bg-linear-to-r from-amber-400 to-yellow-800 to-60% bg-clip-text text-center text-3xl font-bold text-transparent"
           >
             {m["premium.plan-gold.name"]()}
           </h2>
@@ -152,7 +152,7 @@
         {/if}
         <div class="card-body">
           <h2
-            class="card-title w-full bg-gradient-to-l from-cyan-300 from-60% to-cyan-600 bg-clip-text text-center text-3xl font-bold text-transparent"
+            class="card-title w-full bg-linear-to-l from-cyan-300 from-60% to-cyan-600 bg-clip-text text-center text-3xl font-bold text-transparent"
           >
             {m["premium.plan-diamond.name"]()}
           </h2>

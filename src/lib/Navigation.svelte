@@ -1,6 +1,5 @@
 <script lang="ts">
   import { page } from "$app/state";
-  import { PUBLIC_DashboardUrl } from "$env/static/public";
   import { m } from "$lib/paraglide/messages";
   import { deLocalizeHref, getLocale, locales, localizeHref, setLocale } from "$lib/paraglide/runtime";
   import { slide } from "svelte/transition";
@@ -50,7 +49,7 @@
 
 <!-- Header -->
 <header class="bg-base-200 sticky top-0 z-50 shadow-xl drop-shadow-md select-none">
-  <div class="container mx-auto max-w-[1200px] px-4 py-3">
+  <div class="container mx-auto max-w-300 px-4 py-3">
     <div class="flex items-center justify-between">
       <!-- Logo -->
       <div class="flex items-center transition-opacity duration-100 hover:opacity-70">
@@ -67,7 +66,7 @@
         <nav class="hidden items-center gap-6 backdrop-blur-md lg:flex">
           <!-- Primary Links (Buttons) -->
           <div class="flex items-center gap-3">
-            <a href={PUBLIC_DashboardUrl} class="nav-button">{m["nav.dashboard"]()}</a>
+            <a href={"https://dash.supportmail.dev/"} class="nav-button">{m["nav.dashboard"]()}</a>
             <a href={localizeHref("/premium")} class="nav-button nav-button-premium">{m["nav.premium"]()}</a>
           </div>
 
@@ -142,7 +141,7 @@
       <div class="container mx-auto flex flex-col gap-4 px-4 py-4 text-center">
         <!-- Primary Links -->
         <div class="border-base-300 flex flex-col gap-3 border-b pb-2">
-          <a href="{localizeHref(PUBLIC_DashboardUrl)}/" class="nav-button" onclick={toggleMenu}>{m["nav.dashboard"]()}</a>
+          <a href="{localizeHref("https://dash.supportmail.dev/")}/" class="nav-button" onclick={toggleMenu}>{m["nav.dashboard"]()}</a>
           <a href={localizeHref("/premium")} class="nav-button nav-button-premium" onclick={toggleMenu}>{m["nav.premium"]()}</a>
         </div>
 
@@ -181,7 +180,7 @@
 <dialog id="language-modal" class="modal">
   <div class="modal-box max-h-[70%] items-center justify-center overflow-auto text-center">
     <h2 class="text-lg">{m["nav.selectLanguage"]()}</h2>
-    <div class="menu bg-base-100 rounded-box z-[1] mt-2 w-full justify-center p-2 shadow">
+    <div class="menu bg-base-100 rounded-box z-1 mt-2 w-full justify-center p-2 shadow">
       <ul class="flex w-full flex-col justify-center gap-2">
         {#each locales as locale}
           <li class="flex w-full flex-row justify-center gap-1">
