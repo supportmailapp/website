@@ -4,21 +4,22 @@
   let { invites }: { invites: MyInvite[] } = $props();
 
   function durstenfeldShuffle<T>(array: T[]) {
-    for (let i = array.length - 1; i > 0; i--) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+      [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-    return array;
+    return arr;
   }
 
-  let guilds = $derived(
-    durstenfeldShuffle(invites).map((i) => ({
-      guildName: i.guild.name,
-      guildIconUrl: `https://cdn.discordapp.com/icons/${i.guild.id}/${i.guild.icon}.webp?size=256`,
-      inviteUrl: `https://discord.com/invite/${i.code}`,
-      memberCount: i.approximate_member_count,
-    })),
-  );
+  let guilds = $state<
+    {
+      guildName: string;
+      guildIconUrl: string;
+      inviteUrl: string;
+      memberCount: number | undefined;
+    }[]
+  >([]);
 
   let trackElement: HTMLDivElement;
   let isPaused = $state(false);
@@ -30,6 +31,7 @@
 
   // Show enough items to fill the screen plus buffers on both sides
   let visibleGuilds = $derived.by(() => {
+    if (guilds.length === 0) return [];
     const bufferSize = 10;
     let items = [];
     for (let i = 0; i < bufferSize; i++) {
@@ -41,6 +43,13 @@
   });
 
   onMount(() => {
+    guilds = durstenfeldShuffle(invites).map((i) => ({
+      guildName: i.guild.name,
+      guildIconUrl: `https://cdn.discordapp.com/icons/${i.guild.id}/${i.guild.icon}.webp?size=256`,
+      inviteUrl: `https://discord.com/invite/${i.code}`,
+      memberCount: i.approximate_member_count,
+    }));
+
     let animationFrameId: number;
     let isMounted = true;
 

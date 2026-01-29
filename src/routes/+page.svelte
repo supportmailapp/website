@@ -13,6 +13,9 @@
   let stats = $derived(data.stats);
   let invites = $derived(data.invites);
 
+  // svelte-ignore state_referenced_locally
+  console.log("Invites", $state.snapshot(invites));
+
   const features = $state(
     Array.from({
       length: 2,
