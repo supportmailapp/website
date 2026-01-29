@@ -16,11 +16,6 @@
   let history = $derived<IHistoryStats[]>(data.history || []);
   let metadata = $derived<StatsMetadata>(data.meta ?? { message: "No metadata available", status: "unknown" });
 
-  $effect(() => {
-    console.log("history:", history);
-    console.log("metadata:", metadata);
-  });
-
   let ticketsCanvas = $state<any>();
   let serversCanvas = $state<any>();
   let usersCanvas = $state<any>();
@@ -58,9 +53,6 @@
     const startDate = dayjs().subtract(days, "day").startOf("day");
     const endDate = dayjs().endOf("day");
 
-    console.log("Date range:", startDate.format(), "to", endDate.format());
-    console.log("Raw history data:", history);
-
     // Generate complete date range
     const dateRange: string[] = [];
     for (let i = 0; i <= days; i++) {
@@ -73,30 +65,13 @@
       const itemDate = dayjs(item.timestamp);
       const dateKey = itemDate.format("YYYY-MM-DD");
 
-      console.log(`Item ${index}:`, {
-        timestamp: item.timestamp,
-        itemDate: itemDate.format(),
-        dateKey: dateKey,
-        isAfterStart: itemDate.isAfter(startDate),
-        isSameStart: itemDate.isSame(startDate, "day"),
-        isBeforeEnd: itemDate.isBefore(endDate),
-        isSameEnd: itemDate.isSame(endDate, "day"),
-        passesFilter:
-          (itemDate.isAfter(startDate) || itemDate.isSame(startDate, "day")) &&
-          (itemDate.isBefore(endDate) || itemDate.isSame(endDate, "day")),
-      });
-
       // Use isAfter or isSame for start date, and isBefore or isSame for end date
       if (itemDate.isAfter(startDate) || itemDate.isSame(startDate, "day")) {
         if (itemDate.isBefore(endDate) || itemDate.isSame(endDate, "day")) {
-          console.log(`Adding item to map with key: ${dateKey}`);
           dataMap.set(dateKey, item);
         }
       }
     });
-
-    console.log("Filtered data map:", dataMap);
-    console.log("Generated date range:", dateRange);
 
     // Fill in missing dates with null/zero values
     const result = dateRange.map((date) => {
@@ -113,8 +88,6 @@
         users: null,
       } as any;
     });
-
-    console.log("Final prepared data:", result);
     return result;
   }
 

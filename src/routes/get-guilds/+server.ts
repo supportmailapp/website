@@ -1,3 +1,4 @@
+import { building } from "$app/environment";
 import { BOT_TOKEN } from "$env/static/private";
 import { REST } from "@discordjs/rest";
 import { json } from "@sveltejs/kit";
@@ -5,6 +6,7 @@ import { Routes } from "discord-api-types/v10";
 
 export const prerender = true; // Render at build time
 
+// name is just for identification purposes
 const featuredInvites: { name: string; code: string }[] = [
   {
     name: "Kartoffelkissen",
@@ -21,7 +23,8 @@ const featuredInvites: { name: string; code: string }[] = [
 ];
 
 export async function GET({ isSubRequest }) {
-  if (!isSubRequest) {
+  // Prevent fetching data during regular requests; only allow during build or subrequests
+  if (!isSubRequest && !building) {
     return new Response("I'm a teapot", {
       status: 418, // I'm a teapot
     });

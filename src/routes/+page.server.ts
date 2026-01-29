@@ -36,7 +36,6 @@ export async function load({ platform, cookies, fetch }) {
         };
       }
       metadata = { message: "Using cached stats from cookie", status: 200 };
-      console.log(metadata, parsedStats);
       return {
         stats: parsedStats,
         valid: true,

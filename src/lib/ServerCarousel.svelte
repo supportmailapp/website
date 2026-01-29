@@ -101,18 +101,20 @@
       onfocusout={() => (isPaused = false)}
       style="transform: translateX(-{offset}px)"
     >
-      {#each visibleGuilds as guild (guild.inviteUrl + guild.iterationId)}
-        <a class="guild-card" href={guild.inviteUrl} target="_blank" rel="noopener noreferrer">
-          <img class="guild-icon" src={guild.guildIconUrl} alt={`${guild.guildName} Icon`} loading="lazy" />
-          <div class="guild-info">
-            <h3 class="guild-name">{guild.guildName}</h3>
-            <p class="member-count">
-              {@render usersIcon()}
-              {guild.memberCount}
-            </p>
-          </div>
-        </a>
-      {/each}
+      {#key guilds}
+        {#each visibleGuilds as guild (guild.inviteUrl + guild.iterationId)}
+          <a class="guild-card" href={guild.inviteUrl} target="_blank" rel="noopener noreferrer">
+            <img class="guild-icon" src={guild.guildIconUrl} alt={`${guild.guildName} Icon`} loading="lazy" />
+            <div class="guild-info">
+              <h3 class="guild-name">{guild.guildName}</h3>
+              <p class="member-count">
+                {@render usersIcon()}
+                {guild.memberCount}
+              </p>
+            </div>
+          </a>
+        {/each}
+      {/key}
     </div>
   </div>
 </div>

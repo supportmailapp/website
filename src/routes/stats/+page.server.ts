@@ -21,7 +21,6 @@ type HistoryFetchResponse = {
 };
 
 export async function load({ platform, url }) {
-  const ClientAPIOrigin = platform?.env.ClientApiOrigin ?? "https://client-api.supportmail.dev";
   let metadata: StatsMetadata = { message: "No metadata available", status: "unknown" };
   let result: IHistoryStats[];
 
@@ -39,7 +38,7 @@ export async function load({ platform, url }) {
     };
   }
 
-  const fetchUrl = new URL(ClientAPIOrigin + "/stats/history");
+  const fetchUrl = new URL("https://client-api.supportmail.dev/stats/history");
 
   if (requestedSpan) {
     let beforeDate = dayjs().endOf("day");
