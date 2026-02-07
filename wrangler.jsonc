@@ -29,5 +29,6 @@
     "custom_domain": true,
     "pattern": "supportmail.dev",
   },
-  "workers_dev": false
+  "workers_dev": false,
+  "preview_urls": true
 }
