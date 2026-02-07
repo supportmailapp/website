@@ -31,7 +31,7 @@ const featuredInvites: { name: string; code: string }[] = [
   {
     name: "Block by Block (MC Story Mode thing)",
     code: "blockbyblock",
-  }
+  },
 ];
 
 export async function GET({ isSubRequest }) {

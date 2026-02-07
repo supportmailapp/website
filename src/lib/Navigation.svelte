@@ -141,7 +141,9 @@
       <div class="container mx-auto flex flex-col gap-4 px-4 py-4 text-center">
         <!-- Primary Links -->
         <div class="border-base-300 flex flex-col gap-3 border-b pb-2">
-          <a href="{localizeHref("https://dash.supportmail.dev/")}/" class="nav-button" onclick={toggleMenu}>{m["nav.dashboard"]()}</a>
+          <a href="{localizeHref('https://dash.supportmail.dev/')}/" class="nav-button" onclick={toggleMenu}
+            >{m["nav.dashboard"]()}</a
+          >
           <a href={localizeHref("/premium")} class="nav-button nav-button-premium" onclick={toggleMenu}>{m["nav.premium"]()}</a>
         </div>
 
