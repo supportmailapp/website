@@ -3,9 +3,9 @@ import type { APIInvite } from "discord-api-types/v10";
 import ky, { TimeoutError } from "ky";
 
 const FALLBACK_STATS: StatsResponse = {
-  guilds: 725,
-  users: 226_414,
-  tickets: 2_271,
+  guilds: 820,
+  users: 261_103,
+  tickets: 2_606,
   fallback: true,
 };
 
@@ -14,7 +14,10 @@ export async function load({ platform, cookies, fetch }) {
     console.warn("Failed to fetch invites from API", err);
     return new Response(JSON.stringify([]), { status: 200 });
   });
-  const invites = (await res.json()) as MyInvite[];
+  const invites = (await res.json().catch(() => {
+    console.warn("Failed to parse invites from API response");
+    return [];
+  })) as MyInvite[];
 
   const cookieStats = cookies.get("stats");
   let metadata: StatsMetadata = { message: "No metadata available", status: "unknown" };
@@ -45,6 +48,7 @@ export async function load({ platform, cookies, fetch }) {
       };
     } catch (err) {
       metadata = { message: "Failed to parse stats from cookie, fetching from API", status: "unknown" };
+      console.warn(metadata, err);
       // If parsing fails, we will fetch the stats from the API
       return { valid: false };
     }
