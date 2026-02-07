@@ -10,7 +10,10 @@ const FALLBACK_STATS: StatsResponse = {
 };
 
 export async function load({ platform, cookies, fetch }) {
-  const res = await fetch("/get-guilds");
+  const res = await fetch("/get-guilds").catch((err) => {
+    console.warn("Failed to fetch invites from API", err);
+    return new Response(JSON.stringify([]), { status: 200 });
+  });
   const invites = (await res.json()) as MyInvite[];
 
   const cookieStats = cookies.get("stats");
