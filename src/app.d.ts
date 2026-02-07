@@ -1,6 +1,5 @@
 import type { APIUser } from "discord-api-types/v10";
 import type { FlattenMaps } from "mongoose";
-import type { IUserToken, UserRole } from "supportmail-types";
 
 declare global {
   namespace App {

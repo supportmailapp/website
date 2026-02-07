@@ -38,9 +38,6 @@ importers:
       node-cache:
         specifier: ^5.1.2
         version: 5.1.2
-      supportmail-types:
-        specifier: github:supportmailapp/global-types
-        version: https://codeload.github.com/supportmailapp/global-types/tar.gz/2db04b8ceeb1d4e6d027d55d4ddb5e1082caa0a5
       tsc:
         specifier: ^2.0.4
         version: 2.0.4
@@ -1594,10 +1591,6 @@ packages:
     peerDependencies:
       kysely: '*'
 
-  supportmail-types@https://codeload.github.com/supportmailapp/global-types/tar.gz/2db04b8ceeb1d4e6d027d55d4ddb5e1082caa0a5:
-    resolution: {tarball: https://codeload.github.com/supportmailapp/global-types/tar.gz/2db04b8ceeb1d4e6d027d55d4ddb5e1082caa0a5}
-    version: 2.2.0
-
   supports-color@10.2.2:
     resolution: {integrity: sha512-SS+jx45GF1QjgEXQx4NJZV9ImqmO2NPz5FNsIHrsDjh2YsHnawpan7SNQ1o8NuhrbHZy9AZhIoCUiCeaW/C80g==}
     engines: {node: '>=18'}
@@ -3016,12 +3009,6 @@ snapshots:
     dependencies:
       '@sqlite.org/sqlite-wasm': 3.48.0-build4
       kysely: 0.27.6
-
-  supportmail-types@https://codeload.github.com/supportmailapp/global-types/tar.gz/2db04b8ceeb1d4e6d027d55d4ddb5e1082caa0a5:
-    dependencies:
-      discord-api-types: 0.38.37
-      zod: 4.3.6
-      zod-validation-error: 4.0.2(zod@4.3.6)
 
   supports-color@10.2.2: {}
 

@@ -7,6 +7,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "vite dev",
+    "build": "vite build",
     "preview": "vite preview --port 6060 --host localhost",
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -49,7 +50,6 @@
     "ky": "^1.14.3",
     "mongoose": "^8.21.1",
     "node-cache": "^5.1.2",
-    "supportmail-types": "github:supportmailapp/global-types",
     "tsc": "^2.0.4",
     "typescript": "^5.9.3",
     "zod": "^4.3.6",
@@ -60,7 +60,6 @@
     "onlyBuiltDependencies": [
       "esbuild",
       "sharp",
-      "supportmail-types",
       "workerd"
     ]
   }
