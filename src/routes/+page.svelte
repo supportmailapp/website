@@ -13,9 +13,6 @@
   let stats = $derived(data.stats);
   let invites = $derived(data.invites);
 
-  // svelte-ignore state_referenced_locally
-  console.log("Invites", $state.snapshot(invites));
-
   const features = $state(
     Array.from({
       length: 2,
@@ -130,6 +127,12 @@
 
     <!-- Carousel -->
     <ServerCarousel {invites} />
+
+    <div class="flex w-full justify-center">
+      <a href="https://discord.gg/dH7z29AKd5" target="_blank" class="text-sm link link-hover link-primary transition-colors">
+        Feature your server
+      </a>
+    </div>
   </div>
 </section>
 

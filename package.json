@@ -15,6 +15,7 @@
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint .",
     "deploy": "pnpm build && wrangler deploy --minify",
+    "inlang:compile": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide",
     "cf-typegen": "wrangler types ./src/worker-configuration.d.ts"
   },
   "devDependencies": {
