@@ -6,7 +6,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "supportmail-homepage",
   "main": ".svelte-kit/cloudflare/_worker.js",
-  "compatibility_date": "2026-01-26",
+  "compatibility_date": "2026-02-07",
   "assets": {
     "binding": "ASSETS",
     "directory": ".svelte-kit/cloudflare"
@@ -25,12 +25,9 @@
     "host": "localhost",
     "local_protocol": "http",
   },
-  "keep_vars": true,
-  "routes": [
-    {
-      "custom_domain": true,
-      "pattern": "supportmail.dev",
-    }
-  ],
-  "workers_dev": true
+  "route": {
+    "custom_domain": true,
+    "pattern": "supportmail.dev",
+  },
+  "workers_dev": false
 }
