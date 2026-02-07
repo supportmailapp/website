@@ -9,17 +9,29 @@ export const prerender = true; // Render at build time
 // name is just for identification purposes
 const featuredInvites: { name: string; code: string }[] = [
   {
-    name: "Kartoffelkissen",
-    code: "kartoffelkissen",
-  },
-  {
-    name: "test",
+    name: "Booney",
     code: "sikky",
   },
   {
     name: "moose",
     code: "83JRy5KWrY",
   },
+  {
+    name: "Hi Anime",
+    code: "hianime",
+  },
+  {
+    name: "Sanctuary, Diablo 2 Trading & Community",
+    code: "d2r",
+  },
+  {
+    name: "Art of Poetry",
+    code: "poetry",
+  },
+  {
+    name: "Block by Block (MC Story Mode thing)",
+    code: "blockbyblock",
+  }
 ];
 
 export async function GET({ isSubRequest }) {
