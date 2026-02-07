@@ -34,16 +34,16 @@ const featuredInvites: { name: string; code: string }[] = [
   },
 ];
 
-export async function GET({ isSubRequest }) {
+export async function GET() {
   // Prevent fetching data during regular requests; only allow during build or subrequests
-  if (!isSubRequest && !building) {
-    return json(
-      { error: "I'm a teapot" },
-      {
-        status: 418, // I'm a teapot
-      },
-    );
-  }
+  // if (!isSubRequest && !building) {
+  //   return json(
+  //     { error: "I'm a teapot" },
+  //     {
+  //       status: 418, // I'm a teapot
+  //     },
+  //   );
+  // }
 
   if (!BOT_TOKEN) {
     console.error("Bot token not configured");
