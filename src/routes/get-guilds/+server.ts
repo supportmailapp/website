@@ -37,14 +37,17 @@ const featuredInvites: { name: string; code: string }[] = [
 export async function GET({ isSubRequest }) {
   // Prevent fetching data during regular requests; only allow during build or subrequests
   if (!isSubRequest && !building) {
-    return new Response("I'm a teapot", {
-      status: 418, // I'm a teapot
-    });
+    return json(
+      { error: "I'm a teapot" },
+      {
+        status: 418, // I'm a teapot
+      },
+    );
   }
 
   if (!BOT_TOKEN) {
     console.error("Bot token not configured");
-    return new Response("Bot token not configured", { status: 500 });
+    return json({ error: "Bot token not configured" }, { status: 500 });
   }
 
   const rest = new REST({ version: "10" }).setToken(BOT_TOKEN);
