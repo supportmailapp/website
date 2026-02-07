@@ -129,7 +129,7 @@
     <ServerCarousel {invites} />
 
     <div class="flex w-full justify-center">
-      <a href="https://discord.gg/dH7z29AKd5" target="_blank" class="text-sm link link-hover link-primary transition-colors">
+      <a href="https://discord.gg/dH7z29AKd5" target="_blank" class="text-sm link link-hover link-secondary transition-colors">
         Feature your server
       </a>
     </div>
@@ -192,7 +192,7 @@
     </div>
 
     <div class="mt-10 flex justify-center select-none">
-      <a href="/stats" class="btn btn-outline btn-secondary">{m["stats.gotoHistoricalData"]()}</a>
+      <a href="/stats" class="text-sm link link-hover link-secondary transition-colors">{m["stats.gotoHistoricalData"]()}</a>
     </div>
   </div>
 </section>
