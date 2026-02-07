@@ -1,5 +1,4 @@
 import { building } from "$app/environment";
-import type { APIInvite } from "discord-api-types/v10";
 import ky, { TimeoutError } from "ky";
 
 const FALLBACK_STATS: StatsResponse = {
@@ -10,14 +9,15 @@ const FALLBACK_STATS: StatsResponse = {
 };
 
 export async function load({ platform, cookies, fetch }) {
-  const res = await fetch("/get-guilds").catch((err) => {
-    console.warn("Failed to fetch invites from API", err);
-    return new Response(JSON.stringify([]), { status: 200 });
-  });
-  const invites = (await res.json().catch(() => {
-    console.warn("Failed to parse invites from API response");
-    return [];
-  })) as MyInvite[];
+  const invites = await fetch("/get-guilds")
+    .then(async (res) => {
+      if (!res.ok) throw new Error(`Status ${res.status}`);
+      return (await res.json()) as MyInvite[];
+    })
+    .catch((err) => {
+      console.error("Failed to fetch or parse invites:", err);
+      return [];
+    });
 
   const cookieStats = cookies.get("stats");
   let metadata: StatsMetadata = { message: "No metadata available", status: "unknown" };
