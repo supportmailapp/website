@@ -97,7 +97,7 @@
           <a class="guild-card" href={guild.inviteUrl} target="_blank" rel="noopener noreferrer">
             <img class="guild-icon" src={guild.guildIconUrl} alt={`${guild.guildName} Icon`} loading="lazy" />
             <div class="guild-info">
-              <h3 class="guild-name">{guild.guildName}</h3>
+              <h3 class="guild-name {guild.guildName.length >= 25 ? 'text-xs' : ''}">{guild.guildName}</h3>
               <p class="member-count">
                 <span class="inline-block size-2.5 rounded-full bg-green-400/90"></span>
                 {guild.memberCount}
@@ -169,6 +169,8 @@
   }
 
   .guild-name {
+    word-wrap: break-word;
+    max-width: 9rem;
     margin: 0;
   }
 
