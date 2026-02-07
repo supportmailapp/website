@@ -9,7 +9,7 @@ const FALLBACK_STATS: StatsResponse = {
 };
 
 export async function load({ platform, cookies, fetch }) {
-  const invites = await fetch("/get-guilds")
+  const invites = await fetch("get-guilds")
     .then(async (res) => {
       if (!res.ok) throw new Error(`Status ${res.status}`);
       return (await res.json()) as MyInvite[];
