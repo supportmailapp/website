@@ -11,7 +11,6 @@
   let { data } = $props();
 
   let stats = $derived(data.stats);
-  let invites = $derived(data.invites);
 
   const features = $state(
     Array.from({
@@ -126,7 +125,7 @@
     </div>
 
     <!-- Carousel -->
-    {#await invites()}
+    {#await data.invites()}
       <!-- Loading state -->
       <div class="flex h-30 items-center justify-center">
         <span class="loading loading-spinner loading-lg"></span>
