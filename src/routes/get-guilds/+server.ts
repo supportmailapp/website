@@ -58,7 +58,7 @@ export async function GET() {
     globalRequestsPerSecond: 5,
     rejectOnRateLimit: (data) => {
       console.warn("Rate limited by Discord API", inspect(data, { depth: 3 }));
-      return true;
+      return false;
     },
   }).setToken(BOT_TOKEN);
   const invites: APIInvite[] = [];
@@ -66,6 +66,9 @@ export async function GET() {
     try {
       const invite = (await rest.get(`${Routes.invite(code)}?with_counts=true`)) as APIInvite;
       invites.push(invite);
+      if (code !== featuredInvites[featuredInvites.length - 1].code) {
+        await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 1 second after the last request to ensure we don't hit rate limits
+      }
     } catch (error) {
       console.error(`Failed to fetch invite for code ${code}:`, error);
     }
