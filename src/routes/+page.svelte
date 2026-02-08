@@ -125,14 +125,7 @@
     </div>
 
     <!-- Carousel -->
-    {#await data.invites()}
-      <!-- Loading state -->
-      <div class="flex h-30 items-center justify-center">
-        <span class="loading loading-spinner loading-lg"></span>
-      </div>
-    {:then invitesData}
-      <ServerCarousel invites={invitesData} />
-    {/await}
+    <ServerCarousel invites={data.invites} />
 
     <div class="flex w-full justify-center">
       <a href="https://discord.gg/dH7z29AKd5" target="_blank" class="link link-hover link-secondary text-sm transition-colors">

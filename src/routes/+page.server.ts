@@ -9,6 +9,8 @@ const FALLBACK_STATS: StatsResponse = {
 };
 
 export async function load({ platform, cookies }) {
+  // @ts-ignore - This file only exists after building, so we have to ignore it during development
+  const invites = building ? [] : ((await import("$lib/server/invites/invites").then((mod) => mod.invites)).catch(() => []) as MyInvite[]);
   const cookieStats = cookies.get("stats");
   let metadata: StatsMetadata = { message: "No metadata available", status: "unknown" };
 
@@ -49,7 +51,7 @@ export async function load({ platform, cookies }) {
   if (valid && cookieStatsParsed) {
     // If the cookie stats are valid, use them
     return {
-      invites: fetch("/get-guilds").then((res) => res.json() as Promise<MyInvite[]>),
+      invites,
       stats: cookieStatsParsed,
       meta: metadata,
     };
@@ -107,7 +109,7 @@ export async function load({ platform, cookies }) {
   }
 
   return {
-    invites: fetch("/get-guilds").then((res) => res.json() as Promise<MyInvite[]>),
+    invites,
     stats: result,
     meta: metadata,
   };
