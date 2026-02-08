@@ -36,7 +36,7 @@
   }}
 />
 
-<div class="container mx-auto mb-10 flex max-w-[1200px] flex-col gap-4 p-3">
+<div class="container mx-auto mb-10 flex max-w-300 flex-col gap-4 p-3">
   <div class="flex flex-col items-center justify-around gap-3 select-none md:flex-row">
     <div class="card flex-row">
       <div class="avatar rounded-full drop-shadow-md">

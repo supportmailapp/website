@@ -67,7 +67,7 @@ export async function GET() {
       const invite = (await rest.get(`${Routes.invite(code)}?with_counts=true`)) as APIInvite;
       invites.push(invite);
       if (code !== featuredInvites[featuredInvites.length - 1].code) {
-        await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 1 second after the last request to ensure we don't hit rate limits
+        await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 1 second after the last request to ensure we don't hit rate limit (we got 6 invites and the limit is 5 req/s)
       }
     } catch (error) {
       console.error(`Failed to fetch invite for code ${code}:`, error);
