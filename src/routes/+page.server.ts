@@ -8,17 +8,7 @@ const FALLBACK_STATS: StatsResponse = {
   fallback: true,
 };
 
-export async function load({ platform, cookies, fetch }) {
-  const invites = await fetch("get-guilds")
-    .then(async (res) => {
-      if (!res.ok) throw new Error(`Status ${res.status}`);
-      return (await res.json()) as MyInvite[];
-    })
-    .catch((err) => {
-      console.error("Failed to fetch or parse invites:", err);
-      return [];
-    });
-
+export async function load({ platform, cookies }) {
   const cookieStats = cookies.get("stats");
   let metadata: StatsMetadata = { message: "No metadata available", status: "unknown" };
 
@@ -59,7 +49,7 @@ export async function load({ platform, cookies, fetch }) {
   if (valid && cookieStatsParsed) {
     // If the cookie stats are valid, use them
     return {
-      invites,
+      invites: () => fetch("/get-guilds").then((res) => res.json() as Promise<MyInvite[]>),
       stats: cookieStatsParsed,
       meta: metadata,
     };
@@ -117,7 +107,7 @@ export async function load({ platform, cookies, fetch }) {
   }
 
   return {
-    invites,
+    invites: () => fetch("/get-guilds").then((res) => res.json() as Promise<MyInvite[]>),
     stats: result,
     meta: metadata,
   };
