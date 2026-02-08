@@ -49,7 +49,7 @@ export async function load({ platform, cookies }) {
   if (valid && cookieStatsParsed) {
     // If the cookie stats are valid, use them
     return {
-      invites: () => fetch("/get-guilds").then((res) => res.json() as Promise<MyInvite[]>),
+      invites: fetch("/get-guilds").then((res) => res.json() as Promise<MyInvite[]>),
       stats: cookieStatsParsed,
       meta: metadata,
     };
@@ -107,7 +107,7 @@ export async function load({ platform, cookies }) {
   }
 
   return {
-    invites: () => fetch("/get-guilds").then((res) => res.json() as Promise<MyInvite[]>),
+    invites: fetch("/get-guilds").then((res) => res.json() as Promise<MyInvite[]>),
     stats: result,
     meta: metadata,
   };
