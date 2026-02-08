@@ -10,7 +10,7 @@ const FALLBACK_STATS: StatsResponse = {
 
 export async function load({ platform, cookies }) {
   // @ts-ignore - This file only exists after building, so we have to ignore it during development
-  const invites = building ? [] : ((await import("$lib/server/invites/invites").then((mod) => mod.invites)).catch(() => []) as MyInvite[]);
+  const { invites } = await import("$lib/server/invites/invites.ts");
   const cookieStats = cookies.get("stats");
   let metadata: StatsMetadata = { message: "No metadata available", status: "unknown" };
 
