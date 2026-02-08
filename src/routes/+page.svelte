@@ -136,7 +136,7 @@
 
     <div class="flex w-full justify-center">
       <a href="https://discord.gg/dH7z29AKd5" target="_blank" class="link link-hover link-secondary text-sm transition-colors">
-        Feature your server
+        Get your server featured
       </a>
     </div>
   </div>
