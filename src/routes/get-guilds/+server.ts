@@ -3,6 +3,7 @@ import { BOT_TOKEN } from "$env/static/private";
 import { REST } from "@discordjs/rest";
 import { json } from "@sveltejs/kit";
 import { Routes, type APIInvite } from "discord-api-types/v10";
+import { inspect } from "util";
 
 export const prerender = true; // Render at build time
 
@@ -50,7 +51,16 @@ export async function GET() {
     return json({ error: "Bot token not configured" }, { status: 500 });
   }
 
-  const rest = new REST({ version: "10" }).setToken(BOT_TOKEN);
+  const rest = new REST({
+    version: "10",
+    userAgentAppendix: "Supportmail (https://supportmail.dev 3.0)",
+    authPrefix: "Bot",
+    globalRequestsPerSecond: 5,
+    rejectOnRateLimit: (data) => {
+      console.warn("Rate limited by Discord API", inspect(data, { depth: 3 }));
+      return true;
+    },
+  }).setToken(BOT_TOKEN);
   const invites: APIInvite[] = [];
   for (const { code } of featuredInvites) {
     try {
