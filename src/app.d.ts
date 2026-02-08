@@ -24,7 +24,7 @@ declare global {
     }
   }
 
-  type MyInvite = APIInvite & { guild: APIInviteGuild; approximate_member_count: number };
+  type MyInvite = Pick<APIInvite, "code" | "channel"> & { guild: APIInviteGuild; approximate_member_count: number };
 
   type StatsResponse = { guilds: number; users: number; tickets: number; fallback?: true };
 

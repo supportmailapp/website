@@ -2,7 +2,7 @@ import { building } from "$app/environment";
 import { BOT_TOKEN } from "$env/static/private";
 import { REST } from "@discordjs/rest";
 import { json } from "@sveltejs/kit";
-import { Routes } from "discord-api-types/v10";
+import { Routes, type APIInvite } from "discord-api-types/v10";
 
 export const prerender = true; // Render at build time
 
@@ -51,15 +51,25 @@ export async function GET() {
   }
 
   const rest = new REST({ version: "10" }).setToken(BOT_TOKEN);
-  const invites: MyInvite[] = [];
+  const invites: APIInvite[] = [];
   for (const { code } of featuredInvites) {
     try {
-      const invite = (await rest.get(`${Routes.invite(code)}?with_counts=true`)) as MyInvite;
+      const invite = (await rest.get(`${Routes.invite(code)}?with_counts=true`)) as APIInvite;
       invites.push(invite);
     } catch (error) {
       console.error(`Failed to fetch invite for code ${code}:`, error);
     }
   }
 
-  return json(invites);
+  return json(
+    invites.map(
+      (i) =>
+        ({
+          code: i.code,
+          channel: i.channel,
+          guild: i.guild!,
+          approximate_member_count: i.approximate_member_count ?? 0,
+        }) satisfies MyInvite,
+    ),
+  );
 }
