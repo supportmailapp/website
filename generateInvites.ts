@@ -29,6 +29,10 @@ const featuredInvites: { name: string; code: string }[] = [
     name: "Block by Block (MC Story Mode thing)",
     code: "blockbyblock",
   },
+  {
+    name: "Sailorpiece (Roblox)",
+    code: "sailorpiece",
+  },
 ];
 
 export default function generateInvitesFile(): Plugin {
