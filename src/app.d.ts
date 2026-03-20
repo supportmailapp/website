@@ -1,5 +1,4 @@
 import type { APIInvite, APIInviteGuild, APIUser } from "discord-api-types/v10";
-import type { FlattenMaps } from "mongoose";
 
 declare global {
   namespace App {

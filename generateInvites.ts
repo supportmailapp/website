@@ -1,7 +1,7 @@
 import { REST } from "@discordjs/rest";
 import { Routes, type APIInvite } from "discord-api-types/v10";
 import { inspect } from "util";
-import { loadEnv, type Plugin } from "vite";
+import type { Plugin } from "vite";
 
 // name is just for identification purposes
 const featuredInvites: { name: string; code: string }[] = [
