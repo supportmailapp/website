@@ -41,12 +41,12 @@
     "wrangler": "^4.70.0"
   },
   "dependencies": {
-    "@discordjs/rest": "^2.6.0",
+    "@discordjs/rest": "^2.6.1",
     "@inlang/paraglide-js": "^2.13.1",
     "chart.js": "^4.5.1",
     "chartjs-adapter-dayjs-4": "^1.0.4",
     "dayjs": "^1.11.19",
-    "discord-api-types": "^0.38.40",
+    "discord-api-types": "^0.38.45",
     "jsonwebtoken": "^9.0.3",
     "ky": "^1.14.3",
     "mongoose": "^8.23.0",
